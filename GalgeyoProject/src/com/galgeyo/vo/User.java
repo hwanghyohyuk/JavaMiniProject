@@ -1,24 +1,34 @@
 package com.galgeyo.vo;
 
-//회원객체
-public class User {
+import java.io.Serializable;
+
+//일반 사용자
+public class User implements Serializable{
 	//Field
-	private String id; //회원 아이디
-	private String pwd; //회원 패스워드
-	private String name; //회원 이름
-	private String tel; //회원 전화번호
-	private char code; //회원 구분코드
+	private boolean isUser;//사용자 or 관리자, true면 사용자 false면 관리자
+	private String id; //아이디
+	private String pwd; //패스워드
+	private String name; //이름
+	private String tel; //전화번호
 	
 	//Constructor
 	public User(){}
 
-	public User(String id, String pwd, String name, String tel, char code) {
+	public User(boolean isUser,String id, String pwd, String name, String tel) {
 		super();
+		this.isUser = isUser;
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
 		this.tel = tel;
-		this.code = code;
+	}
+
+	public boolean isUser() {
+		return isUser;
+	}
+
+	public void setUser(boolean isUser) {
+		this.isUser = isUser;
 	}
 
 	public String getId() {
@@ -53,11 +63,4 @@ public class User {
 		this.tel = tel;
 	}
 
-	public char getCode() {
-		return code;
-	}
-
-	public void setCode(char code) {
-		this.code = code;
-	}
 }

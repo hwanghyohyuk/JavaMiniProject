@@ -1,21 +1,24 @@
 package com.galgeyo.vo;
 
-//관리자 객체
-public class Manager extends User{
+import java.io.Serializable;
+
+//매장관리자
+public class Manager extends User implements Serializable{
 	//Field
 	private String ownNo;
 	private String addr;
-	private String type;
+	private byte type;
+	private boolean isOpen;
 	
 	//Constructor
 	public Manager(){}
 
-	public Manager(String id, String pwd, String name, String tel, char code,
-			String ownNo, String addr, String type) {
-		super(id, pwd, name, tel, code);
+	public Manager(boolean isUser, String id, String pwd, String name, String tel, String ownNo, String addr, byte type) {
+		super(isUser, id, pwd, name, tel);
 		this.ownNo = ownNo;
 		this.addr = addr;
 		this.type = type;
+		this.isOpen = false;
 	}
 
 	public String getOwnNo() {
@@ -34,11 +37,19 @@ public class Manager extends User{
 		this.addr = addr;
 	}
 
-	public String getType() {
+	public byte getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(byte type) {
 		this.type = type;
+	}
+
+	public boolean isOpen() {
+		return isOpen;
+	}
+
+	public void setOpen(boolean isOpen) {
+		this.isOpen = isOpen;
 	}
 }

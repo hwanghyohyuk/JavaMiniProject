@@ -1,7 +1,9 @@
 package com.galgeyo.vo;
 
+import java.io.Serializable;
+
 //메뉴객체
-public class Menu {
+public class Menu implements Serializable {
 	//Field
 	private int menuNo;
 	private String menuName;
@@ -14,8 +16,7 @@ public class Menu {
 	//Constructor
 	public Menu(){}
 
-	public Menu(int menuNo, String menuName, String category, int price, double discount, String imgURL,
-			boolean orderYN) {
+	public Menu(int menuNo, String menuName, String category, int price, double discount, String imgURL,	boolean orderYN) {
 		super();
 		this.menuNo = menuNo;
 		this.menuName = menuName;

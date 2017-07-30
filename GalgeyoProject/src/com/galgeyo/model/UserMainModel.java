@@ -1,5 +1,5 @@
 package com.galgeyo.model;
-//
-public class LoginModel {
+
+public class UserMainModel {
 
 }
