@@ -6,15 +6,15 @@ public class FindInfoController {
 
 	//아이디 찾기 
 	public String findId(String name, String tel){
-		String id = null;
+		String result = null;
 		
-		return id;
+		return result;
 	}
 	//비밀번호 찾기 
 	public String findPwd(String id, String tel){
-		String pwd = null;
+		String result = null;
 		
-		return pwd;
+		return result;
 	}
 	
 	// 뒤로가기 : 페이지 이동
