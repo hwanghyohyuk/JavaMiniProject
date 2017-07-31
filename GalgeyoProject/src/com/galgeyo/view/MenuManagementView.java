@@ -8,6 +8,9 @@ import java.awt.Dimension;
 import javax.swing.table.DefaultTableModel;
 import java.awt.SystemColor;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 //메뉴관리 화면
 public class  MenuManagementView extends JFrame{
@@ -22,77 +25,96 @@ public class  MenuManagementView extends JFrame{
 	private JTable table_1;
 	private JTable table_2;
 	public MenuManagementView() {
+		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
 		this.setBounds(0,0,800,600);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(192,57,43));
 		panel.setBounds(0, 0, 784, 75);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("마이페이지");
-		lblNewLabel_2.setBounds(12, 10, 100, 15);
+		JLabel lblNewLabel_2 = new JLabel("메뉴관리");
+		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 22));
+		lblNewLabel_2.setBounds(58, 10, 100, 55);
 		panel.add(lblNewLabel_2);
 		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_user_3.png"));
+		lblNewLabel_4.setBounds(12, 10, 57, 55);
+		panel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\logo_galgeyo_2.png"));
+		lblNewLabel_5.setBounds(672, 10, 100, 55);
+		panel.add(lblNewLabel_5);
+		
 		JPanel panel_1 = new JPanel();
-		panel_1.setForeground(new Color(192, 192, 192));
+		panel_1.setForeground(Color.WHITE);
 		panel_1.setBackground(new Color(44,62,80));
 		panel_1.setBounds(396, 111, 376, 428);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("메뉴 추가");
-		lblNewLabel.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBackground(new Color(255, 255, 240));
-		lblNewLabel.setBounds(12, 10, 57, 15);
+		lblNewLabel.setBounds(12, 10, 121, 25);
 		panel_1.add(lblNewLabel);
 		
 		JLabel label = new JLabel("메뉴 번호");
-		label.setForeground(Color.LIGHT_GRAY);
+		label.setForeground(Color.WHITE);
 		label.setBounds(23, 45, 57, 15);
 		panel_1.add(label);
 		
 		JLabel label_1 = new JLabel("메뉴 이름");
-		label_1.setForeground(Color.LIGHT_GRAY);
+		label_1.setForeground(Color.WHITE);
 		label_1.setBounds(23, 80, 57, 15);
 		panel_1.add(label_1);
 		
 		JLabel label_2 = new JLabel("분류");
-		label_2.setForeground(Color.LIGHT_GRAY);
+		label_2.setForeground(Color.WHITE);
 		label_2.setBounds(23, 105, 57, 15);
 		panel_1.add(label_2);
 		
 		JLabel label_3 = new JLabel("가격");
-		label_3.setForeground(Color.LIGHT_GRAY);
+		label_3.setForeground(Color.WHITE);
 		label_3.setBounds(23, 135, 57, 15);
 		panel_1.add(label_3);
 		
 		JLabel label_4 = new JLabel("할인율");
-		label_4.setForeground(Color.LIGHT_GRAY);
+		label_4.setForeground(Color.WHITE);
 		label_4.setBounds(23, 175, 57, 15);
 		panel_1.add(label_4);
 		
 		JLabel lblNewLabel_1 = new JLabel("이미지 URL");
-		lblNewLabel_1.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setBounds(23, 210, 88, 15);
 		panel_1.add(lblNewLabel_1);
 		
 		JLabel label_5 = new JLabel("주문가능여부");
-		label_5.setForeground(Color.LIGHT_GRAY);
+		label_5.setForeground(Color.WHITE);
 		label_5.setBounds(23, 288, 88, 15);
 		panel_1.add(label_5);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("possible");
-		rdbtnNewRadioButton.setBackground(Color.GRAY);
+		rdbtnNewRadioButton.setForeground(Color.WHITE);
+		rdbtnNewRadioButton.setBackground(new Color(42,66,80));
 		rdbtnNewRadioButton.setBounds(119, 284, 121, 23);
 		panel_1.add(rdbtnNewRadioButton);
 		
 		JRadioButton radioButton = new JRadioButton("impossible");
+		radioButton.setForeground(Color.WHITE);
 		radioButton.setBounds(119, 309, 121, 23);
+		radioButton.setBackground(new Color(42,66,80));
+
 		panel_1.add(radioButton);
 		
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(139, 365, 97, 23);
+		btnNewButton.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_menuEdit_3.png"));
+		btnNewButton.setBounds(119, 360, 152, 34);
 		panel_1.add(btnNewButton);
 		
 		textField = new JTextField();
@@ -132,22 +154,28 @@ public class  MenuManagementView extends JFrame{
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_3 = new JLabel("메뉴 검색 및 삭제");
-		lblNewLabel_3.setForeground(Color.LIGHT_GRAY);
+		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 14));
+		lblNewLabel_3.setForeground(Color.WHITE);
 		lblNewLabel_3.setBackground(new Color(255, 255, 240));
-		lblNewLabel_3.setBounds(12, 10, 114, 15);
+		lblNewLabel_3.setBounds(12, 10, 147, 32);
 		panel_2.add(lblNewLabel_3);
 		
 		textField_6 = new JTextField();
-		textField_6.setBounds(22, 35, 231, 21);
+		textField_6.setBounds(22, 52, 264, 38);
 		panel_2.add(textField_6);
 		textField_6.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("검색");
-		btnNewButton_1.setBounds(265, 34, 97, 23);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton_1.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_menuEdit_1.png"));
+		btnNewButton_1.setBounds(298, 52, 46, 38);
 		panel_2.add(btnNewButton_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 66, 350, 352);
+		scrollPane.setBounds(22, 114, 322, 239);
 		panel_2.add(scrollPane);
 		
 		table_2 = new JTable();
@@ -159,5 +187,15 @@ public class  MenuManagementView extends JFrame{
 			}
 		));
 		scrollPane.setViewportView(table_2);
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		btnNewButton_2.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_menuEdit_2.png"));
+		btnNewButton_2.setBounds(123, 363, 129, 34);
+		panel_2.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_6 = new JLabel("뒤로가기");
+		lblNewLabel_6.setForeground(new Color(42,66,80));
+		lblNewLabel_6.setBounds(715, 85, 57, 15);
+		getContentPane().add(lblNewLabel_6);
 	}
 }
