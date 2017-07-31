@@ -6,11 +6,11 @@ import java.util.Date;
 
 import com.galgeyo.vo.Packet;
 
-public class ClientMassgeReader implements Runnable, Protocol {
+public class ClientReceiver implements Runnable, Protocol {
 	// 서버로 부터 받는 부분
 	private Socket socket;
 
-	public ClientMassgeReader(Socket socket) {
+	public ClientReceiver(Socket socket) {
 		super();
 		this.socket = socket;
 	}
