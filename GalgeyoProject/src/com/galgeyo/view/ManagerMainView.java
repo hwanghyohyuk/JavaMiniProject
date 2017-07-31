@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 //관리자 메인화면
 public class ManagerMainView extends JFrame {
@@ -27,19 +28,31 @@ public class ManagerMainView extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(192, 57, 43));
-		panel.setBounds(0, 0, 784, 60);
+		panel.setBounds(0, 0, 784, 80);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("마이페이지");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_user_1.png"));
-		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		lblNewLabel.setBounds(10, 10, 360, 40);
-		panel.add(lblNewLabel);
+		JLabel title_text = new JLabel("마이페이지");
+		title_text.setIcon(null);
+		title_text.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+		title_text.setBounds(86, 20, 302, 40);
+		panel.add(title_text);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(617, 10, 150, 40);
-		panel.add(lblNewLabel_1);
+		JLabel title_icon = new JLabel("");
+		title_icon.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_user_1.png"));
+		title_icon.setBounds(32, 16, 50, 50);
+		panel.add(title_icon);
+		
+		JLabel logo = new JLabel("");
+		logo.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\logo_galgeyo_2.png"));
+		logo.setBounds(666, 3, 99, 73);
+		panel.add(logo);
+		
+		JButton button = new JButton("로그아웃");
+		button.setForeground(new Color(52, 73, 94));
+		button.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		button.setBounds(679, 90, 92, 30);
+		getContentPane().add(button);
 		
 		setVisible(true);
 	}
