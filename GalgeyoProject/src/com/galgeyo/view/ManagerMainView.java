@@ -29,12 +29,12 @@ public class ManagerMainView extends JFrame {
 		panel.add(title_text);
 		
 		JLabel title_icon = new JLabel("");
-		title_icon.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_user_1.png"));
+		title_icon.setIcon(new ImageIcon("C:/Users/user1/Documents/GitHub/JavaMiniProject/GalgeyoProject/gui_imgs/icon_user_1.png"));
 		title_icon.setBounds(32, 16, 50, 50);
 		panel.add(title_icon);
 		
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\logo_galgeyo_2.png"));
+		logo.setIcon(new ImageIcon("C:/Users/user1/Documents/GitHub/JavaMiniProject/GalgeyoProject/gui_imgs/logo_galgeyo_2.png"));
 		logo.setBounds(666, 3, 99, 73);
 		panel.add(logo);
 		
@@ -47,7 +47,7 @@ public class ManagerMainView extends JFrame {
 		JLabel imgLabel_preview = new JLabel("");
 		imgLabel_preview.setBounds(10, 10, 132, 125);
 		panel_1.add(imgLabel_preview);
-		imgLabel_preview.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\thumbnail_img_sample.PNG"));
+		imgLabel_preview.setIcon(new ImageIcon("C:/Users/user1/Documents/GitHub/JavaMiniProject/GalgeyoProject/gui_imgs/thumbnail_img_sample.PNG"));
 		
 		JLabel label_strName = new JLabel("매장 이름");
 		label_strName.setForeground(Color.DARK_GRAY);
@@ -62,7 +62,7 @@ public class ManagerMainView extends JFrame {
 		panel_1.add(label_mngName);
 		
 		JButton btn_booking = new JButton("");
-		btn_booking.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_manager_1.png"));
+		btn_booking.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_1.png"));
 		btn_booking.setBounds(156, 89, 250, 45);
 		panel_1.add(btn_booking);
 		
@@ -93,15 +93,15 @@ public class ManagerMainView extends JFrame {
 		});
 		btn_storeInfoEdit.setBounds(224, 7, 170, 46);
 		panel_2.add(btn_storeInfoEdit);
-		btn_storeInfoEdit.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_manager_2.png"));
+		btn_storeInfoEdit.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_2.png"));
 		
 		JButton btn_menuManagement = new JButton("");
-		btn_menuManagement.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_manager_3.png"));
+		btn_menuManagement.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_3.png"));
 		btn_menuManagement.setBounds(400, 7, 130, 46);
 		panel_2.add(btn_menuManagement);
 		
 		JButton btn_totalOrder = new JButton("");
-		btn_totalOrder.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_manager_4.png"));
+		btn_totalOrder.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_4.png"));
 		btn_totalOrder.setBounds(536, 7, 170, 46);
 		panel_2.add(btn_totalOrder);
 		
@@ -122,7 +122,7 @@ public class ManagerMainView extends JFrame {
 		panel_3.add(table1);
 		
 		JButton btn_apply1 = new JButton("");
-		btn_apply1.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_manager_5.png"));
+		btn_apply1.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_5.png"));
 		btn_apply1.setBounds(138, 182, 82, 30);
 		panel_3.add(btn_apply1);
 		
@@ -143,7 +143,7 @@ public class ManagerMainView extends JFrame {
 		panel_4.add(table2);
 		
 		JButton btn_apply2 = new JButton("");
-		btn_apply2.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_manager_6.png"));
+		btn_apply2.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_6.png"));
 		btn_apply2.setBounds(138, 182, 82, 30);
 		panel_4.add(btn_apply2);
 		

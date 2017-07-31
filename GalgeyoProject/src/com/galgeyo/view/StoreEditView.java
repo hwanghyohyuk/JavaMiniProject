@@ -1,30 +1,24 @@
 package com.galgeyo.view;
 
-import javax.swing.JPanel;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 //매장정보 수정
-public class StoreEditView extends JPanel {
+public class StoreEditView extends JFrame implements ActionListener{
 	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_2;
+	private JButton btnNewButton;
 	
 	public StoreEditView() {
 		setLayout(null);
-			this.setBounds(0, 0, 800, 600);
+			this.setSize(800, 600);
+			setLocationRelativeTo(null);
+			this.setResizable(false);
 			
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(192, 57, 43));
@@ -38,12 +32,12 @@ public class StoreEditView extends JPanel {
 		panel.add(lblNewLabel);
 			
 			JLabel lblNewLabel_6 = new JLabel("");
-			lblNewLabel_6.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_storeInfoEdit_1.png"));
+			lblNewLabel_6.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/icon_storeInfoEdit_1.png"));
 			lblNewLabel_6.setBounds(12, 10, 46, 50);
 			panel.add(lblNewLabel_6);
 			
 			JLabel label = new JLabel("");
-			label.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\logo_galgeyo_2.png"));
+			label.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/logo_galgeyo_2.png"));
 			label.setBounds(686, 10, 102, 47);
 			panel.add(label);
 			
@@ -76,7 +70,7 @@ public class StoreEditView extends JPanel {
 			textField_1.setColumns(10);
 			
 			JButton btnNewButton_1 = new JButton("");
-			btnNewButton_1.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_menuEdit_3.png"));
+			btnNewButton_1.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_menuEdit_3.png"));
 			btnNewButton_1.setBounds(622, 452, 145, 51);
 			panel_1.add(btnNewButton_1);
 			
@@ -106,15 +100,16 @@ public class StoreEditView extends JPanel {
 		panel_1.add(textField_4);
 			textField_4.setColumns(10);
 			
-			JButton btnNewButton = new JButton("뒤로가기");
+			btnNewButton = new JButton("뒤로가기");
 			btnNewButton.setBackground(Color.WHITE);
 			btnNewButton.setBounds(681, 10, 107, 29);
+			btnNewButton.addActionListener(this);
 			panel_1.add(btnNewButton);
 		
 			JLabel lblNewLabel_7 = new JLabel("");
 			lblNewLabel_7.setBounds(65, 60, 49, 47);
 			panel_1.add(lblNewLabel_7);
-			lblNewLabel_7.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_storeInfoEdit_2.png"));
+			lblNewLabel_7.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/icon_storeInfoEdit_2.png"));
 			
 			JLabel lblNewLabel_8 = new JLabel("업종");
 			lblNewLabel_8.setFont(new Font("맑은 고딕", Font.BOLD, 13));
@@ -140,7 +135,16 @@ public class StoreEditView extends JPanel {
 		this.setVisible(true);
 		}
 		
-		public static void main(String[] args){
-		new UserInfoEditView();
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==btnNewButton){
+				new ManagerMainView();
+				dispose();
+			}
 		}
+		
+		public static void main(String[] args){
+			new StoreEditView();
+			}
+		
 }
