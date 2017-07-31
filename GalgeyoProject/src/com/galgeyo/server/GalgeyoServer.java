@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class GalgeyoServer {
-	public static void run() {
+	public void run() {
 		/*
 		 * Server Socket 생성 Client 연결 대기 > Socket 생성 Server Thread를 Start
 		 */

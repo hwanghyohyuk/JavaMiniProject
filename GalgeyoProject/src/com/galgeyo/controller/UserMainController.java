@@ -22,7 +22,7 @@ public class UserMainController {
 	//HashMap<주문번호, 주문 객체>
 	
 	//일반 사용자의 최근 주문내역 상세보기
-	public void AboutRecentlyOrder(HashMap<String, Order> recentlyOrder){}
+	public void AboutRecentlyOrder(Order recentlyOrder){}
 	
 	//일반 사용자의 최근 주문내역 삭제
 	public void deleteRecentlyOrder(int row, DefaultTableModel dtm){}
