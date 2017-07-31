@@ -1,12 +1,14 @@
+
 package com.galgeyo.view;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
+
 //관리자 메인화면
 public class ManagerMainView extends JFrame {
-	
+		
 	private JTable table1;
 	private JTable table2;
 	
