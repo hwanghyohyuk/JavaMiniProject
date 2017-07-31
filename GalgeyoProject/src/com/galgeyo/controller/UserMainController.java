@@ -14,9 +14,15 @@ public class UserMainController {
 	public void favoriteList(HashMap<String, Manager> favorite, DefaultTableModel dtm){}
 	//HashMap<사업자번호, 매장관리자 객체>
 	
+	//일반 사용자의 즐겨찾기 정보 삭제
+	
 	//일반 사용자의 최근 주문내역 로드
 	public void recentlyOrder(HashMap<String, Order> recentlyOrder, DefaultTableModel dtm){}
 	//HashMap<주문번호, 주문 객체>
+	
+	//일반 사용자의 최근 주문내역 상세보기
+	
+	//일반 사용자의 최근 주문내역 삭제
 	
 	//메뉴 선택 화면으로 이동
 	public void moveToSelectMenu(Session user){}
