@@ -15,8 +15,8 @@ import javax.swing.ImageIcon;
 //로그인화면
 public class LoginView extends JFrame{
 	private JTextField txtGalgeyo;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tf_id;
+	private JTextField tf_pwd;
 	public LoginView() {
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
@@ -25,17 +25,17 @@ public class LoginView extends JFrame{
 		lblNewLabel.setBounds(144, 297, 69, 36);
 		getContentPane().add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setText("사용자 아이디");
-		textField.setBounds(103, 202, 163, 36);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		tf_id = new JTextField();
+		tf_id.setText("사용자 아이디");
+		tf_id.setBounds(103, 202, 163, 36);
+		getContentPane().add(tf_id);
+		tf_id.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("비밀번호");
-		textField_1.setBounds(103, 252, 163, 35);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		tf_pwd = new JTextField();
+		tf_pwd.setText("비밀번호");
+		tf_pwd.setBounds(103, 252, 163, 35);
+		getContentPane().add(tf_pwd);
+		tf_pwd.setColumns(10);
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setBackground(Color.WHITE);
