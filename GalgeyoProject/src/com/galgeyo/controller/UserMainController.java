@@ -15,14 +15,17 @@ public class UserMainController {
 	//HashMap<사업자번호, 매장관리자 객체>
 	
 	//일반 사용자의 즐겨찾기 정보 삭제
+	public void deleteFavorite(int row, DefaultTableModel dtm){}
 	
 	//일반 사용자의 최근 주문내역 로드
 	public void recentlyOrder(HashMap<String, Order> recentlyOrder, DefaultTableModel dtm){}
 	//HashMap<주문번호, 주문 객체>
 	
 	//일반 사용자의 최근 주문내역 상세보기
+	public void AboutRecentlyOrder(HashMap<String, Order> recentlyOrder){}
 	
 	//일반 사용자의 최근 주문내역 삭제
+	public void deleteRecentlyOrder(int row, DefaultTableModel dtm){}
 	
 	//메뉴 선택 화면으로 이동
 	public void moveToSelectMenu(Session user){}
