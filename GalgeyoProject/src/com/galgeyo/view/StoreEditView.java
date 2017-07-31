@@ -2,10 +2,7 @@ package com.galgeyo.view;
 
 import javax.swing.*;
 import java.awt.*;
-<<<<<<< HEAD
-=======
 import java.awt.event.*;
->>>>>>> SY
 
 //매장정보 수정
 public class StoreEditView extends JFrame implements ActionListener{
@@ -18,15 +15,10 @@ public class StoreEditView extends JFrame implements ActionListener{
 	private JButton btnNewButton;
 	
 	public StoreEditView() {
-<<<<<<< HEAD
 			setLayout(null);
-			this.setBounds(0, 0, 800, 600);
-=======
-		setLayout(null);
 			this.setSize(800, 600);
 			setLocationRelativeTo(null);
 			this.setResizable(false);
->>>>>>> SY
 			
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(192, 57, 43));
@@ -37,7 +29,7 @@ public class StoreEditView extends JFrame implements ActionListener{
 			JLabel lblNewLabel = new JLabel("매장 정보 수정");
 			lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 			lblNewLabel.setBounds(70, 13, 228, 47);
-		panel.add(lblNewLabel);
+			panel.add(lblNewLabel);
 			
 			JLabel lblNewLabel_6 = new JLabel("");
 			lblNewLabel_6.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/icon_storeInfoEdit_1.png"));
@@ -57,7 +49,7 @@ public class StoreEditView extends JFrame implements ActionListener{
 			
 			JLabel lblNewLabel_1 = new JLabel("매장 이름");
 			lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(81, 131, 81, 29);
+			lblNewLabel_1.setBounds(81, 131, 81, 29);
 			panel_1.add(lblNewLabel_1);
 			
 			JLabel lblNewLabel_2 = new JLabel("사업자번호");
@@ -74,7 +66,7 @@ public class StoreEditView extends JFrame implements ActionListener{
 			textField_1 = new JTextField();
 			textField_1.setFont(new Font("굴림", Font.PLAIN, 14));
 			textField_1.setBounds(193, 133, 116, 25);
-		panel_1.add(textField_1);
+			panel_1.add(textField_1);
 			textField_1.setColumns(10);
 			
 			JButton btnNewButton_1 = new JButton("");
@@ -85,16 +77,16 @@ public class StoreEditView extends JFrame implements ActionListener{
 			JLabel lblNewLabel_3 = new JLabel("전화번호");
 			lblNewLabel_3.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 			lblNewLabel_3.setBounds(81, 240, 80, 29);
-		panel_1.add(lblNewLabel_3);
+				panel_1.add(lblNewLabel_3);
 	
 			textField_3 = new JTextField();
 			textField_3.setBounds(193, 185, 165, 26);
-	panel_1.add(textField_3);
+			panel_1.add(textField_3);
 			textField_3.setColumns(10);
 			
-		JLabel lblNewLabel_4 = new JLabel("수정할 정보를 입력해주세요.");
-		lblNewLabel_4.setForeground(new Color(42,66,80));
-		lblNewLabel_4.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+			JLabel lblNewLabel_4 = new JLabel("수정할 정보를 입력해주세요.");
+			lblNewLabel_4.setForeground(new Color(42,66,80));
+			lblNewLabel_4.setFont(new Font("맑은 고딕", Font.BOLD, 16));
 			lblNewLabel_4.setBounds(121, 78, 278, 29);
 			panel_1.add(lblNewLabel_4);
 			
@@ -105,7 +97,7 @@ public class StoreEditView extends JFrame implements ActionListener{
 			
 			textField_4 = new JTextField();
 			textField_4.setBounds(193, 244, 151, 24);
-		panel_1.add(textField_4);
+			panel_1.add(textField_4);
 			textField_4.setColumns(10);
 			
 			btnNewButton = new JButton("뒤로가기");
@@ -142,10 +134,6 @@ public class StoreEditView extends JFrame implements ActionListener{
 			
 		this.setVisible(true);
 		}
-<<<<<<< HEAD
-	
-}
-=======
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -155,9 +143,4 @@ public class StoreEditView extends JFrame implements ActionListener{
 			}
 		}
 		
-		public static void main(String[] args){
-			new StoreEditView();
-			}
-		
 }
->>>>>>> SY
