@@ -1,19 +1,13 @@
 package com.galgeyo.view;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
-
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.SystemColor;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 
 //메뉴관리 화면
 public class  MenuManagementView extends JFrame{
+	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -24,10 +18,13 @@ public class  MenuManagementView extends JFrame{
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
+	
 	public MenuManagementView() {
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
-		this.setBounds(0,0,800,600);
+		this.setSize(800, 600);
+		setLocationRelativeTo(null);
+		this.setResizable(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(192,57,43));
@@ -41,12 +38,12 @@ public class  MenuManagementView extends JFrame{
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_user_3.png"));
+		lblNewLabel_4.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/icon_user_3.png"));
 		lblNewLabel_4.setBounds(12, 10, 57, 55);
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\logo_galgeyo_2.png"));
+		lblNewLabel_5.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/logo_galgeyo_2.png"));
 		lblNewLabel_5.setBounds(672, 10, 100, 55);
 		panel.add(lblNewLabel_5);
 		
@@ -113,7 +110,7 @@ public class  MenuManagementView extends JFrame{
 		panel_1.add(radioButton);
 		
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_menuEdit_3.png"));
+		btnNewButton.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_menuEdit_3.png"));
 		btnNewButton.setBounds(119, 360, 152, 34);
 		panel_1.add(btnNewButton);
 		
@@ -170,7 +167,7 @@ public class  MenuManagementView extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_menuEdit_1.png"));
+		btnNewButton_1.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_menuEdit_1.png"));
 		btnNewButton_1.setBounds(298, 52, 46, 38);
 		panel_2.add(btnNewButton_1);
 		
@@ -189,7 +186,7 @@ public class  MenuManagementView extends JFrame{
 		scrollPane.setViewportView(table_2);
 		
 		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setIcon(new ImageIcon("E:\\devtool\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_menuEdit_2.png"));
+		btnNewButton_2.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_menuEdit_2.png"));
 		btnNewButton_2.setBounds(123, 363, 129, 34);
 		panel_2.add(btnNewButton_2);
 		
@@ -197,5 +194,8 @@ public class  MenuManagementView extends JFrame{
 		lblNewLabel_6.setForeground(new Color(42,66,80));
 		lblNewLabel_6.setBounds(715, 85, 57, 15);
 		getContentPane().add(lblNewLabel_6);
+		
+		setVisible(true);
 	}
+
 }
