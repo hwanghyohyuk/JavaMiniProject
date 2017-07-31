@@ -5,41 +5,37 @@ import java.awt.event.*;
 import java.awt.*;
 
 //회원가입
-public class SignUpView extends JFrame{
+public class SignUpView extends JFrame {
 	public SignUpView() {
 		this.setSize(500, 600);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("gui_imgs/btn_signUp_1.png"));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(80, 282, 330, 115);
-		getContentPane().add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon("gui_imgs/btn_signUp_2.png"));
-		btnNewButton_1.setBackground(Color.WHITE);
-		btnNewButton_1.setBounds(80, 407, 330, 115);
-		getContentPane().add(btnNewButton_1);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("gui_imgs/icon_signUp_1.png"));
-		lblNewLabel.setBackground(Color.RED);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 43, 470, 229);
-		getContentPane().add(lblNewLabel);
-		
-		JButton btnNewButton_2 = new JButton("뒤로가기");
-		btnNewButton_2.setBounds(383, 10, 100, 25);
-		getContentPane().add(btnNewButton_2);
-		
+
+		JLabel lbl_regLogo = new JLabel("");
+		lbl_regLogo.setIcon(new ImageIcon("gui_imgs/icon_signUp_1.png"));
+		lbl_regLogo.setBackground(Color.WHITE);
+		lbl_regLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_regLogo.setBounds(12, 43, 470, 229);
+		getContentPane().add(lbl_regLogo);
+
+		JButton btn_regUser = new JButton("");
+		btn_regUser.setIcon(new ImageIcon("gui_imgs/btn_signUp_1.png"));
+		btn_regUser.setBackground(Color.WHITE);
+		btn_regUser.setBounds(80, 282, 330, 115);
+		getContentPane().add(btn_regUser);
+
+		JButton btn_regManager = new JButton("");
+		btn_regManager.setIcon(new ImageIcon("gui_imgs/btn_signUp_2.png"));
+		btn_regManager.setBackground(Color.WHITE);
+		btn_regManager.setBounds(80, 407, 330, 115);
+		getContentPane().add(btn_regManager);
+
+		JButton btn_back = new JButton("뒤로가기");
+		btn_back.setBounds(383, 10, 100, 25);
+		getContentPane().add(btn_back);
+
 		this.setVisible(true);
 	}
 
