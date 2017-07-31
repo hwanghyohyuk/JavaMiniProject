@@ -3,6 +3,7 @@ package com.galgeyo.controller;
 import java.util.HashMap;
 import javax.swing.table.DefaultTableModel;
 import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.Order;
 import com.galgeyo.vo.Session;
 
 public class OrderMenuController {
@@ -21,7 +22,8 @@ public class OrderMenuController {
 	public void menuList(Manager store, DefaultTableModel dtm){}
 	
 	//주문하기
-	public void submitOrder(Session user, DefaultTableModel dtm){}
+	public Order submitOrder(Session user, DefaultTableModel dtm){
+		return null;}
 	
 	//뒤로가기
 	public void moveToSelectMenu(Session user){}

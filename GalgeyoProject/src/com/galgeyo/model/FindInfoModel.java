@@ -1,6 +1,8 @@
 package com.galgeyo.model;
 
-public class FindInfoModel {
+import com.galgeyo.server.Protocol;
+
+public class FindInfoModel implements Protocol{
 
 	public String getId(String name, String tel){
 		String id=null;

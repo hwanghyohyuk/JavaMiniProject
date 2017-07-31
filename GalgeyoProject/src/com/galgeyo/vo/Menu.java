@@ -5,7 +5,7 @@ import java.io.Serializable;
 //메뉴객체
 public class Menu implements Serializable {
 	//Field
-	private int menuNo;
+	private String menuNo;
 	private String menuName;
 	private String category;
 	private int price;
@@ -16,7 +16,7 @@ public class Menu implements Serializable {
 	//Constructor
 	public Menu(){}
 
-	public Menu(int menuNo, String menuName, String category, int price, double discount, String imgURL,	boolean orderYN) {
+	public Menu(String menuNo, String menuName, String category, int price, double discount, String imgURL,	boolean orderYN) {
 		super();
 		this.menuNo = menuNo;
 		this.menuName = menuName;
@@ -28,11 +28,11 @@ public class Menu implements Serializable {
 	}
 
 	//Method
-	public int getMenuNo() {
+	public String getMenuNo() {
 		return menuNo;
 	}
 
-	public void setMenuNo(int menuNo) {
+	public void setMenuNo(String menuNo) {
 		this.menuNo = menuNo;
 	}
 

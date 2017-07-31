@@ -1,16 +1,22 @@
 package com.galgeyo.model;
 
-public class OrderMenuModel {
+import java.util.HashMap;
+
+import com.galgeyo.server.Protocol;
+import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.Menu;
+import com.galgeyo.vo.Order;
+
+public class OrderMenuModel implements Protocol{
  
   //매장 리스트 데이터 받아오기
-  public HashMap getStore(String category){}
+  public HashMap<String, Manager> getStore(){
+	return null;}
   
   //해당 매장의 메뉴 데이터 받아오기
-  public HashMap getMenu(String tel){}
-  
-  //검색한 키워드로 매장 데이터 받아오기
-  public HashMap selectStore(String keyword){}
-  
+  public HashMap<String, Menu> getMenu(Manager store){
+	return null;}
+    
   //주문 내역 저장
   public void sendOrder(Order o){}
 
