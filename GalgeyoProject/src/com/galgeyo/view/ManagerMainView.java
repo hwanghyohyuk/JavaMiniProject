@@ -12,7 +12,9 @@ public class ManagerMainView extends JFrame {
 	
 	public ManagerMainView() {
 		getContentPane().setBackground(new Color(255, 255, 255));
-		setBounds(200, 100, 800, 600);
+		this.setSize(800, 600);
+		setLocationRelativeTo(null);
+		this.setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
