@@ -2,15 +2,22 @@
 package com.galgeyo.view;
 
 import java.awt.*;
+
 import javax.swing.*;
+
 import java.awt.event.*;
 
 
 //관리자 메인화면
-public class ManagerMainView extends JFrame {
+public class ManagerMainView extends JFrame implements ActionListener{
 		
 	private JTable table1;
 	private JTable table2;
+	
+	private JButton btn_logout;
+	private JButton btn_storeInfoEdit;
+	private JButton btn_menuManagement;
+	private JButton btn_totalOrder;
 	
 	public ManagerMainView() {
 		getContentPane().setBackground(new Color(255, 255, 255));
@@ -70,13 +77,12 @@ public class ManagerMainView extends JFrame {
 		btn_booking.setBounds(156, 89, 250, 45);
 		panel_1.add(btn_booking);
 		
-		JEditorPane textLink_logout = new JEditorPane();
-		textLink_logout.setBounds(656, 0, 64, 30);
-		panel_1.add(textLink_logout);
-		textLink_logout.setEditable(false);
-		textLink_logout.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		textLink_logout.setForeground(new Color(52, 73, 94));
-		textLink_logout.setText("로그아웃");
+		btn_logout = new JButton("로그아웃");
+		btn_logout.setBounds(630, 0, 90, 30);
+		panel_1.add(btn_logout);
+		btn_logout.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		btn_logout.setForeground(new Color(52, 73, 94));
+		btn_logout.addActionListener(this);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(44, 62, 80));
@@ -90,24 +96,28 @@ public class ManagerMainView extends JFrame {
 		lavel_managementMenu.setBounds(16, 6, 228, 46);
 		panel_2.add(lavel_managementMenu);
 		
-		JButton btn_storeInfoEdit = new JButton("");
+		btn_storeInfoEdit = new JButton("");
 		btn_storeInfoEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+		
 		btn_storeInfoEdit.setBounds(224, 7, 170, 46);
 		panel_2.add(btn_storeInfoEdit);
 		btn_storeInfoEdit.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_2.png"));
+		btn_storeInfoEdit.addActionListener(this);
 		
-		JButton btn_menuManagement = new JButton("");
+		btn_menuManagement = new JButton("");
 		btn_menuManagement.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_3.png"));
 		btn_menuManagement.setBounds(400, 7, 130, 46);
 		panel_2.add(btn_menuManagement);
+		btn_menuManagement.addActionListener(this);
 		
-		JButton btn_totalOrder = new JButton("");
+		btn_totalOrder = new JButton("");
 		btn_totalOrder.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_4.png"));
 		btn_totalOrder.setBounds(536, 7, 170, 46);
 		panel_2.add(btn_totalOrder);
+		btn_totalOrder.addActionListener(this);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(64, 64, 64));
@@ -152,6 +162,23 @@ public class ManagerMainView extends JFrame {
 		panel_4.add(btn_apply2);
 		
 		setVisible(true);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btn_logout){
+			new LoginView();
+		}
+		if(e.getSource()==btn_storeInfoEdit){
+			new StoreEditView();
+		}
+		if(e.getSource()==btn_menuManagement){
+			new MenuManagementView();
+		}
+		if(e.getSource()==btn_totalOrder){
+			new TotalOrderView();
+		}
 	}
 	
 }
