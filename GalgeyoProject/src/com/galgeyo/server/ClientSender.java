@@ -13,7 +13,7 @@ public class ClientSender implements Protocol {
 		this.sendPacket = sendPacket;
 	}
 	
-	public void run() {
+	public void send() {
 		Socket socket = null;
 		ObjectOutputStream oos = null;
 		

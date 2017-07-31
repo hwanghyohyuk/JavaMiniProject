@@ -1,0 +1,43 @@
+1. 기본 프레임의 틀은 다음 코드로 한다.
+
+this.setSize(width, height);
+setLocationRelativeTo(null);
+setResizable(false);
+
+setVisible(true)를 명심할 것.
+
+2. 컴포넌트의 변수명은 각 컴포넌트의 약자로 한다
+ex)	
+	JTextField 	→		tf_변수명
+	JLabel 			→		lbl_변수명
+	JButton		→		btn_변수명
+	
+3. 모든 변수명의 첫 글자는 소문자로 하고, 변수명이 여러 단어일 때 구분은 두번째 단어부터 첫글자를 대문자로 한다.
+
+4. View에서 정보를 보여줘야 하는 모든 부분은 서버 데이터로부터의 GET이다
+
+5. Controller는 View에서 사용자 요청 발생 시 Model로 부터 데이터를 요청한다.
+
+6. Model은 데이터 요청 발생 시 서버로 데이터를 GET한다.
+
+7. 서버는 Model로부터 받은 GET요청을 수행한 후 데이터를 반환한다.
+
+8. View에서 정보를 저장하는 모든 부분은 서버로 POST한다.
+
+9. Controller는 View에서 발생한 POST요청과 해당 데이터를 Model로 전달한다.
+
+10. Model은 Controller로부터 전달받은 POST요청과 데이터를 가공하여 서버로 POST한다.
+
+11. 서버는 Model로부터 받은 POST요청과 가동된 데이터를 분석하여 데이터를 저장한다.
+
+12. Model과 서버사이의 통신은 사용자정의 Packet객체를 이용한다.
+
+13. JTable의 값을 저장하고 삭제할때는 DefaultTableModel을 이용한다
+
+14. JTable에서 HashMap으로의 변환 과정은 다음과 같다
+
+		JTable(DefaultTableModel) > DefaultTableModel > 데이터 매칭으로 새로운 객체 생성 > HashMap 에 저장
+		
+15. HashMap에서 JTable로의 변환과정은 위 과정의 역순으로 한다.
+
+------------------------------------------------------------------------------------------------------------------------------------------------ 17.07.31 작성

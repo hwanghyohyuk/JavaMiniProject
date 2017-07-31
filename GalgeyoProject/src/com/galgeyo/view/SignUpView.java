@@ -1,46 +1,42 @@
 package com.galgeyo.view;
 
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
 
 //회원가입
-public class SignUpView extends JPanel{
+public class SignUpView extends JFrame {
 	public SignUpView() {
-		setBackground(Color.WHITE);
-		setLayout(null);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\gui_imgs\\btn_signUp_1.png"));
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnNewButton.setBounds(80, 242, 330, 115);
-		add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\gui_imgs\\btn_signUp_2.png"));
-		btnNewButton_1.setBackground(Color.WHITE);
-		btnNewButton_1.setBounds(80, 367, 330, 115);
-		add(btnNewButton_1);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_signUp_1.png"));
-		lblNewLabel.setBackground(Color.RED);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(80, 35, 330, 197);
-		add(lblNewLabel);
-		
-		JButton btnNewButton_2 = new JButton("뒤로가기");
-		btnNewButton_2.setBounds(438, 0, 81, 23);
-		add(btnNewButton_2);
+		this.setSize(500, 600);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		getContentPane().setBackground(Color.WHITE);
+		getContentPane().setLayout(null);
+
+		JLabel lbl_regLogo = new JLabel("");
+		lbl_regLogo.setIcon(new ImageIcon("gui_imgs/icon_signUp_1.png"));
+		lbl_regLogo.setBackground(Color.WHITE);
+		lbl_regLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_regLogo.setBounds(12, 43, 470, 229);
+		getContentPane().add(lbl_regLogo);
+
+		JButton btn_regUser = new JButton("");
+		btn_regUser.setIcon(new ImageIcon("gui_imgs/btn_signUp_1.png"));
+		btn_regUser.setBackground(Color.WHITE);
+		btn_regUser.setBounds(80, 282, 330, 115);
+		getContentPane().add(btn_regUser);
+
+		JButton btn_regManager = new JButton("");
+		btn_regManager.setIcon(new ImageIcon("gui_imgs/btn_signUp_2.png"));
+		btn_regManager.setBackground(Color.WHITE);
+		btn_regManager.setBounds(80, 407, 330, 115);
+		getContentPane().add(btn_regManager);
+
+		JButton btn_back = new JButton("뒤로가기");
+		btn_back.setBounds(383, 10, 100, 25);
+		getContentPane().add(btn_back);
+
+		this.setVisible(true);
 	}
 
 }
