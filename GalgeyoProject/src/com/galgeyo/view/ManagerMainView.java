@@ -26,16 +26,20 @@ public class ManagerMainView extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(165, 42, 42));
+		panel.setBackground(new Color(192, 57, 43));
 		panel.setBounds(0, 0, 784, 60);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("마이페이지");
-		lblNewLabel.setIcon(new ImageIcon(ManagerMainView.class.getResource("/javax/swing/plaf/basic/icons/image-delayed.png")));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_user_1.png"));
 		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lblNewLabel.setBounds(10, 10, 360, 40);
 		panel.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(617, 10, 150, 40);
+		panel.add(lblNewLabel_1);
 		
 		setVisible(true);
 	}
