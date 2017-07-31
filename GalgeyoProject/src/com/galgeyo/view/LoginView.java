@@ -6,7 +6,6 @@ import java.awt.event.*;
 
 //로그인화면
 public class LoginView extends JFrame {
-	private JTextField txtGalgeyo;
 	private JTextField tf_id;
 	private JTextField tf_pwd;
 
