@@ -15,13 +15,8 @@ import javax.swing.ImageIcon;
 //로그인화면
 public class LoginView extends JFrame{
 	private JTextField txtGalgeyo;
-<<<<<<< HEAD
 	private JTextField tf_id;
 	private JTextField tf_pwd;
-=======
-	private JTextField textField;
-	private JTextField textField_1;
->>>>>>> JY
 	public LoginView() {
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
@@ -30,7 +25,6 @@ public class LoginView extends JFrame{
 		lblNewLabel.setBounds(144, 297, 69, 36);
 		getContentPane().add(lblNewLabel);
 		
-<<<<<<< HEAD
 		tf_id = new JTextField();
 		tf_id.setText("사용자 아이디");
 		tf_id.setBounds(103, 202, 163, 36);
@@ -42,23 +36,10 @@ public class LoginView extends JFrame{
 		tf_pwd.setBounds(103, 252, 163, 35);
 		getContentPane().add(tf_pwd);
 		tf_pwd.setColumns(10);
-=======
-		textField = new JTextField();
-		textField.setText("사용자 아이디");
-		textField.setBounds(103, 202, 163, 36);
-		getContentPane().add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setText("비밀번호");
-		textField_1.setBounds(103, 252, 163, 35);
-		getContentPane().add(textField_1);
-		textField_1.setColumns(10);
->>>>>>> JY
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\gui_imgs\\btn_login_3.png"));
+		btnNewButton.setIcon(new ImageIcon("../gui_imgs/btn_login_3.png"));
 		btnNewButton.setBounds(278, 202, 100, 85);
 		getContentPane().add(btnNewButton);
 		
@@ -67,7 +48,7 @@ public class LoginView extends JFrame{
 		getContentPane().add(lblNewLabel_1);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\gui_imgs\\logo_galgeyo_1.png"));
+		label.setIcon(new ImageIcon("../gui_imgs\\logo_galgeyo_1.png"));
 		label.setBackground(Color.WHITE);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(72, 31, 306, 161);
