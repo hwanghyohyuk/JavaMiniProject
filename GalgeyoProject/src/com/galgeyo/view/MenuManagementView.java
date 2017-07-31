@@ -25,7 +25,7 @@ public class  MenuManagementView extends JFrame{
 		this.setSize(800, 600);
 		setLocationRelativeTo(null);
 		this.setResizable(false);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(192,57,43));
 		panel.setBounds(0, 0, 784, 75);
@@ -197,5 +197,5 @@ public class  MenuManagementView extends JFrame{
 		
 		setVisible(true);
 	}
-
+	
 }
