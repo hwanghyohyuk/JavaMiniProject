@@ -2,19 +2,31 @@ package com.galgeyo.view;
 
 import javax.swing.*;
 import java.awt.*;
+<<<<<<< HEAD
+=======
+import java.awt.event.*;
+>>>>>>> SY
 
 //매장정보 수정
-public class StoreEditView extends JPanel {
+public class StoreEditView extends JFrame implements ActionListener{
 	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_2;
+	private JButton btnNewButton;
 	
 	public StoreEditView() {
+<<<<<<< HEAD
 			setLayout(null);
 			this.setBounds(0, 0, 800, 600);
+=======
+		setLayout(null);
+			this.setSize(800, 600);
+			setLocationRelativeTo(null);
+			this.setResizable(false);
+>>>>>>> SY
 			
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(192, 57, 43));
@@ -96,9 +108,10 @@ public class StoreEditView extends JPanel {
 		panel_1.add(textField_4);
 			textField_4.setColumns(10);
 			
-			JButton btnNewButton = new JButton("뒤로가기");
+			btnNewButton = new JButton("뒤로가기");
 			btnNewButton.setBackground(Color.WHITE);
 			btnNewButton.setBounds(681, 10, 107, 29);
+			btnNewButton.addActionListener(this);
 			panel_1.add(btnNewButton);
 		
 			JLabel lblNewLabel_7 = new JLabel("");
@@ -129,5 +142,22 @@ public class StoreEditView extends JPanel {
 			
 		this.setVisible(true);
 		}
+<<<<<<< HEAD
 	
 }
+=======
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==btnNewButton){
+				new ManagerMainView();
+				dispose();
+			}
+		}
+		
+		public static void main(String[] args){
+			new StoreEditView();
+			}
+		
+}
+>>>>>>> SY
