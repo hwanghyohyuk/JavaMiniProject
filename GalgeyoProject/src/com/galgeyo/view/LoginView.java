@@ -38,8 +38,8 @@ public class LoginView extends JFrame {
 		btn_login.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
 				// 로그인
+				
 
 			}
 		});
@@ -64,6 +64,13 @@ public class LoginView extends JFrame {
 		getContentPane().add(lbl_regImg);
 
 		JLabel lbl_reg = new JLabel("회원가입");
+		lbl_reg.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new SignUpView();
+				dispose();
+			}
+		});
 		lbl_reg.setBounds(162, 463, 69, 36);
 		getContentPane().add(lbl_reg);
 
@@ -73,10 +80,21 @@ public class LoginView extends JFrame {
 		getContentPane().add(lbl_findInfoImg);
 
 		JLabel lblfindInfo = new JLabel("ID/PW 찾기");
+		lblfindInfo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new FindInfoView();
+				dispose();
+			}
+		});
 		lblfindInfo.setBounds(268, 463, 70, 36);
 		getContentPane().add(lblfindInfo);
 
 		setVisible(true);
+
+	}
+	public static void main(String[] args) {
+		new LoginView();
 	}
 	public static void main(String[] args) {
 		new LoginView();

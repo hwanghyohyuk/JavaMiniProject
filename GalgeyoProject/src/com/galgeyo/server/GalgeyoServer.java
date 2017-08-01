@@ -8,6 +8,7 @@ public class GalgeyoServer {
 	public void run() {
 		/*
 		 * Server Socket 생성 Client 연결 대기 > Socket 생성 Server Thread를 Start
+		 * 클라이언트의 연결을 무한히 받는 부분
 		 */
 		ServerSocket serverSocket = null;
 		try {

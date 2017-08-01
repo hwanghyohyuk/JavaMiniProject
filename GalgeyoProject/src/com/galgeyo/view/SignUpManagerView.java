@@ -2,6 +2,8 @@ package com.galgeyo.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 //관리자 회원가입
 public class SignUpManagerView extends JFrame {
@@ -12,6 +14,8 @@ public class SignUpManagerView extends JFrame {
 	private JTextField tf_ownNo;
 	private JTextField tf_addr;
 	private JTextField tf_tel;
+	
+	private boolean confirmId = false;
 
 	public SignUpManagerView() {
 		this.setSize(500, 600);
@@ -100,15 +104,41 @@ public class SignUpManagerView extends JFrame {
 		tf_tel.setColumns(10);
 
 		JButton btn_confirmId = new JButton("");
+		btn_confirmId.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!tf_id.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요","회원가입 완료",JOptionPane.INFORMATION_MESSAGE);
+			
+				}
+			}
+		});
 		btn_confirmId.setIcon(new ImageIcon("gui_imgs/btn_signUp_3.png"));
 		btn_confirmId.setBounds(378, 179, 80, 28);
 		getContentPane().add(btn_confirmId);
 
 		JButton btn_back = new JButton("뒤로가기");
+		btn_back.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new SignUpView();
+				dispose();
+			}
+		});
 		btn_back.setBounds(382, 10, 100, 25);
 		getContentPane().add(btn_back);
 
 		JButton btn_submit = new JButton("");
+		btn_submit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				
+				JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.","회원가입 완료",JOptionPane.INFORMATION_MESSAGE);
+				new LoginView();
+				dispose();
+			}
+		});
 		btn_submit.setIcon(new ImageIcon("gui_imgs/btn_signUp_4.png"));
 		btn_submit.setBounds(174, 476, 151, 65);
 		getContentPane().add(btn_submit);

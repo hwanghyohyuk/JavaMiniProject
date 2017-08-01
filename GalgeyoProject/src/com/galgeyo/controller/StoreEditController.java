@@ -6,7 +6,7 @@ import com.galgeyo.vo.Session;
 
 public class StoreEditController {
 	// 변경사항 제출 후 메인으로이동
-		public void submitInfo(String name,String ownNo, String tel, String addr, byte type, String pwd, Session manager) {
+		public void submitInfo(String name,String ownNo, String tel, String addr, String type, String pwd, Session manager) {
 			boolean result = false;
 				
 			// 입력받은데이터로 모두 변경
