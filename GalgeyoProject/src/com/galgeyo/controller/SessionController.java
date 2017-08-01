@@ -10,31 +10,25 @@ import com.galgeyo.vo.User;
 public class SessionController {
 	
 	// 사용자 정의 패킷
-		// 패킷은 boolean,byte,Date,String 순서로 객체화된다
-		// 패킷에 필요한 정보를 담고 객체스트림으로 입출력한다.
+	// 패킷은 boolean,byte,Date,String 순서로 객체화된다
+	// 패킷에 필요한 정보를 담고 객체스트림으로 입출력한다.
 	
-	public Object sessionLoad(){//세션.프로퍼티스 파일에서 불러오는 메소드
-		System.out.println("exe");
+	//세션.프로퍼티스 파일에서 불러오는 메소드
+	public Object sessionLoad(){
 		Properties prop = new Properties();
 		try {
 			prop.load(new FileInputStream("session.properties"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String session = prop.getProperty("session");
-		System.out.println(session);
 		String[] split = session.split(",");
-		for(String s : split){
-			System.out.println(s);
-		}
-		if(split[0].equals("true")){//true면 사용자
-			System.out.println("true");
+		
+		if(split[0].equals("true")){	//true면 사용자
 			User user = new User(true, split[1], split[2], split[3], split[4]);
 			Object temp=user;			
 			return temp;
-		}else{//false면 관리자
-			System.out.println("false");
+		}else{							//false면 관리자
 			Manager manager= new Manager(false, split[1], split[2], split[3], split[4], split[5], split[6], split[7]);
 			Object temp=manager;
 			return temp;
@@ -50,7 +44,6 @@ public class SessionController {
 		try {
 			prop.store(new FileOutputStream("session.properties"), null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

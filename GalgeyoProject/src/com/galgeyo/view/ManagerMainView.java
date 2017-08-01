@@ -36,7 +36,6 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				new SessionController().sessionSave(new Manager(false, "manager", "123", "중리", "032-123-1233", "123123-123123-12", "강남구", "한식"));
 				manager.setSession(new SessionController().sessionLoad());
 				lbl_storeName.setText(((Manager)manager.getSession()).getName());
 				lbl_managerId.setText(((Manager)manager.getSession()).getId());

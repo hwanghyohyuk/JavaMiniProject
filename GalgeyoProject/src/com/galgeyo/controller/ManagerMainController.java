@@ -30,7 +30,9 @@ public class ManagerMainController {
 	}
 
 	//응답 대기자 리스트
-	public void waitUserList(HashMap<String, Order> waitUsers, DefaultTableModel dtm){}
+	public void waitUserList(HashMap<String, Order> waitUsers, DefaultTableModel dtm){
+		
+	}
 	//예약 주문자 리스트
 	public void reserUserList(HashMap<String, Order> reserUsers, DefaultTableModel dtm){}
 	//응답 대기자 리스트 → 예약 주문자 리스트
