@@ -15,7 +15,9 @@ public class UserMainController {
 	//HashMap<사업자번호, 매장관리자 객체>
 	
 	//일반 사용자의 즐겨찾기 정보 삭제
-	public void deleteFavorite(int row, DefaultTableModel dtm){}
+	public void deleteFavorite(int row, DefaultTableModel dtm){
+		dtm.removeRow(row);
+	}
 	
 	//일반 사용자의 최근 주문내역 로드
 	public void recentlyOrder(HashMap<String, Order> recentlyOrder, DefaultTableModel dtm){}
