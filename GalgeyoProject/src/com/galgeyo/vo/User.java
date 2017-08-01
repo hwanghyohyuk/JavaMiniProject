@@ -62,5 +62,11 @@ public class User implements Serializable{
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return isUser+","+id+","+pwd+","+name+","+tel;
+	}
 
 }

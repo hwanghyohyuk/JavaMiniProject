@@ -77,6 +77,5 @@ public class LoginView extends JFrame {
 		getContentPane().add(lblfindInfo);
 
 		setVisible(true);
-
 	}
 }

@@ -7,13 +7,13 @@ public class Manager extends User implements Serializable{
 	//Field
 	private String ownNo;
 	private String addr;
-	private byte type;
+	private String type;
 	private boolean isOpen;
 	
 	//Constructor
 	public Manager(){}
 
-	public Manager(boolean isUser, String id, String pwd, String name, String tel, String ownNo, String addr, byte type) {
+	public Manager(boolean isUser, String id, String pwd, String name, String tel, String ownNo, String addr, String type) {
 		super(isUser, id, pwd, name, tel);
 		this.ownNo = ownNo;
 		this.addr = addr;
@@ -37,11 +37,11 @@ public class Manager extends User implements Serializable{
 		this.addr = addr;
 	}
 
-	public byte getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(byte type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
@@ -51,5 +51,10 @@ public class Manager extends User implements Serializable{
 
 	public void setOpen(boolean isOpen) {
 		this.isOpen = isOpen;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString()+","+ownNo+","+addr+","+type+","+isOpen;
 	}
 }
