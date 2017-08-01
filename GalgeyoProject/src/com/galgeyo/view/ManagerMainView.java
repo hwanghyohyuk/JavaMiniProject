@@ -18,6 +18,9 @@ public class ManagerMainView extends JFrame implements ActionListener{
 	private JButton btn_storeInfoEdit;
 	private JButton btn_menuManagement;
 	private JButton btn_totalOrder;
+	private JButton btn_booking;
+	private JButton btn_accept;
+	private JButton btn_acceptCancel;
 	
 	public ManagerMainView() {
 		getContentPane().setBackground(new Color(255, 255, 255));
@@ -72,17 +75,17 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		label_mngName.setBounds(156, 52, 270, 23);
 		panel_1.add(label_mngName);
 		
-		JButton btn_booking = new JButton("");
+		btn_booking = new JButton();
 		btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
 		btn_booking.setBounds(156, 89, 250, 45);
 		panel_1.add(btn_booking);
 		
-		btn_logout = new JButton("로그아웃");
-		btn_logout.setBounds(630, 0, 90, 30);
+		btn_logout = new JButton();
+		btn_logout.setIcon(new ImageIcon("gui_imgs/btn_logout.png"));
+		btn_logout.setBounds(656, 2, 62, 22);
+		btn_logout.setBorder(null);
+		btn_logout.setBackground(null);
 		panel_1.add(btn_logout);
-		btn_logout.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		btn_logout.setForeground(new Color(52, 73, 94));
-		btn_logout.addActionListener(this);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(44, 62, 80));
@@ -96,28 +99,21 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		lavel_managementMenu.setBounds(16, 6, 228, 46);
 		panel_2.add(lavel_managementMenu);
 		
-		btn_storeInfoEdit = new JButton("");
-		btn_storeInfoEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		
+		btn_storeInfoEdit = new JButton();
+				
 		btn_storeInfoEdit.setBounds(224, 7, 170, 46);
 		panel_2.add(btn_storeInfoEdit);
 		btn_storeInfoEdit.setIcon(new ImageIcon("gui_imgs/btn_manager_2.png"));
-		btn_storeInfoEdit.addActionListener(this);
 		
 		btn_menuManagement = new JButton("");
 		btn_menuManagement.setIcon(new ImageIcon("gui_imgs/btn_manager_3.png"));
 		btn_menuManagement.setBounds(400, 7, 130, 46);
 		panel_2.add(btn_menuManagement);
-		btn_menuManagement.addActionListener(this);
-		
+
 		btn_totalOrder = new JButton("");
 		btn_totalOrder.setIcon(new ImageIcon("gui_imgs/btn_manager_4.png"));
 		btn_totalOrder.setBounds(536, 7, 170, 46);
 		panel_2.add(btn_totalOrder);
-		btn_totalOrder.addActionListener(this);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(64, 64, 64));
@@ -135,10 +131,10 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		table1.setBounds(12, 41, 332, 132);
 		panel_3.add(table1);
 		
-		JButton btn_apply1 = new JButton("");
-		btn_apply1.setIcon(new ImageIcon("gui_imgs/btn_manager_5.png"));
-		btn_apply1.setBounds(138, 182, 82, 30);
-		panel_3.add(btn_apply1);
+		btn_accept = new JButton("");
+		btn_accept.setIcon(new ImageIcon("gui_imgs/btn_manager_5.png"));
+		btn_accept.setBounds(138, 182, 82, 30);
+		panel_3.add(btn_accept);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.DARK_GRAY);
@@ -155,11 +151,24 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		table2 = new JTable();
 		table2.setBounds(12, 41, 332, 132);
 		panel_4.add(table2);
+				
+		btn_acceptCancel = new JButton("");
+		btn_acceptCancel.setIcon(new ImageIcon("gui_imgs/btn_manager_6.png"));
+		btn_acceptCancel.setBounds(138, 182, 82, 30);
+		panel_4.add(btn_acceptCancel);
 		
-		JButton btn_apply2 = new JButton("");
-		btn_apply2.setIcon(new ImageIcon("gui_imgs/btn_manager_6.png"));
-		btn_apply2.setBounds(138, 182, 82, 30);
-		panel_4.add(btn_apply2);
+		//addActionListener
+		btn_logout.addActionListener(this);
+		btn_storeInfoEdit.addActionListener(this);
+		btn_menuManagement.addActionListener(this);
+		btn_totalOrder.addActionListener(this);
+		
+		/*
+		btn_storeInfoEdit.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+		}
+		});
+		*/
 		
 		setVisible(true);
 	}
