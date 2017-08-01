@@ -1,6 +1,10 @@
 package com.galgeyo.controller;
 
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Properties;
+import java.util.zip.InflaterInputStream;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -23,18 +27,6 @@ public class ManagerMainController {
 			//세션을 서버로 보냄
 			return true;
 		}
-	}
-
-	// 매장정보 수정 화면으로 이동
-	public void moveToStoreEdit(Session manager) {
-	}
-
-	// 메뉴 관리 화면으로 이동
-	public void moveToMenuManagement(Session manager) {
-	}
-
-	// 주문 내역 통계 화면으로 이동
-	public void moveToTotalOrder(Session manager) {
 	}
 
 	//응답 대기자 리스트

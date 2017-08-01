@@ -27,7 +27,7 @@ public class ManagerMainModel implements Protocol{
 	
 	//응답대기자 리스트에서 체크(승낙)한 유저를 예약주문자 리스트에 추가 후 업데이트
 	public  void updateAcceptUsers(int orderNo){
-	//서버로 변경사항 전달	
+	//서버로 변경사항 전달
 	}
 	
 	//삭제 후 데이터 업데이트(예약 주문자 리스트)
