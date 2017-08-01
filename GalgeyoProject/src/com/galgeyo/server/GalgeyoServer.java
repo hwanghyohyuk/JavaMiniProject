@@ -15,7 +15,7 @@ public class GalgeyoServer {
 		ServerSocket serverSocket = null;
 		try {
 			serverSocket = new ServerSocket(6000);
-			System.out.println("서버 정상 구동!");
+			System.out.println("서버 정상 구동");
 			//파일 준비
 			Properties UserTable = new Properties();
 			UserTable.store(new FileWriter("usertable.properties"), "user database");

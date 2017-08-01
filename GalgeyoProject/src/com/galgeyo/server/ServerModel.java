@@ -12,7 +12,9 @@ import com.galgeyo.vo.User;
 public class ServerModel {
 
 	public Object loginCheck(Object message) {
+		
 		System.out.println("서버 모델 실행");
+		
 		Object sendMessage=null;
 		//message : 로그인 시 필요한 아이디/비밀번호
 		String[] data = null;
@@ -74,6 +76,7 @@ public class ServerModel {
 			sendMessage=false;
 		}
 		System.out.println("로그인 처리 결과 : "+sendMessage);
+		
 		return sendMessage;
 	}
 }
