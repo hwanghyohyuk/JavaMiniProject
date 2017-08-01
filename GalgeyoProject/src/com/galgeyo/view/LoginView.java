@@ -96,4 +96,7 @@ public class LoginView extends JFrame {
 	public static void main(String[] args) {
 		new LoginView();
 	}
+	public static void main(String[] args) {
+		new LoginView();
+	}
 }
