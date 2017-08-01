@@ -18,16 +18,18 @@ public class ManagerMainView extends JFrame implements ActionListener{
 	private JButton btn_storeInfoEdit;
 	private JButton btn_menuManagement;
 	private JButton btn_totalOrder;
-	private JButton btn_booking;
+	private JButton btn_open_or_close;
 	private JButton btn_accept;
 	private JButton btn_acceptCancel;
 	
 	public ManagerMainView() {
-		getContentPane().setBackground(new Color(255, 255, 255));
+		
 		this.setSize(800, 600);
 		setLocationRelativeTo(null);
 		this.setResizable(false);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -75,10 +77,10 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		label_mngName.setBounds(156, 52, 270, 23);
 		panel_1.add(label_mngName);
 		
-		btn_booking = new JButton();
-		btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
-		btn_booking.setBounds(156, 89, 250, 45);
-		panel_1.add(btn_booking);
+		btn_open_or_close = new JButton();
+		btn_open_or_close.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
+		btn_open_or_close.setBounds(156, 89, 250, 45);
+		panel_1.add(btn_open_or_close);
 		
 		btn_logout = new JButton();
 		btn_logout.setIcon(new ImageIcon("gui_imgs/btn_logout.png"));
@@ -176,21 +178,37 @@ public class ManagerMainView extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		//로그아웃 버튼 이벤트
 		if(e.getSource()==btn_logout){
 			new LoginView();
 			dispose();
 		}
+		//매장정보수정 버튼 이벤트
 		if(e.getSource()==btn_storeInfoEdit){
 			new StoreEditView();
 		}
+		//메뉴관리 버튼 이벤트
 		if(e.getSource()==btn_menuManagement){
 			new MenuManagementView();
 		}
+		//주문내역 관리 이벤트
 		if(e.getSource()==btn_totalOrder){
 			new TotalOrderView();
 		}
+		//매장 OPEN/CLOSE 버튼 이벤트
+		if(e.getSource()==btn_open_or_close){
+			
+		}
+		//주문 승낙 버튼 이벤트
+		if(e.getSource()==btn_accept){
+			
+		}
+		//승낙 취소 버튼 이벤트
+		if(e.getSource()==btn_acceptCancel){
+			
+		}
 	}
-	
+
 	public static void main(String[] args){
 		new ManagerMainView();
 	}
