@@ -7,9 +7,10 @@ import java.awt.*;
 //회원가입
 public class SignUpView extends JFrame {
 	public SignUpView() {
-		this.setSize(500, 600);
+		setSize(500, 600);
 		setLocationRelativeTo(null);
 		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
 
@@ -43,7 +44,7 @@ public class SignUpView extends JFrame {
 		});
 		btn_regManager.setIcon(new ImageIcon("gui_imgs/btn_signUp_2.png"));
 		btn_regManager.setBackground(Color.WHITE);
-		btn_regManager.setBounds(80, 407, 330, 115);
+		btn_regManager.setBounds(80, 407, 330, 112);
 		getContentPane().add(btn_regManager);
 
 		JButton btn_back = new JButton("뒤로가기");
