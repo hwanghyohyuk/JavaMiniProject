@@ -2,6 +2,8 @@ package com.galgeyo.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 //사용자 회원가입
 public class SignUpUserView extends JFrame {
@@ -73,20 +75,65 @@ public class SignUpUserView extends JFrame {
 		tf_tel.setColumns(10);
 
 		JButton btn_confirmId = new JButton("");
+		btn_confirmId.addMouseListener(new MouseAdapter() {
+			//아이디 중복 확인
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!tf_id.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다", "회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_id.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "회원가입", JOptionPane.WARNING_MESSAGE);
+				
+				}
+			}
+		});
 		btn_confirmId.setIcon(new ImageIcon("gui_imgs/btn_signUp_3.png"));
 		btn_confirmId.setBounds(358, 179, 82, 32);
 		getContentPane().add(btn_confirmId);
 
 		JButton btn_submit = new JButton("");
+		btn_submit.addMouseListener(new MouseAdapter() {
+			//가입 확인후 로그인 화면으로 이동
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!tf_id.getText().equals("") && !tf_pwd.getText().equals("") && !tf_name.getText().equals("") && !tf_tel.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.", "회원가입", JOptionPane.WARNING_MESSAGE);
+					new LoginView();
+					dispose();
+				}else if(tf_id.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_pwd.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요", "회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_name.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "이름을 입력해주세요", "회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_tel.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "회원가입", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				
+			}
+		});
 		btn_submit.setIcon(new ImageIcon("gui_imgs/btn_signUp_4.png"));
 		btn_submit.setBounds(175, 441, 150, 65);
 		getContentPane().add(btn_submit);
 
 		JButton btn_back = new JButton("뒤로가기");
+		btn_back.addMouseListener(new MouseAdapter() {
+			//로그인 화면으로 이동
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				new SignUpView();
+				dispose();
+			}
+		});
 		btn_back.setBounds(382, 10, 100, 25);
 		getContentPane().add(btn_back);
 
 		this.setVisible(true);
+	}
+	public static void main(String[] args) {
+		new SignUpUserView();
+		
 	}
 
 }

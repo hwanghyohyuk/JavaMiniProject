@@ -107,9 +107,10 @@ public class SignUpManagerView extends JFrame {
 		btn_confirmId.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(!tf_id.getText().equals("")){
-					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요","회원가입 완료",JOptionPane.INFORMATION_MESSAGE);
-			
+				if(tf_id.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요","사업자 회원가입",JOptionPane.INFORMATION_MESSAGE);
+				}else if(!tf_id.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다.","사업자 회원가입",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -130,13 +131,31 @@ public class SignUpManagerView extends JFrame {
 
 		JButton btn_submit = new JButton("");
 		btn_submit.addMouseListener(new MouseAdapter() {
+			//관리자 회원가입후 로그인 화면이동
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
+				if(!tf_id.getText().equals("") && !tf_pwd.getText().equals("") && !tf_storeName.getText().equals("") 
+						&& !tf_ownNo.getText().equals("") && !tf_addr.getText().equals("") && !tf_tel.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.", "관리자회원가입", JOptionPane.WARNING_MESSAGE);
+					new LoginView();
+					dispose();
+				}else if(tf_id.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "사업자 회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_pwd.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요", "사업자 회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_storeName.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "매장이름을 입력해주세요", "사업자 회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_ownNo.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "사업자번호를 입력해주세요", "사업자 회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_addr.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "주소를 입력해주세요", "사업자 회원가입", JOptionPane.WARNING_MESSAGE);
+				}else if(tf_tel.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "사업자 회원가입", JOptionPane.WARNING_MESSAGE);
+				}
 				
-				JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.","회원가입 완료",JOptionPane.INFORMATION_MESSAGE);
-				new LoginView();
-				dispose();
+//				new LoginView();
+//				dispose();
 			}
 		});
 		btn_submit.setIcon(new ImageIcon("gui_imgs/btn_signUp_4.png"));

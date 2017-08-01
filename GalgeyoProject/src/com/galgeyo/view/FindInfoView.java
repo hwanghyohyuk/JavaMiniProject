@@ -29,16 +29,16 @@ public class FindInfoView extends JFrame {
 		getContentPane().setLayout(null);
 		
 		JLabel lbl_FindInfoImg = new JLabel("");
-		lbl_FindInfoImg.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_login_2.png"));
-		lbl_FindInfoImg.setBounds(72, 69, 41, 44);
+		lbl_FindInfoImg.setIcon(new ImageIcon("../GalgeyoProject/gui_imgs/btn_login_2.png"));
+		lbl_FindInfoImg.setBounds(58, 68, 41, 44);
 		getContentPane().add(lbl_FindInfoImg);
 		
 		JLabel lbl_FindInfo = new JLabel("ID/PW 찾기");
-		lbl_FindInfo.setBounds(125, 85, 80, 23);
+		lbl_FindInfo.setBounds(113, 85, 80, 23);
 		getContentPane().add(lbl_FindInfo);
 		
 		JLabel lbl_FindInfoDec = new JLabel("회원가입 시 입력한 정보로 아이디와 비밀번호를 검색합니다.");
-		lbl_FindInfoDec.setBounds(82, 123, 354, 15);
+		lbl_FindInfoDec.setBounds(58, 123, 397, 15);
 		getContentPane().add(lbl_FindInfoDec);
 		
 		JLabel lbl_FindIdImg = new JLabel("");
@@ -62,7 +62,7 @@ public class FindInfoView extends JFrame {
 		getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
-		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_findInfo_2.png"));
+		lblNewLabel_7.setIcon(new ImageIcon("../GalgeyoProject/gui_imgs/icon_findInfo_2.png"));
 		lblNewLabel_7.setBounds(72, 364, 34, 34);
 		getContentPane().add(lblNewLabel_7);
 		
@@ -122,7 +122,7 @@ public class FindInfoView extends JFrame {
 			}
 		});
 		btn_IdSerch.setBackground(Color.WHITE);
-		btn_IdSerch.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_findInfo_1.png"));
+		btn_IdSerch.setIcon(new ImageIcon("../GalgeyoProject/gui_imgs/btn_findInfo_1.png"));
 		btn_IdSerch.setBounds(269, 259, 116, 79);
 		getContentPane().add(btn_IdSerch);
 		
@@ -145,7 +145,7 @@ public class FindInfoView extends JFrame {
 				
 			}
 		});
-		btn_PwSerch.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_findInfo_1.png"));
+		btn_PwSerch.setIcon(new ImageIcon("../GalgeyoProject/gui_imgs/btn_findInfo_1.png"));
 		btn_PwSerch.setBounds(269, 407, 116, 79);
 		getContentPane().add(btn_PwSerch);
 		

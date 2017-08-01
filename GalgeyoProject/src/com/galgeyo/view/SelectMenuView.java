@@ -23,7 +23,8 @@ public class SelectMenuView extends JFrame  implements ActionListener {
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\식사하러가시죠\\gui_imgs\\logo_galgeyo_2.png"));
+	//	lbl_regImg.setIcon(new ImageIcon("gui_imgs/btn_login_1.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("gui_imgs/btn_logo_galgeyo_2.png"));
 		lblNewLabel_1.setBounds(695, 10, 93, 52);
 		panel.add(lblNewLabel_1);
 
