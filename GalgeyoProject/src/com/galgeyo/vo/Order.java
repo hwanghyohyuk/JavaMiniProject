@@ -10,12 +10,12 @@ public class Order implements Serializable {
 	private String name;  //주문자 이름
 	private String tel; //주문자 전화번호
 	private String reservation; //예약시간
-	private HashMap<Menu, Integer> orderMenu; //주문한 메뉴
+	private String orderMenu; //주문한 메뉴
 	
 	//Constructor
 	public Order(){}
 
-	public Order(int orderNo, String name, String tel, String reservation, HashMap<Menu, Integer> orderMenu) {
+	public Order(int orderNo, String name, String tel, String reservation, String orderMenu) {
 		super();
 		this.orderNo = orderNo;
 		this.name = name;
@@ -56,11 +56,20 @@ public class Order implements Serializable {
 		this.reservation = reservation;
 	}
 
-	public HashMap<Menu, Integer> getOrderMenu() {
+	public String getOrderMenu() {
 		return orderMenu;
 	}
 
-	public void setOrderMenu(HashMap<Menu, Integer> orderMenu) {
+	public void setOrderMenu(String orderMenu) {
 		this.orderMenu = orderMenu;
 	}
+
+	@Override
+	public String toString() {
+		return orderNo + "/" + name + "/" + tel + "/" + reservation+ "/" + orderMenu;
+	}
+	
+	
+	
+	
 }
