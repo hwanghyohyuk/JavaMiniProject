@@ -60,12 +60,26 @@ public class ServerThread implements Runnable, Protocol {
 			if (ois != null) {
 				try {
 					ois.close();
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			if(oos!=null){
+				try {
 					oos.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
+			}
 			ServerThreadPool.remove(this);
+			if(socket!=null)
+			try {
+				socket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

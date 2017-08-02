@@ -1,12 +1,20 @@
 package com.galgeyo.view;
 
 import javax.swing.*;
+
+import com.galgeyo.server.ClientController;
+import com.galgeyo.server.Protocol;
+import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.User;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 //관리자 회원가입
-public class SignUpManagerView extends JFrame {
+public class SignUpManagerView extends JFrame implements Protocol {
 
 	private JTextField tf_id;
 	private JTextField tf_pwd;
@@ -14,6 +22,7 @@ public class SignUpManagerView extends JFrame {
 	private JTextField tf_ownNo;
 	private JTextField tf_addr;
 	private JTextField tf_tel;
+	private JButton btn_confirmId;
 
 	private boolean confirmId = false;
 
@@ -75,6 +84,13 @@ public class SignUpManagerView extends JFrame {
 		getContentPane().add(lbl_type);
 
 		tf_id = new JTextField();
+		tf_id.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				confirmId=false;
+				btn_confirmId.setEnabled(!confirmId);
+			}
+		});
 		tf_id.setBounds(160, 179, 206, 28);
 		getContentPane().add(tf_id);
 		tf_id.setColumns(10);
@@ -104,10 +120,44 @@ public class SignUpManagerView extends JFrame {
 		getContentPane().add(tf_tel);
 		tf_tel.setColumns(10);
 
-		JButton btn_confirmId = new JButton("");
+		btn_confirmId = new JButton("");
 		btn_confirmId.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				// 입력한 데이터를 서버로 전송
+					if (tf_id.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						// 서버의 데이터 파일에서 아이디 찾음
+						String message = tf_id.getText();
+						Object result = new ClientController().send(POST, REG_ID_CHECK, message);
+						if(result instanceof Boolean){
+							boolean check = (boolean)result;
+							if(check){// 아이디가 있으면
+								JOptionPane.showMessageDialog(null, "입력하신 아이디가 존재합니다.", "아이디 중복", JOptionPane.INFORMATION_MESSAGE);
+							}else{
+								JOptionPane.showMessageDialog(null, "사용할 수 있는 아이디입니다.", "아이디 사용 가능", JOptionPane.INFORMATION_MESSAGE);
+								confirmId = true;
+								btn_confirmId.setEnabled(!confirmId);
+							}
+						}
+					}
+			}
+		});
+
+		JComboBox cb_type = new JComboBox();
+		cb_type.setModel(new DefaultComboBoxModel(new String[] { "한식", "중식", "양식", "일식" }));
+		cb_type.setBounds(160, 424, 206, 28);
+		getContentPane().add(cb_type);
+		btn_confirmId.setIcon(new ImageIcon("gui_imgs/btn_signUp_3.png"));
+		btn_confirmId.setBounds(378, 179, 80, 28);
+		getContentPane().add(btn_confirmId);
+
+		JButton btn_submit = new JButton("");
+		btn_submit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// 매장 관리자 회원가입 제출
 				if (tf_id.getText().equals("")) {// 아이디빈칸확인
 					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.INFORMATION_MESSAGE);
 				} else if (!confirmId) {// 아이디 중복검사 확인
@@ -125,28 +175,20 @@ public class SignUpManagerView extends JFrame {
 					JOptionPane.showMessageDialog(null, "주소를 입력해주세요", "주소 입력 오류", JOptionPane.INFORMATION_MESSAGE);
 				} else if (tf_tel.getText().equals("")) {// 전화번호 빈칸확인
 					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력 오류", JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					// 입력한 데이터를 서버로 전송
+				}else{
+					Manager message = new Manager(false, tf_id.getText(), tf_pwd.getText(), tf_storeName.getText(),tf_ownNo.getText(),tf_addr.getText(), tf_tel.getText(),(String) cb_type.getSelectedItem());
+					Object result = new ClientController().send(POST, REG_USER, message);
+					if(result instanceof Boolean){
+						boolean check = (boolean)result;
+						if (check) {
+							JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.", "사용자 회원가입 완료", JOptionPane.INFORMATION_MESSAGE);
+							new LoginView();
+							dispose();
+						}else{
+							JOptionPane.showMessageDialog(null, "회원가입이 실패하였습니다.", "사용자 회원가입 오류", JOptionPane.INFORMATION_MESSAGE);
+						}
+					}		
 				}
-			}
-		});
-
-		JComboBox cb_type = new JComboBox();
-		cb_type.setModel(new DefaultComboBoxModel(new String[] { "한식", "중식", "양식", "일식" }));
-		cb_type.setBounds(160, 424, 206, 28);
-		getContentPane().add(cb_type);
-		btn_confirmId.setIcon(new ImageIcon("gui_imgs/btn_signUp_3.png"));
-		btn_confirmId.setBounds(378, 179, 80, 28);
-		getContentPane().add(btn_confirmId);
-
-		JButton btn_submit = new JButton("");
-		btn_submit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// 매장 관리자 회원가입 제출
-				JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.", "회원가입 완료", JOptionPane.INFORMATION_MESSAGE);
-				new LoginView();
-				dispose();
 			}
 		});
 		btn_submit.setIcon(new ImageIcon("gui_imgs/btn_signUp_4.png"));
@@ -168,3 +210,4 @@ public class SignUpManagerView extends JFrame {
 		this.setVisible(true);
 	}
 }
+

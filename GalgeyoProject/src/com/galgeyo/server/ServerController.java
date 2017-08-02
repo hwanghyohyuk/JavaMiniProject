@@ -11,19 +11,26 @@ public class ServerController implements Protocol {
 	//sendPacket = new Packet(receivePacket.isHeader(), LOGIN_SUCCESS, new TimeHandler().getTime(), null);
 
 	public Packet POSTprocess(Packet receivePacket) {
-		
-		System.out.println("서버 컨트롤러 실행");
-		
+		System.out.println("서버 컨트롤러 POST process 실행");
 		byte protocol = receivePacket.getProtocol();		
 		Object message = receivePacket.getMessage();
-		Packet tempPacket = null;
+		Object sendMessage =null;
+		Packet tempPacket = null;		
 		switch (protocol) {
 		case LOGIN:
-			
 			System.out.println("로그인  처리");
-			
-			Object sendMessage = sm.loginCheck(message);
-			 tempPacket = new Packet(POST, LOGIN, new TimeHandler().getTime(), sendMessage);
+			sendMessage = sm.loginCheck(message);
+			tempPacket = new Packet(POST, LOGIN, new TimeHandler().getTime(), sendMessage);
+			break;
+		case REG_ID_CHECK:
+			System.out.println("아이디 중복확인 처리");
+			sendMessage = sm.idCheck(message);
+			tempPacket = new Packet(POST, REG_ID_CHECK, new TimeHandler().getTime(), sendMessage);
+			break;
+		case REG_USER:
+			System.out.println("회원가입 처리");
+			sendMessage = sm.addUser(message);
+			tempPacket = new Packet(POST, REG_USER, new TimeHandler().getTime(), sendMessage);
 			break;
 		}
 		

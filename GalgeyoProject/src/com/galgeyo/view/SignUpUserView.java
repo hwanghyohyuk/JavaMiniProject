@@ -142,6 +142,16 @@ public class SignUpUserView extends JFrame implements Protocol {
 					// 입력한 데이터를 서버로 전송
 					User message = new User(true, tf_id.getText(), tf_pwd.getText(), tf_name.getText(), tf_tel.getText());
 					Object result = new ClientController().send(POST, REG_USER, message);
+					if(result instanceof Boolean){
+						boolean check = (boolean)result;
+						if (check) {
+							JOptionPane.showMessageDialog(null, "회원가입이 완료되었습니다.", "사용자 회원가입 완료", JOptionPane.INFORMATION_MESSAGE);
+							new LoginView();
+							dispose();
+						}else{
+							JOptionPane.showMessageDialog(null, "회원가입이 실패하였습니다.", "사용자 회원가입 오류", JOptionPane.INFORMATION_MESSAGE);
+						}
+					}					
 				}
 			}
 		});

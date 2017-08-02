@@ -19,6 +19,7 @@ public class ClientSender implements Protocol {
 			System.out.println("서버와의 연결 성공!");
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			System.out.println("패킷을 서버로 보냄 : "+sendPacket.toString());
+			oos.flush();
 			oos.writeObject(sendPacket);
 			oos.flush();
 		} catch (UnknownHostException e) {
@@ -29,7 +30,7 @@ public class ClientSender implements Protocol {
 			e.printStackTrace();
 		}
 		try {
-			Thread.sleep(500);
+			Thread.sleep(200);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -39,17 +40,26 @@ public class ClientSender implements Protocol {
 		try {
 			ois = new ObjectInputStream(socket.getInputStream());
 			receicvePacket = (Packet) ois.readObject();
+			
 			System.out.println("서버로부터 받은 패킷 : " + receicvePacket.toString());
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
+			if(ois!=null)
 			try {
 				ois.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			if(oos!=null)
+			try {
+				oos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 		}
 		return receicvePacket;
 	}
