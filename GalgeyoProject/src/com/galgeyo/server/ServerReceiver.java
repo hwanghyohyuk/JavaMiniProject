@@ -5,7 +5,7 @@ import java.net.*;
 
 import com.galgeyo.vo.Packet;
 
-public class ServerThread implements Runnable, Protocol {
+public class ServerReceiver implements Runnable, Protocol {
 
 	/*
 	 * Thread 클래스 Socket을 받아 그에 연결된 클라이언트가 보내는 패킷을 분석하여 작업을 진행한다. Server의 패킷을 받는
@@ -13,9 +13,10 @@ public class ServerThread implements Runnable, Protocol {
 	 */
 
 	private Socket socket;
-	private ServerController sc = new ServerController();
-
-	public ServerThread(Socket socket) {
+	private ServerPOSTController postCon = new ServerPOSTController();
+	private ServerGETController getCon = new ServerGETController();
+	
+	public ServerReceiver(Socket socket) {
 		this.socket = socket;
 	}
 
@@ -33,7 +34,7 @@ public class ServerThread implements Runnable, Protocol {
 			Packet sendPacket = null;
 			if (receivePacket.isHeader()) {// true면 POST작업 처리
 				
-				sendPacket = sc.POSTprocess(receivePacket);				
+				sendPacket = postCon.POSTprocess(receivePacket);				
 				try {
 					oos = new ObjectOutputStream(socket.getOutputStream());
 					System.out.println("클라이언트로 보낼 패킷 : "+sendPacket.toString());
@@ -44,7 +45,7 @@ public class ServerThread implements Runnable, Protocol {
 				}
 			} else {// false면 GET작업 처리
 				System.out.println(receivePacket.toString());
-				sendPacket = sc.GETprocess(receivePacket);				
+				sendPacket = getCon.GETprocess(receivePacket);				
 				try {
 					oos = new ObjectOutputStream(socket.getOutputStream());
 					System.out.println("클라이언트로 보낼 패킷 : "+sendPacket.toString());
@@ -72,7 +73,7 @@ public class ServerThread implements Runnable, Protocol {
 				}
 			}
 			}
-			ServerThreadPool.remove(this);
+			ServerReceiverPool.remove(this);
 			if(socket!=null)
 			try {
 				socket.close();

@@ -20,10 +20,10 @@ public class GalgeyoServer {
 			while (true) {
 				Socket socket = serverSocket.accept();
 				if (socket != null) {
-					ServerThread serverThread = new ServerThread(socket);
+					ServerReceiver serverThread = new ServerReceiver(socket);
 					Thread thread = new Thread(serverThread);
 					thread.start();
-					ServerThreadPool.add(serverThread);
+					ServerReceiverPool.add(serverThread);
 				}
 			}
 		} catch (IOException e) {

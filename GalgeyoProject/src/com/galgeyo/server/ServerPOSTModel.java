@@ -11,7 +11,7 @@ import java.util.Set;
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.User;
 
-public class ServerModel {
+public class ServerPOSTModel {
 
 	public Object loginCheck(Object message) {
 
