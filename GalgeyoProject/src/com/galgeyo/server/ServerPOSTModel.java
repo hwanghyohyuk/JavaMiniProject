@@ -1,5 +1,6 @@
 package com.galgeyo.server;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.util.Set;
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.User;
 
-public class ServerPOSTModel {
+public class ServerPOSTModel implements DBsetting{
 
 	// 로그인
 	public Object loginCheck(Object message) {
@@ -31,7 +32,7 @@ public class ServerPOSTModel {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader("serverDB/usertable.properties"));
+			UserTable.load(new FileReader(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,7 +92,7 @@ public class ServerPOSTModel {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader("serverDB/usertable.properties"));
+			UserTable.load(new FileReader(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -124,7 +125,7 @@ public class ServerPOSTModel {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader("serverDB/usertable.properties"));
+			UserTable.load(new FileReader(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -138,7 +139,7 @@ public class ServerPOSTModel {
 			UserTable.setProperty(manager.getId(), manager.toString());
 		}
 		try {
-			UserTable.store(new FileWriter("serverDB/usertable.properties"), "user add");
+			UserTable.store(new FileWriter(USER_TABLE), "user add");
 			sendMessage = true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -167,7 +168,7 @@ public class ServerPOSTModel {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader("serverDB/usertable.properties"));
+			UserTable.load(new FileReader(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -213,7 +214,7 @@ public class ServerPOSTModel {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader("serverDB/usertable.properties"));
+			UserTable.load(new FileReader(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -253,7 +254,7 @@ public class ServerPOSTModel {
 		String receivePw = data[1];
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader("serverDB/usertable.properties"));
+			UserTable.load(new FileReader(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -288,7 +289,7 @@ public class ServerPOSTModel {
 					UserTable.setProperty(key, ((Manager) temp).toString());
 				}
 				try {
-					UserTable.store(new FileWriter("serverDB/usertable.properties"), "modify password");
+					UserTable.store(new FileWriter(USER_TABLE), "modify password");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -308,7 +309,7 @@ public class ServerPOSTModel {
 		System.out.println("받은 메시지 내용 : " + message.toString());
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader("serverDB/usertable.properties"));
+			UserTable.load(new FileReader(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -341,13 +342,64 @@ public class ServerPOSTModel {
 			}
 		}
 		try {
-			UserTable.store(new FileWriter("serverDB/usertable.properties"), "modify user info");
+			UserTable.store(new FileWriter(USER_TABLE), "modify user info");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		if (sendMessage==null) {
 			sendMessage = false;
 		}
+		return sendMessage;
+	}
+
+	public Object addMenu(Object message) {
+		Object sendMessage = true;
+		boolean check = false;
+		String[] data = null;
+		if (message instanceof String) {
+			data = ((String) message).split("/");
+		}
+		String receiveId = data[0];
+		String receiveMenu = data[1];
+		String[] menu = receiveMenu.split(",");
+		Properties menuList = new Properties();
+			
+		try {
+			menuList.load(new FileReader(MENU_LIST+receiveId+"_menulist.properties"));
+		}catch(FileNotFoundException e){
+			try {
+				menuList.store(new FileWriter(MENU_LIST+receiveId+"_menulist.properties"), "file create");
+				menuList.setProperty(menu[0], receiveMenu);
+				menuList.store(new FileWriter(MENU_LIST+receiveId+"_menulist.properties"), "file create");
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Iterator<Entry<Object, Object>> iter = menuList.entrySet().iterator();
+		while (iter.hasNext()) {
+			// value는 객체
+			Entry<Object, Object> entry = iter.next();
+			String key = (String) entry.getKey();
+			if(key.equals(menu[0])){
+				check = true;
+				break;
+			}		
+		}
+		if(check){
+			sendMessage = false;
+		}else{
+			sendMessage=true;
+			menuList.setProperty(menu[0], receiveMenu);
+		}
+		try {
+			menuList.store(new FileWriter(MENU_LIST+receiveId+"_menulist.properties"), "menu add");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 		return sendMessage;
 	}
 

@@ -10,20 +10,18 @@ public class Menu implements Serializable {
 	private String category;
 	private int price;
 	private double discount;
-	private String imgURL;
 	private boolean orderYN;
 	
 	//Constructor
 	public Menu(){}
 
-	public Menu(String menuNo, String menuName, String category, int price, double discount, String imgURL,	boolean orderYN) {
+	public Menu(String menuNo, String menuName, String category, int price, double discount,	boolean orderYN) {
 		super();
 		this.menuNo = menuNo;
 		this.menuName = menuName;
 		this.category = category;
 		this.price = price;
 		this.discount = discount;
-		this.imgURL = imgURL;
 		this.orderYN = orderYN;
 	}
 
@@ -68,19 +66,16 @@ public class Menu implements Serializable {
 		this.discount = discount;
 	}
 
-	public String getImgURL() {
-		return imgURL;
-	}
-
-	public void setImgURL(String imgURL) {
-		this.imgURL = imgURL;
-	}
-
 	public boolean isOrderYN() {
 		return orderYN;
 	}
 
 	public void setOrderYN(boolean orderYN) {
 		this.orderYN = orderYN;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return  menuNo+","+menuName+","+category+","+price+","+discount+","+orderYN;
 	}
 }

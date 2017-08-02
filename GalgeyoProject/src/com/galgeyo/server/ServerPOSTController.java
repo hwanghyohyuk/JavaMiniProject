@@ -49,8 +49,14 @@ public class ServerPOSTController implements Protocol {
 			tempPacket = new Packet(POST, MODIFY_PASSWORD, new TimeHandler().getTime(), sendMessage);
 			break;
 		case EDIT_USER_INFO:
+			System.out.println("사용자 정보 변경 처리");
 			sendMessage = sm.editUserInfo(message);
 			tempPacket = new Packet(POST, EDIT_USER_INFO, new TimeHandler().getTime(), sendMessage);
+			break;
+		case ADD_MENU:
+			System.out.println("메뉴추가 처리");
+			sendMessage = sm.addMenu(message);
+			tempPacket = new Packet(POST, ADD_MENU, new TimeHandler().getTime(), sendMessage);
 			break;
 		}
 
