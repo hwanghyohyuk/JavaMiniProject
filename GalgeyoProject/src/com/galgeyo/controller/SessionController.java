@@ -47,10 +47,15 @@ public class SessionController {
 			return temp;
 		}else{//false면 관리자
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
 =======
 >>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
 			Manager manager= new Manager(false, split[1], split[2], split[3], split[4], split[5], split[6], split[7]);
+=======
+			System.out.println("false");
+			Manager manager= new Manager(false, split[1], split[2], split[3], split[4], split[5], split[6], split[7],Boolean.getBoolean(split[8]));
+>>>>>>> HH
 			Object temp=manager;
 			return temp;
 		}		

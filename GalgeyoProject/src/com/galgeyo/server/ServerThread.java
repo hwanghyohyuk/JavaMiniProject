@@ -13,6 +13,7 @@ public class ServerThread implements Runnable, Protocol {
 	 */
 
 	private Socket socket;
+	private ServerController sc = new ServerController();
 
 	public ServerThread(Socket socket) {
 		this.socket = socket;
@@ -27,33 +28,33 @@ public class ServerThread implements Runnable, Protocol {
 			ois = new ObjectInputStream(socket.getInputStream());
 			receivePacket = (Packet) ois.readObject();
 
+			System.out.println("클라이언트로 부터 받은 패킷 : " + receivePacket.toString());
+			
 			Packet sendPacket = null;
 			if (receivePacket.isHeader()) {// true면 POST작업 처리
-				System.out.println(receivePacket.toString());
-				sendPacket = new Packet(receivePacket.isHeader(), LOGIN_SUCCESS, new TimeHandler().getTime(), null);
+				
+				sendPacket = sc.POSTprocess(receivePacket);				
 				try {
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 					oos = new ObjectOutputStream(socket.getOutputStream());
+					System.out.println("클라이언트로 보낼 패킷 : "+sendPacket.toString());
 					oos.writeObject(sendPacket);
 					oos.flush();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			} else {// false면 GET작업 처리
-				/*
-				 * System.out.println(inpacket.toString()); sendPacket = new
-				 * Packet(inpacket.isHeader(), LOGIN_SUCCESS, new
-				 * TimeHandler(new Date()).getTime(), null);
-				 */
+				System.out.println(receivePacket.toString());
+				sendPacket = sc.GETprocess(receivePacket);				
+				try {
+					oos = new ObjectOutputStream(socket.getOutputStream());
+					System.out.println("클라이언트로 보낼 패킷 : "+sendPacket.toString());
+					oos.writeObject(sendPacket);
+					oos.flush();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (ois != null) {
@@ -61,11 +62,10 @@ public class ServerThread implements Runnable, Protocol {
 					ois.close();
 					oos.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-
+			ServerThreadPool.remove(this);
 		}
 	}
 

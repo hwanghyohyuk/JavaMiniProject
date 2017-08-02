@@ -8,11 +8,11 @@ public class ServerThreadPool {
 
 	public static void add(ServerThread thread) {
 		clientList.add(thread);
-		System.out.println("클라이언트풀 추가!");
+		System.out.println("클라이언트 접속");
 	}
 
 	public static void remove(ServerThread thread) {
 		clientList.remove(thread);
-		System.out.println("클라이언트풀 제거!");
+		System.out.println("클라이언트 접속해제");
 	}
 }
