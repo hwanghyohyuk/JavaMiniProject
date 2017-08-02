@@ -49,6 +49,11 @@ public class LoginView extends JFrame implements Protocol{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				// 로그인
+				if(tf_id.getText().equals("")){
+					JOptionPane.showMessageDialog(null,"아이디를 입력해주세요.","로그인 오류",JOptionPane.ERROR_MESSAGE);
+				}else if(tf_pwd.getText().equals("")){
+					JOptionPane.showMessageDialog(null,"비밀번호를 입력해주세요.","로그인 오류",JOptionPane.ERROR_MESSAGE);
+				}else{
 				String message = tf_id.getText()+"/"+tf_pwd.getText();
 				System.out.println(message);
 				Object result = new ClientController().send(POST, LOGIN, message);
@@ -71,6 +76,7 @@ public class LoginView extends JFrame implements Protocol{
 					dispose();
 				}
 			}
+		}
 		});
 		btn_login.setBackground(Color.WHITE);
 		btn_login.setIcon(new ImageIcon("gui_imgs/btn_login_3.png"));
