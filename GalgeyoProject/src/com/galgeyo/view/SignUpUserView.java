@@ -1,16 +1,23 @@
 package com.galgeyo.view;
 
 import javax.swing.*;
+
+import com.galgeyo.server.ClientController;
+import com.galgeyo.server.Protocol;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 //사용자 회원가입
-public class SignUpUserView extends JFrame {
+public class SignUpUserView extends JFrame implements Protocol {
 	private JTextField tf_id;
 	private JTextField tf_name;
 	private JTextField tf_tel;
 	private JTextField tf_pwd;
+	private JButton btn_confirmId;
 
 	private boolean confirmId = false;
 
@@ -58,6 +65,13 @@ public class SignUpUserView extends JFrame {
 		getContentPane().add(lbl_tel);
 
 		tf_id = new JTextField();
+		tf_id.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				confirmId=false;
+				btn_confirmId.setEnabled(!confirmId);
+			}
+		});
 		tf_id.setBounds(154, 179, 192, 29);
 		getContentPane().add(tf_id);
 		tf_id.setColumns(10);
@@ -77,7 +91,7 @@ public class SignUpUserView extends JFrame {
 		getContentPane().add(tf_tel);
 		tf_tel.setColumns(10);
 
-		JButton btn_confirmId = new JButton("");
+		btn_confirmId = new JButton("");
 		btn_confirmId.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -87,11 +101,18 @@ public class SignUpUserView extends JFrame {
 					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					// 서버의 데이터 파일에서 아이디 찾음
-					// 아이디가 있으면
-					// 사용불가
-					// 아이디가 없으면
-					// 사용가능
-					confirmId = true;
+					String message = tf_id.getText();
+					Object result = new ClientController().send(POST, REG_ID_CHECK, message);
+					if(result instanceof Boolean){
+						boolean check = (boolean)result;
+						if(check){// 아이디가 있으면
+							JOptionPane.showMessageDialog(null, "입력하신 아이디가 존재합니다.", "아이디 중복", JOptionPane.INFORMATION_MESSAGE);
+						}else{
+							JOptionPane.showMessageDialog(null, "사용할 수 있는 아이디입니다.", "아이디 사용 가능", JOptionPane.INFORMATION_MESSAGE);
+							confirmId = true;
+							btn_confirmId.setEnabled(!confirmId);
+						}
+					}					
 				}
 			}
 		});
