@@ -8,14 +8,14 @@ import java.net.UnknownHostException;
 
 import com.galgeyo.vo.Packet;
 
-public class ClientSender implements Protocol {
+public class ClientSender implements Protocol, DBsetting {
 
 	public Packet send(Packet sendPacket) {
 		Socket socket = null;
 		ObjectOutputStream oos = null;
 
 		try {
-			socket = new Socket("192.168.25.9", 6000);
+			socket = new Socket(IP, 6000);
 			System.out.println("서버와의 연결 성공!");
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			System.out.println("패킷을 서버로 보냄 : " + sendPacket.toString());
