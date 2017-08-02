@@ -7,7 +7,7 @@ public interface Protocol {
 	public static final byte LOGIN = 3;  //로그인 ::: ID,PW입력 후 [로그인] 눌렀을 때
 	public static final byte REG_USER = 4;  //회원가입 ::: 정보 입력 후 [SUBMIT] 눌렀을 때
 	public static final byte REG_ID_CHECK = 5;  //회원가입 ::: ID 입력 후 [중복확인] 눌렀을 때
-	public static final byte REG_MOD_USER = 6;  // ★모르겠음
+	public static final byte REG_MOD_USER = 6;  // 사용자 정보 수정
 	public static final byte FIND_ID = 7;  //ID/PW찾기 ::: 이름, 전화번호 입력 후 ID[검색] 눌렀을 때
 	public static final byte FIND_PW = 8;  //ID/PW찾기 ::: 아이디, 전화번호 입력 후 PW[검색] 눌렀을 때
 	public static final byte CHANGE_RESER_STATUS = 9;  //매장관리자 메인 ::: 예약상태변경을 위해 [버튼] 눌렀을 때
@@ -20,6 +20,7 @@ public interface Protocol {
 	public static final byte DEL_THIS_FAVORITE = 16;  //회원(소비자) 메인 ::: 즐겨찾기리스트에서 [삭제] 눌렀을 때
 	public static final byte DEL_THIS_RECENTLY_ORDER = 17;  //회원(소비자) 메인 ::: 최근 주문 내역에서 [취소] 눌렀을 때
 	public static final byte ORDER_MENU = 18;  //메뉴 주문 ::: 주문할 메뉴와 수량 입력 후 [주문하기] 눌렀을 때
+	public static final byte MODIFY_PASSWORD=19; //비밀번호 변경
 	
 	public static final byte ANSWER_WAIT_LIST = 30; 	//응답대기자 리스트
 	public static final byte PRE_ODER_LIST = 31; 	//예약주문자 리스트

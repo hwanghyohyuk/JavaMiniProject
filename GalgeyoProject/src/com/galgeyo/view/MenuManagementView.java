@@ -3,6 +3,11 @@ package com.galgeyo.view;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
+
+import com.galgeyo.controller.SessionController;
+import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.Session;
+
 import java.awt.event.*;
 
 //메뉴관리 화면
@@ -18,14 +23,25 @@ public class  MenuManagementView extends JFrame{
 	private JTable table;
 	private JTable table_1;
 	private JTable table_2;
+	private Session session = new Session();
 	
 	public MenuManagementView() {
-		getContentPane().setBackground(Color.WHITE);
-		getContentPane().setLayout(null);
+
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				session.setSession(new SessionController().sessionLoad());
+				Manager manager = (Manager) session.getSession();
+			}
+		});
+
 		this.setSize(800, 600);
 		setLocationRelativeTo(null);
-		this.setResizable(false);
-
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		getContentPane().setBackground(new Color(255, 255, 255));
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(192,57,43));
 		panel.setBounds(0, 0, 784, 75);

@@ -33,6 +33,21 @@ public class ServerPOSTController implements Protocol {
 			sendMessage = sm.addUser(message);
 			tempPacket = new Packet(POST, REG_USER, new TimeHandler().getTime(), sendMessage);
 			break;
+		case FIND_ID:
+			System.out.println("아이디 찾기 처리");
+			sendMessage = sm.findId(message);
+			tempPacket = new Packet(POST, FIND_PW, new TimeHandler().getTime(), sendMessage);
+			break;
+		case FIND_PW:
+			System.out.println("패스워드 찾기 처리");
+			sendMessage = sm.findPw(message);
+			tempPacket = new Packet(POST, FIND_PW, new TimeHandler().getTime(), sendMessage);
+			break;
+		case MODIFY_PASSWORD:
+			System.out.println("비밀번호 변경 처리");
+			sendMessage = sm.modifyPw(message);
+			tempPacket = new Packet(POST, FIND_PW, new TimeHandler().getTime(), sendMessage);
+			break;
 		}
 
 		System.out.println("서버 컨트롤러 종료");

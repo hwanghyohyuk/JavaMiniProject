@@ -126,7 +126,7 @@ public class SignUpManagerView extends JFrame implements Protocol {
 			public void mouseClicked(MouseEvent e) {
 				// 입력한 데이터를 서버로 전송
 					if (tf_id.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.WARNING_MESSAGE);
 					} else {
 						// 서버의 데이터 파일에서 아이디 찾음
 						String message = tf_id.getText();
@@ -134,7 +134,7 @@ public class SignUpManagerView extends JFrame implements Protocol {
 						if(result instanceof Boolean){
 							boolean check = (boolean)result;
 							if(check){// 아이디가 있으면
-								JOptionPane.showMessageDialog(null, "입력하신 아이디가 존재합니다.", "아이디 중복", JOptionPane.INFORMATION_MESSAGE);
+								JOptionPane.showMessageDialog(null, "입력하신 아이디가 존재합니다.", "아이디 중복", JOptionPane.WARNING_MESSAGE);
 							}else{
 								JOptionPane.showMessageDialog(null, "사용할 수 있는 아이디입니다.", "아이디 사용 가능", JOptionPane.INFORMATION_MESSAGE);
 								confirmId = true;
@@ -159,12 +159,12 @@ public class SignUpManagerView extends JFrame implements Protocol {
 			public void mouseClicked(MouseEvent e) {
 				// 매장 관리자 회원가입 제출
 				if (tf_id.getText().equals("")) {// 아이디빈칸확인
-					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.WARNING_MESSAGE);
 				} else if (!confirmId) {// 아이디 중복검사 확인
 					JOptionPane.showMessageDialog(null, "아이디 중복확인을 해주세요", "아이디 중복확인 오류",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else if (tf_pwd.getText().equals("")) {// 비밀번호 빈칸확인
-					JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요", "비밀번호 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요", "비밀번호 입력 오류", JOptionPane.WARNING_MESSAGE);
 				} else if (tf_storeName.getText().equals("")) {// 매장 이름 빈칸확인
 					JOptionPane.showMessageDialog(null, "매장 이름을 입력해주세요", "매장 이름 입력 오류",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -172,9 +172,9 @@ public class SignUpManagerView extends JFrame implements Protocol {
 					JOptionPane.showMessageDialog(null, "사업자 번호를 입력해주세요", "사업자 번호 입력 오류",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else if (tf_tel.getText().equals("")) {// 주소 빈칸확인
-					JOptionPane.showMessageDialog(null, "주소를 입력해주세요", "주소 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "주소를 입력해주세요", "주소 입력 오류", JOptionPane.WARNING_MESSAGE);
 				} else if (tf_tel.getText().equals("")) {// 전화번호 빈칸확인
-					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력 오류", JOptionPane.WARNING_MESSAGE);
 				}else{
 					Manager message = new Manager(false, tf_id.getText(), tf_pwd.getText(), tf_storeName.getText(),tf_ownNo.getText(),tf_addr.getText(), tf_tel.getText(),(String) cb_type.getSelectedItem());
 					Object result = new ClientController().send(POST, REG_USER, message);

@@ -2,81 +2,121 @@ package com.galgeyo.view;
 
 import java.awt.*;
 import javax.swing.*;
+
+import com.galgeyo.controller.SessionController;
+import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.Session;
+import com.galgeyo.vo.User;
+
 import java.awt.event.*;
 
 //관리자 메인화면
 public class ManagerMainView extends JFrame {
 	
-	private JTable table1;
-	private JTable table2;
+	private JTable tb_wait;
+	private JTable tb_reserv;
+	private JLabel lbl_storeName;
+	private JLabel lbl_managerId;
+	
+	private Session session = new Session();
 	
 	public ManagerMainView() {
-		getContentPane().setBackground(new Color(255, 255, 255));
-		setBounds(200, 100, 800, 600);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				session.setSession(new SessionController().sessionLoad());
+				Manager manager = (Manager)session.getSession();
+				lbl_storeName.setText(manager.getName());
+				lbl_managerId.setText(manager.getId());
+			}
+		});
+		
+		this.setSize(800, 600);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(new Color(255, 255, 255));
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(192, 57, 43));
-		panel.setBounds(0, 0, 784, 80);
+		panel.setBounds(0, 0, 794, 80);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel title_text = new JLabel("마이페이지");
 		title_text.setIcon(null);
 		title_text.setFont(new Font("맑은 고딕", Font.BOLD, 24));
-		title_text.setBounds(86, 20, 302, 40);
+		title_text.setBounds(86, 10, 302, 60);
 		panel.add(title_text);
 		
 		JLabel title_icon = new JLabel("");
-		title_icon.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/icon_user_1.png"));
-		title_icon.setBounds(32, 16, 50, 50);
+		title_icon.setIcon(new ImageIcon("gui_imgs/icon_user_1.png"));
+		title_icon.setBounds(12, 10, 62, 60);
 		panel.add(title_icon);
 		
 		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/logo_galgeyo_2.png"));
+		logo.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
 		logo.setBounds(666, 3, 99, 73);
 		panel.add(logo);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(30, 90, 720, 143);
+		panel_1.setBounds(10, 90, 772, 143);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel imgLabel_preview = new JLabel("");
-		imgLabel_preview.setBounds(10, 10, 132, 125);
+		imgLabel_preview.setBounds(0, 0, 154, 143);
 		panel_1.add(imgLabel_preview);
-		imgLabel_preview.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/thumbnail_img_sample.PNG"));
+		imgLabel_preview.setIcon(new ImageIcon("gui_imgs/thumbnail_img_sample.PNG"));
 		
-		JLabel label_strName = new JLabel("매장 이름");
-		label_strName.setForeground(Color.DARK_GRAY);
-		label_strName.setFont(new Font("맑은 고딕", Font.BOLD, 22));
-		label_strName.setBounds(156, 17, 270, 29);
-		panel_1.add(label_strName);
+		lbl_storeName = new JLabel("매장 이름");
+		lbl_storeName.setForeground(Color.DARK_GRAY);
+		lbl_storeName.setFont(new Font("맑은 고딕", Font.BOLD, 22));
+		lbl_storeName.setBounds(166, 17, 270, 29);
+		panel_1.add(lbl_storeName);
 		
-		JLabel label_mngName = new JLabel("관리자 아이디");
-		label_mngName.setForeground(Color.DARK_GRAY);
-		label_mngName.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-		label_mngName.setBounds(156, 52, 270, 23);
-		panel_1.add(label_mngName);
+		lbl_managerId = new JLabel("관리자 아이디");
+		lbl_managerId.setForeground(Color.DARK_GRAY);
+		lbl_managerId.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+		lbl_managerId.setBounds(176, 56, 260, 23);
+		panel_1.add(lbl_managerId);
 		
 		JButton btn_booking = new JButton("");
-		btn_booking.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_1.png"));
-		btn_booking.setBounds(156, 89, 250, 45);
+		btn_booking.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//예약 가능 / 불가능
+			}
+		});
+		btn_booking.setBackground(Color.WHITE);
+		btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
+		btn_booking.setBounds(166, 88, 250, 45);
 		panel_1.add(btn_booking);
 		
-		JEditorPane textLink_logout = new JEditorPane();
-		textLink_logout.setBounds(656, 0, 64, 30);
-		panel_1.add(textLink_logout);
-		textLink_logout.setEditable(false);
-		textLink_logout.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		textLink_logout.setForeground(new Color(52, 73, 94));
-		textLink_logout.setText("로그아웃");
+		JButton btn_logout = new JButton("로그아웃");
+		btn_logout.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		btn_logout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int result = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "로그아웃", JOptionPane.OK_CANCEL_OPTION);
+				if (result == 0) { // 캔슬이면 2 리턴 ok는 종료
+					new SessionController().deleteSession(session);
+					new LoginView();
+					dispose();
+				}
+			}
+		});
+		btn_logout.setBackground(Color.WHITE);
+		btn_logout.setBounds(672, 0, 100, 28);
+		panel_1.add(btn_logout);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(44, 62, 80));
-		panel_2.setBounds(30, 243, 720, 60);
+		
+		panel_2.setBounds(0, 243, 794, 60);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -87,27 +127,47 @@ public class ManagerMainView extends JFrame {
 		panel_2.add(lavel_managementMenu);
 		
 		JButton btn_storeInfoEdit = new JButton("");
-		btn_storeInfoEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btn_storeInfoEdit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//매장정보수정
+				new StoreEditView();
+				dispose();
 			}
 		});
-		btn_storeInfoEdit.setBounds(224, 7, 170, 46);
+		btn_storeInfoEdit.setBounds(288, 6, 170, 46);
 		panel_2.add(btn_storeInfoEdit);
-		btn_storeInfoEdit.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_2.png"));
+		btn_storeInfoEdit.setIcon(new ImageIcon("gui_imgs/btn_manager_2.png"));
 		
 		JButton btn_menuManagement = new JButton("");
-		btn_menuManagement.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_3.png"));
-		btn_menuManagement.setBounds(400, 7, 130, 46);
+		btn_menuManagement.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//메뉴관리
+				new MenuManagementView();
+				dispose();
+			}
+		});
+		btn_menuManagement.setIcon(new ImageIcon("gui_imgs/btn_manager_3.png"));
+		btn_menuManagement.setBounds(470, 6, 130, 46);
 		panel_2.add(btn_menuManagement);
 		
 		JButton btn_totalOrder = new JButton("");
-		btn_totalOrder.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_4.png"));
-		btn_totalOrder.setBounds(536, 7, 170, 46);
+		btn_totalOrder.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//주문 내역 통계
+				new TotalOrderView();
+				dispose();
+			}
+		});
+		btn_totalOrder.setIcon(new ImageIcon("gui_imgs/btn_manager_4.png"));
+		btn_totalOrder.setBounds(612, 6, 170, 46);
 		panel_2.add(btn_totalOrder);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(64, 64, 64));
-		panel_3.setBounds(30, 312, 356, 224);
+		panel_3.setBounds(10, 313, 380, 249);
 		getContentPane().add(panel_3);
 		panel_3.setLayout(null);
 		
@@ -117,18 +177,24 @@ public class ManagerMainView extends JFrame {
 		label_listTitle1.setBounds(12, 8, 144, 27);
 		panel_3.add(label_listTitle1);
 		
-		table1 = new JTable();
-		table1.setBounds(12, 41, 332, 132);
-		panel_3.add(table1);
+		tb_wait = new JTable();
+		tb_wait.setBounds(12, 41, 356, 159);
+		panel_3.add(tb_wait);
 		
 		JButton btn_apply1 = new JButton("");
-		btn_apply1.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_5.png"));
-		btn_apply1.setBounds(138, 182, 82, 30);
+		btn_apply1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//응답대기자
+			}
+		});
+		btn_apply1.setIcon(new ImageIcon("gui_imgs/btn_manager_5.png"));
+		btn_apply1.setBounds(139, 210, 82, 30);
 		panel_3.add(btn_apply1);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.DARK_GRAY);
-		panel_4.setBounds(394, 312, 356, 224);
+		panel_4.setBounds(402, 313, 380, 249);
 		getContentPane().add(panel_4);
 		panel_4.setLayout(null);
 		
@@ -138,16 +204,24 @@ public class ManagerMainView extends JFrame {
 		label.setBounds(12, 8, 144, 27);
 		panel_4.add(label);
 		
-		table2 = new JTable();
-		table2.setBounds(12, 41, 332, 132);
-		panel_4.add(table2);
+		tb_reserv = new JTable();
+		tb_reserv.setBounds(12, 41, 356, 159);
+		panel_4.add(tb_reserv);
 		
 		JButton btn_apply2 = new JButton("");
-		btn_apply2.setIcon(new ImageIcon("GalgeyoProject/gui_imgs/btn_manager_6.png"));
-		btn_apply2.setBounds(138, 182, 82, 30);
+		btn_apply2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//예약 주문자
+			}
+		});
+		btn_apply2.setIcon(new ImageIcon("gui_imgs/btn_manager_6.png"));
+		btn_apply2.setBounds(151, 210, 82, 30);
 		panel_4.add(btn_apply2);
 		
 		setVisible(true);
 	}
-	
+	public static void main(String[] args) {
+		new ManagerMainView();
+	}
 }

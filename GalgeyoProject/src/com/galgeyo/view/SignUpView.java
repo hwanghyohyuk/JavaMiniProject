@@ -48,6 +48,7 @@ public class SignUpView extends JFrame {
 		getContentPane().add(btn_regManager);
 
 		JButton btn_back = new JButton("뒤로가기");
+		btn_back.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 		btn_back.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -55,7 +56,7 @@ public class SignUpView extends JFrame {
 				dispose();
 			}
 		});
-		btn_back.setBounds(383, 10, 100, 25);
+		btn_back.setBounds(383, 10, 100, 28);
 		getContentPane().add(btn_back);
 
 		this.setVisible(true);

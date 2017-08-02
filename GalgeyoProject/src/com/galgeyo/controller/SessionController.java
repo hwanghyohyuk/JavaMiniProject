@@ -5,13 +5,10 @@ import java.util.*;
 import java.util.Map.Entry;
 
 import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.Session;
 import com.galgeyo.vo.User;
 
 public class SessionController {
-	
-	// 사용자 정의 패킷
-		// 패킷은 boolean,byte,Date,String 순서로 객체화된다
-		// 패킷에 필요한 정보를 담고 객체스트림으로 입출력한다.
 	
 	public Object sessionLoad(){//세션.프로퍼티스 파일에서 불러오는 메소드
 		System.out.println("exe");
@@ -80,5 +77,15 @@ public class SessionController {
 		}		
 	}
 	
+	public void deleteSession(Session session) {
+		session.setSession(null);
+		Properties prop = new Properties();
+		try {
+			prop.store(new FileOutputStream("session.properties"), null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
 	
 }

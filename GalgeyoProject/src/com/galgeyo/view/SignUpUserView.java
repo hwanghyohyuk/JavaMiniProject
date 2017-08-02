@@ -99,7 +99,7 @@ public class SignUpUserView extends JFrame implements Protocol {
 				// 아이디 중복확인
 				// 아이디가 빈칸이면 오류
 				if (tf_id.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.WARNING_MESSAGE);
 				} else {
 					// 서버의 데이터 파일에서 아이디 찾음
 					String message = tf_id.getText();
@@ -107,7 +107,7 @@ public class SignUpUserView extends JFrame implements Protocol {
 					if(result instanceof Boolean){
 						boolean check = (boolean)result;
 						if(check){// 아이디가 있으면
-							JOptionPane.showMessageDialog(null, "입력하신 아이디가 존재합니다.", "아이디 중복", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "입력하신 아이디가 존재합니다.", "아이디 중복", JOptionPane.WARNING_MESSAGE);
 						}else{
 							JOptionPane.showMessageDialog(null, "사용할 수 있는 아이디입니다.", "아이디 사용 가능", JOptionPane.INFORMATION_MESSAGE);
 							confirmId = true;
@@ -128,16 +128,16 @@ public class SignUpUserView extends JFrame implements Protocol {
 				// 일반 사용자 회원가입 제출
 				// 유효성검사
 				if (tf_id.getText().equals("")) {// 아이디빈칸확인
-					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "아이디 입력 오류", JOptionPane.WARNING_MESSAGE);
 				} else if (!confirmId) {// 아이디 중복검사 확인
 					JOptionPane.showMessageDialog(null, "아이디 중복확인을 해주세요", "아이디 중복확인 오류",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else if (tf_pwd.getText().equals("")) {// 비밀번호 빈칸확인
-					JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요", "비밀번호 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요", "비밀번호 입력 오류", JOptionPane.WARNING_MESSAGE);
 				} else if (tf_name.getText().equals("")) {// 이름 빈칸확인
-					JOptionPane.showMessageDialog(null, "이름을 입력해주세요", "사용자 이름 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "이름을 입력해주세요", "사용자 이름 입력 오류", JOptionPane.WARNING_MESSAGE);
 				} else if (tf_tel.getText().equals("")) {// 전화번호 빈칸확인
-					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력 오류", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력 오류", JOptionPane.WARNING_MESSAGE);
 				} else {
 					// 입력한 데이터를 서버로 전송
 					User message = new User(true, tf_id.getText(), tf_pwd.getText(), tf_name.getText(), tf_tel.getText());
@@ -149,7 +149,7 @@ public class SignUpUserView extends JFrame implements Protocol {
 							new LoginView();
 							dispose();
 						}else{
-							JOptionPane.showMessageDialog(null, "회원가입이 실패하였습니다.", "사용자 회원가입 오류", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null, "회원가입이 실패하였습니다.", "사용자 회원가입 오류", JOptionPane.WARNING_MESSAGE);
 						}
 					}					
 				}
