@@ -3,15 +3,17 @@ package com.galgeyo.view;
 
 import java.awt.*;
 import javax.swing.*;
-
-import com.galgeyo.controller.SessionController;
-import com.galgeyo.vo.Manager;
-import com.galgeyo.vo.Session;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.event.*;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Properties;
+import java.util.HashMap;
+
+import com.galgeyo.controller.ManagerMainController;
+import com.galgeyo.controller.SessionController;
+import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.Order;
+import com.galgeyo.vo.Session;
+
 
 //관리자 메인화면
 public class ManagerMainView extends JFrame implements ActionListener{
@@ -39,6 +41,7 @@ public class ManagerMainView extends JFrame implements ActionListener{
 				manager.setSession(new SessionController().sessionLoad());
 				lbl_storeName.setText(((Manager)manager.getSession()).getName());
 				lbl_managerId.setText(((Manager)manager.getSession()).getId());
+				//new ManagerMainController().waitsave();
 			}
 		});
 		
@@ -169,6 +172,7 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		panel_4.add(label);
 		
 		table2 = new JTable();
+		//new ManagerMainController().waitUserList(table2);
 		table2.setBounds(12, 41, 332, 132);
 		panel_4.add(table2);
 				
@@ -182,6 +186,9 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		btn_storeInfoEdit.addActionListener(this);
 		btn_menuManagement.addActionListener(this);
 		btn_totalOrder.addActionListener(this);
+		btn_open_or_close.addActionListener(this);
+		btn_accept.addActionListener(this);
+		btn_acceptCancel.addActionListener(this);
 		
 		/*
 		btn_storeInfoEdit.addActionListener(new ActionListener() {
@@ -203,7 +210,6 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		}
 		//매장정보수정 버튼 이벤트
 		if(e.getSource()==btn_storeInfoEdit){
-			//new ManagerMainController().moveToStoreEdit([Manager객체]);
 			new StoreEditView();
 		}
 		//메뉴관리 버튼 이벤트
@@ -216,7 +222,13 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		}
 		//매장 OPEN/CLOSE 버튼 이벤트
 		if(e.getSource()==btn_open_or_close){
-			//new ManagerMainController().switchReservation([Manager객체]);
+
+			//보류----------------------------
+			JOptionPane.showMessageDialog(new JButton("오케이"), "실행1");
+			new ManagerMainController().switchReservation(
+					(Session)(new SessionController().sessionLoad()));
+			JOptionPane.showMessageDialog(new JButton("오케이"), "실행2");
+	
 		}
 		//주문 승낙 버튼 이벤트
 		if(e.getSource()==btn_accept){
