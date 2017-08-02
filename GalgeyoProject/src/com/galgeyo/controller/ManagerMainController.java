@@ -84,8 +84,11 @@ public class ManagerMainController {
 	
 	//응답 대기자 리스트
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void waitUserList(HashMap<String, Order> waitUsers, DefaultTableModel dtm){
 =======
+=======
+>>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
 	public DefaultTableModel waitUserList(/*HashMap<String, Order> waitUsers, */DefaultTableModel dtm){
 		Properties prop = new Properties();
 		try {
@@ -128,6 +131,9 @@ public class ManagerMainController {
 		}
 		
 		return dtm;
+<<<<<<< HEAD
+>>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
+=======
 >>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
 		
 	}

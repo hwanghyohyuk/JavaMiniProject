@@ -18,6 +18,9 @@ public class SessionController {
 	public Object sessionLoad(){
 =======
 	public Object sessionLoad(){//세션.프로퍼티스 파일에서 불러오는 메소드
+<<<<<<< HEAD
+>>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
+=======
 >>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
 		Properties prop = new Properties();
 		try {
@@ -28,6 +31,7 @@ public class SessionController {
 		String session = prop.getProperty("session");
 		String[] split = session.split(",");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		if(split[0].equals("true")){	//true면 사용자
 			User user = new User(true, split[1], split[2], split[3], split[4]);
@@ -35,11 +39,16 @@ public class SessionController {
 			return temp;
 		}else{							//false면 관리자
 =======
+=======
+>>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
 		if(split[0].equals("true")){//true면 사용자
 			User user = new User(true, split[1], split[2], split[3], split[4]);
 			Object temp=user;			
 			return temp;
 		}else{//false면 관리자
+<<<<<<< HEAD
+>>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
+=======
 >>>>>>> a919f37adf48453acc7684fa6e25cb9638147c47
 			Manager manager= new Manager(false, split[1], split[2], split[3], split[4], split[5], split[6], split[7]);
 			Object temp=manager;
