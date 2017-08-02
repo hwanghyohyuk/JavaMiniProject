@@ -152,6 +152,47 @@ public class ServerPOSTModel implements DBsetting{
 
 		return sendMessage;
 	}
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	//테스트
+	public Object changeReserStatus(Object message) {
+		
+		Properties UserTable = new Properties();
+		try {
+			UserTable.load(new FileReader("usertable.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Manager manager = (Manager)message;
+		Manager manager2 = new Manager(false, manager.getId(), manager.getPwd(),
+									manager.getName(), manager.getTel(), manager.getOwnNo(),
+									manager.getAddr(), manager.getType(), !manager.isOpen());
+		
+		UserTable.setProperty(manager.getId(), manager2.toString());
+		
+		try {
+			UserTable.store(new FileWriter("usertable.properties"), "changeReserStatus");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return (Object)(!manager.isOpen());
+	}
 
 	// 아이디 찾기
 	public Object findId(Object message) {
