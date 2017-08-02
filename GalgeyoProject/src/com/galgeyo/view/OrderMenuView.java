@@ -2,132 +2,187 @@ package com.galgeyo.view;
 
 import javax.swing.JPanel;
 
+
 //메뉴주문
 
 
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+
+import com.galgeyo.controller.OrderMenuController;
+import com.galgeyo.controller.SessionController;
+import com.galgeyo.vo.Session;
+import com.galgeyo.vo.User;
+
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.*;
+import java.awt.Font;
 
 
-//개인정보수정
-public class OrderMenuView extends JFrame implements ActionListener{
-	private JTextField textField_6;
-	private JTable table;
-	private JTable table_1;
-	private JTable table_2;
-	private JTable table_3;
+
+public class OrderMenuView extends JFrame {
+	
+	private JLabel lbl_order;
+	private JTextField tf_serch;
+	private JTable storeList;
+	private JTable menuList;
+	private OrderMenuController oc = new OrderMenuController();
+	private JButton btn_order,btn_serch,btn_back;
+	private Session session = new Session();
+	private int menuType=0;
+	
+	private DefaultTableModel dtmStore = new DefaultTableModel(new Object[][] {}, new String[] {
+				"\uB9E4\uC7A5\uC774\uB984", "\uC804\uD654\uBC88\uD638", "\uC990\uACA8\uCC3E\uAE30"
+			});
+	
 	public OrderMenuView() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				session.setSession(new SessionController().sessionLoad());
+				menuType = new SessionController().menuSelectOpen();
+				User user = (User) session.getSession();
+				String menuTypeTemp = null;
+				switch (menuType) {
+				case 1:	
+					menuTypeTemp="한식";
+					break;
+				case 2:					
+					menuTypeTemp="중식";
+					break;
+				case 3:					
+					menuTypeTemp="일식";
+					break;
+				case 4:					
+					menuTypeTemp="분식";
+					break;
+				}
+				lbl_order.setText(menuTypeTemp+ " 메뉴 주문");
+			}
+		});
+		this.setSize(800, 600);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
-		this.setBounds(0,0,800,600);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(192,57,43));
-		panel.setBounds(0, 0, 784, 75);
+		panel.setBounds(0, 0, 790, 75);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\식사하러가시죠\\gui_imgs\\ㅁㄴㅁㄴㅇㅁㄴㅇ.PNG"));
-		lblNewLabel_4.setBounds(12, 10, 224, 55);
-		panel.add(lblNewLabel_4);
+		lbl_order = new JLabel("메뉴 주문");
+		lbl_order.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+		lbl_order.setIcon(new ImageIcon("/gui_imgs/ㅁㄴㅁㄴㅇㅁㄴㅇ.PNG"));
+		lbl_order.setBounds(86, 10, 224, 55);
+		panel.add(lbl_order);
 		
-		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\식사하러가시죠\\gui_imgs\\logo_galgeyo_2.png"));
-		lblNewLabel_5.setBounds(672, 10, 100, 55);
-		panel.add(lblNewLabel_5);
+		JLabel lbl_img2 = new JLabel("");
+		lbl_img2.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
+		lbl_img2.setBounds(672, 10, 100, 55);
+		panel.add(lbl_img2);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("gui_imgs/icon_selectCategory_1.png"));
+		lblNewLabel.setBounds(26, 7, 48, 65);
+		panel.add(lblNewLabel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setForeground(Color.WHITE);
 		panel_1.setBackground(new Color(44,62,80));
-		panel_1.setBounds(396, 111, 376, 428);
+		panel_1.setBounds(406, 118, 376, 428);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("메뉴판");
+		JLabel lbl_img = new JLabel("메뉴판");
+		lbl_img.setFont(new Font("굴림", Font.BOLD, 15));
 		
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBackground(new Color(255, 255, 240));
-		lblNewLabel.setBounds(12, 22, 121, 25);
-		panel_1.add(lblNewLabel);
+		lbl_img.setForeground(Color.WHITE);
+		lbl_img.setBackground(new Color(255, 255, 240));
+		lbl_img.setBounds(12, 22, 121, 25);
+		panel_1.add(lbl_img);
 		
-		JButton btnNewButton = new JButton("주문하기");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\식사하러가시죠\\gui_imgs\\btn_orderMenu_1.png"));
-		btnNewButton.setBounds(214, 384, 150, 34);
-		panel_1.add(btnNewButton);
+		btn_order = new JButton("");
+		btn_order.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				JOptionPane.showMessageDialog(null,"계산 완료"," 영수증 ",JOptionPane.WARNING_MESSAGE);
+			}
+		});
+		btn_order.setFont(new Font("굴림", Font.BOLD, 14));
+		btn_order.setIcon(new ImageIcon("gui_imgs/btn_orderMenu_1.png"));
+		btn_order.setBounds(214, 384, 150, 34);
+		panel_1.add(btn_order);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(12, 57, 342, 317);
 		panel_1.add(scrollPane_1);
 		
-		table_3 = new JTable();
-		table_3.setModel(new DefaultTableModel(
+		menuList = new JTable();
+		menuList.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"\uBD84\uB958", "\uBA54\uB274\uC774\uB984"
 			}
 		));
-		scrollPane_1.setViewportView(table_3);
+		scrollPane_1.setViewportView(menuList);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(44,62,80));
-		panel_2.setBounds(12, 111, 372, 428);
+		panel_2.setBounds(12, 118, 372, 428);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("매장 검색");
+		JLabel lbl_img3 = new JLabel("매장 검색");
+		lbl_img3.setFont(new Font("굴림", Font.BOLD, 15));
 		
-		lblNewLabel_3.setForeground(Color.WHITE);
-		lblNewLabel_3.setBackground(new Color(255, 255, 240));
-		lblNewLabel_3.setBounds(12, 10, 147, 32);
-		panel_2.add(lblNewLabel_3);
+		lbl_img3.setForeground(Color.WHITE);
+		lbl_img3.setBackground(new Color(255, 255, 240));
+		lbl_img3.setBounds(12, 10, 147, 32);
+		panel_2.add(lbl_img3);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(22, 52, 264, 38);
-		panel_2.add(textField_6);
-		textField_6.setColumns(10);
+		tf_serch = new JTextField();
+		tf_serch.setBounds(22, 52, 264, 38);
+		panel_2.add(tf_serch);
+		tf_serch.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btn_serch = new JButton("");
+		btn_serch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				storeList.setModel(oc.searchStore(tf_serch.getText(), dtmStore));
 			}
 		});
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\식사하러가시죠\\gui_imgs\\btn_menuEdit_1.png"));
-		btnNewButton_1.setBounds(298, 52, 46, 38);
-		panel_2.add(btnNewButton_1);
+			
+		btn_serch.setIcon(new ImageIcon("gui_imgs/btn_menuEdit_1.png"));
+		btn_serch.setBounds(298, 52, 40, 38);
+		panel_2.add(btn_serch);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(22, 114, 322, 280);
 		panel_2.add(scrollPane);
 		
-		table_2 = new JTable();
-		table_2.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"\uB9E4\uC7A5\uC774\uB984", "\uC804\uD654\uBC88\uD638", "\uC990\uACA8\uCC3E\uAE30"
-			}
-		));
-		scrollPane.setViewportView(table_2);
+		storeList = new JTable();
+		storeList.setModel(dtmStore);
+		scrollPane.setViewportView(storeList);
 		
-		JButton btnNewButton_2 = new JButton("뒤로가기");
-		btnNewButton_2.addActionListener(this);
-		btnNewButton_2.setBounds(675, 78, 97, 23);
-		getContentPane().add(btnNewButton_2);
+		btn_back = new JButton("뒤로가기");
+		btn_back.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new SelectMenuView();
+				dispose();
+			}
+		});
+		btn_back.setFont(new Font("굴림", Font.BOLD, 12));
+		btn_back.setBounds(685, 85, 97, 25);
+		getContentPane().add(btn_back);
 		
 		setVisible(true);
 	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getActionCommand().equals("뒤로가기")) {
-			new SelectMenuView();
-			dispose();
-		}
-	}
+
 }
 

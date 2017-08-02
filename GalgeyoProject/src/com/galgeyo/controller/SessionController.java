@@ -54,4 +54,31 @@ public class SessionController {
 			e.printStackTrace();
 		}
 	}
+	
+	public int menuSelectOpen(){
+		Properties prop = new Properties();
+		String menu=null;
+		try {
+			prop.load(new FileInputStream("session.properties"));
+			menu = prop.getProperty("selectedMenu");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return Integer.parseInt(menu);
+	}
+	
+	public void menuSelectSave(int menuNo){
+		Properties prop = new Properties();
+		try {
+			prop.load(new FileInputStream("session.properties"));
+			prop.setProperty("selectedMenu", String.valueOf(menuNo));
+			prop.store(new FileOutputStream("session.properties"), null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
+	
 }

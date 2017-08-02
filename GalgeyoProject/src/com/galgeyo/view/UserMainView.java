@@ -2,6 +2,9 @@ package com.galgeyo.view;
 
 import javax.swing.JFrame;
 
+import com.galgeyo.controller.SessionController;
+import com.galgeyo.vo.Session;
+import com.galgeyo.vo.User;
 
 import java.awt.*;
 import javax.swing.*;
@@ -9,140 +12,166 @@ import java.awt.event.*;
 
 // 사용자 메인화면
 
-
-public class UserMainView extends JFrame implements ActionListener {
+public class UserMainView extends JFrame {
 	private JTable table;
 	private JTable table_1;
-	
+	private JButton btn_editInfo;
+	private JButton btn_startOrder;
+	private JLabel lbl_userName;
+	private JLabel lbl_userId;
+	private Session session = new Session();
+
 	public UserMainView() {
-		getContentPane().setBackground(new Color(255, 255, 255));
-		setBounds(200, 100, 800, 600);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				session.setSession(new SessionController().sessionLoad());
+				User user = (User)session.getSession();
+				lbl_userName.setText(user.getName());
+				lbl_userId.setText(user.getId());
+				//즐겨찾기리스트 초기화
+				//최근주문내역 초기화
+			}
+		});
+		this.setSize(800, 600);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		
+		getContentPane().setBackground(new Color(255, 255, 255));
+
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(192, 57, 43));
-		panel.setBounds(0, 0, 784, 80);
+		panel.setBounds(0, 0, 794, 80);
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		
-		JLabel title_text = new JLabel("마이페이지");
-		title_text.setIcon(null);
-		title_text.setFont(new Font("맑은 고딕", Font.BOLD, 24));
-		title_text.setBounds(86, 20, 302, 40);
-		panel.add(title_text);
-		
-		JLabel title_icon = new JLabel("");
-		title_icon.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\식사하러가시죠\\gui_imgs\\111.PNG"));
-		title_icon.setBounds(32, 16, 50, 50);
-		panel.add(title_icon);
-		
-		JLabel logo = new JLabel("");
-		logo.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\logo_galgeyo_2.png"));
-		logo.setBounds(666, 3, 99, 73);
-		panel.add(logo);
-		
+
+		JLabel lbl_myPage = new JLabel("마이페이지");
+		lbl_myPage.setIcon(null);
+		lbl_myPage.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+		lbl_myPage.setBounds(86, 10, 302, 60);
+		panel.add(lbl_myPage);
+
+		JLabel lbl_titleicon = new JLabel("");
+		lbl_titleicon.setIcon(new ImageIcon("gui_imgs/icon_user_1.png"));
+		lbl_titleicon.setBounds(32, 16, 50, 50);
+		panel.add(lbl_titleicon);
+
+		JLabel lbl_logo = new JLabel("");
+		lbl_logo.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
+		lbl_logo.setBounds(666, 3, 99, 73);
+		panel.add(lbl_logo);
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 255, 255));
-		panel_1.setBounds(10, 90, 762, 154);
+		panel_1.setBounds(10, 90, 772, 154);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
-		JLabel imgLabel_preview = new JLabel("");
-		imgLabel_preview.setBounds(10, 10, 132, 125);
-		panel_1.add(imgLabel_preview);
-		imgLabel_preview.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\thumbnail_img_sample.PNG"));
-		
-		JLabel label_strName = new JLabel("사용자 이름");
-		label_strName.setForeground(Color.DARK_GRAY);
-		label_strName.setFont(new Font("맑은 고딕", Font.BOLD, 22));
-		label_strName.setBounds(156, 17, 270, 29);
-		panel_1.add(label_strName);
-		
-		JLabel label_mngName = new JLabel("사용자 아이디");
-		label_mngName.setForeground(Color.DARK_GRAY);
-		label_mngName.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-		label_mngName.setBounds(156, 52, 270, 23);
-		panel_1.add(label_mngName);
-		
-		JEditorPane textLink_logout = new JEditorPane();
-		textLink_logout.setBounds(656, 0, 64, 30);
-		panel_1.add(textLink_logout);
-		textLink_logout.setEditable(false);
-		textLink_logout.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		textLink_logout.setForeground(new Color(52, 73, 94));
-		textLink_logout.setText("로그아웃");
-		
+
+		JLabel lbl_Img1 = new JLabel("");
+		lbl_Img1.setBounds(12, 10, 144, 134);
+		panel_1.add(lbl_Img1);
+		lbl_Img1.setIcon(new ImageIcon("gui_imgs/thumbnail_img_sample.PNG"));
+
+		lbl_userName = new JLabel("사용자 이름");
+		lbl_userName.setForeground(Color.DARK_GRAY);
+		lbl_userName.setFont(new Font("맑은 고딕", Font.BOLD, 22));
+		lbl_userName.setBounds(168, 28, 270, 29);
+		panel_1.add(lbl_userName);
+
+		lbl_userId = new JLabel("사용자 아이디");
+		lbl_userId.setForeground(Color.DARK_GRAY);
+		lbl_userId.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+		lbl_userId.setBounds(178, 67, 270, 23);
+		panel_1.add(lbl_userId);
+
+		JButton btn_logout = new JButton("로그아웃");
+		btn_logout.setBackground(Color.WHITE);
+		btn_logout.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int result = JOptionPane.showConfirmDialog(null, "로그아웃 하시겠습니까?", "로그아웃", JOptionPane.OK_CANCEL_OPTION);
+				if (result == 0) { // 캔슬이면 2 리턴 ok는 종료
+					new LoginView();
+					dispose();
+				}
+			}
+		});
+		btn_logout.setFont(new Font("굴림", Font.BOLD, 12));
+		btn_logout.setBounds(672, 0, 100, 30);
+		panel_1.add(btn_logout);
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBackground(new Color(44, 62, 80));
-		panel_2.setBounds(0, 254, 772, 60);
+		panel_2.setBounds(0, 254, 794, 60);
 		getContentPane().add(panel_2);
-		
-		JLabel lblUserMenu = new JLabel("User menu");
-		lblUserMenu.setForeground(Color.WHITE);
-		lblUserMenu.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		lblUserMenu.setBounds(16, 6, 228, 46);
-		panel_2.add(lblUserMenu);
-		
-		JButton btn_booking = new JButton("수정");
-		btn_booking.addActionListener(this);
-		btn_booking.setBounds(239, 6, 132, 46);
-		panel_2.add(btn_booking);
-		btn_booking.setIcon(new ImageIcon("C:\\Users\\user1\\Desktop\\식사하러가시죠\\gui_imgs\\btn_user_1.png"));
-		
-		//주문하기 버튼 누르면 메뉴선택 화면으로 이동
-		JButton btnNewButton = new JButton("주문하러가기");
-		btnNewButton.setBounds(389, 15, 113, 37);
-		panel_2.add(btnNewButton);
-		btnNewButton.addActionListener(this);
-		
+
+		JLabel lbl_userMenu = new JLabel("User menu");
+		lbl_userMenu.setForeground(Color.WHITE);
+		lbl_userMenu.setFont(new Font("맑은 고딕", Font.PLAIN, 22));
+		lbl_userMenu.setBounds(16, 6, 228, 46);
+		panel_2.add(lbl_userMenu);
+
+		btn_editInfo = new JButton("");
+		btn_editInfo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				new UserInfoEditView();
+				dispose();
+			}
+		});
+		btn_editInfo.setFont(new Font("굴림", Font.BOLD, 13));
+		btn_editInfo.setBounds(490, 12, 140, 40);
+		panel_2.add(btn_editInfo);
+		btn_editInfo.setIcon(new ImageIcon("gui_imgs/btn_user_1.png"));
+
+		// 주문하기 버튼 누르면 메뉴선택 화면으로 이동
+		btn_startOrder = new JButton("");
+		btn_startOrder.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new SelectMenuView();
+				dispose();
+			}
+		});
+		btn_startOrder.setIcon(new ImageIcon("gui_imgs/btn_orderMenu_1.png"));
+		btn_startOrder.setFont(new Font("굴림", Font.BOLD, 13));
+		btn_startOrder.setBounds(642, 12, 140, 40);
+		panel_2.add(btn_startOrder);
+
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		panel_3.setBackground(Color.DARK_GRAY);
-		panel_3.setBounds(12, 323, 356, 224);
+		panel_3.setBounds(10, 323, 377, 239);
 		getContentPane().add(panel_3);
-		
-		JLabel label_1 = new JLabel("즐겨찾기");
-		label_1.setForeground(new Color(245, 245, 245));
-		label_1.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		label_1.setBounds(12, 8, 144, 27);
-		panel_3.add(label_1);
-		
+
+		JLabel lbl_favorite = new JLabel("즐겨찾기");
+		lbl_favorite.setForeground(new Color(245, 245, 245));
+		lbl_favorite.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		lbl_favorite.setBounds(12, 8, 144, 27);
+		panel_3.add(lbl_favorite);
+
 		table = new JTable();
-		table.setBounds(12, 41, 332, 173);
+		table.setBounds(12, 41, 353, 188);
 		panel_3.add(table);
-		
+
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBackground(Color.DARK_GRAY);
-		panel_4.setBounds(416, 323, 356, 224);
+		panel_4.setBounds(399, 324, 383, 238);
 		getContentPane().add(panel_4);
-		
-		JLabel label_2 = new JLabel("최근 주문 내역");
-		label_2.setForeground(new Color(245, 245, 245));
-		label_2.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		label_2.setBounds(12, 8, 144, 27);
-		panel_4.add(label_2);
-		
-		table_1 = new JTable();
-		table_1.setBounds(12, 41, 332, 173);
-		panel_4.add(table_1);
-		
-		setVisible(true);
-	}
-	
-	public static void main(String[] args){
-		new UserMainView();
-	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals("주문하러가기")) {
-			new SelectMenuView();
-		}
-		else if (e.getActionCommand().equals("수정")) {
-			new UserInfoEditView();
-		}
+		JLabel lbl_recentlyOrder = new JLabel("최근 주문 내역");
+		lbl_recentlyOrder.setForeground(new Color(245, 245, 245));
+		lbl_recentlyOrder.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		lbl_recentlyOrder.setBounds(12, 8, 144, 27);
+		panel_4.add(lbl_recentlyOrder);
+
+		table_1 = new JTable();
+		table_1.setBounds(12, 41, 359, 187);
+		panel_4.add(table_1);
+
+		setVisible(true);
 	}
 }

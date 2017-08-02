@@ -4,170 +4,141 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-// 개인정보수정
-public class UserInfoEditView extends JFrame implements ActionListener {
+import com.galgeyo.controller.SessionController;
+import com.galgeyo.controller.UserInfoEditController;
+import com.galgeyo.vo.Session;
+import com.galgeyo.vo.User;
 
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
+//개인정보수정
+public class UserInfoEditView extends JFrame {
+
+	private JPasswordField tf_confirmPwd;
+	private JTextField tf_name;
+	private JTextField tf_tel;
+	private JPasswordField tf_modifyPwd;
+	private JButton btn_back, btn_modify;
+	private Session session = new Session();
 
 	public UserInfoEditView() {
-
-		setLayout(null);
-
-		this.setBounds(0, 0, 800, 600);
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				session.setSession(new SessionController().sessionLoad());
+				User user = (User) session.getSession();
+				tf_name.setText(user.getName());
+				tf_tel.setText(user.getTel());
+			}
+		});
+		this.setSize(800, 600);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		getContentPane().setBackground(new Color(255, 255, 255));
 
 		JPanel panel = new JPanel();
-
 		panel.setBackground(new Color(192, 57, 43));
-
-		panel.setBounds(0, 0, 800, 70);
-
-		add(panel);
-
+		panel.setBounds(0, 0, 794, 80);
 		panel.setLayout(null);
-
-		JLabel lblNewLabel = new JLabel("개인정보수정");
-
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 23));
-
-		lblNewLabel.setBounds(93, 10, 228, 47);
-
-		panel.add(lblNewLabel);
-
-		JLabel lblNewLabel_6 = new JLabel("");
-
-		lblNewLabel_6.setIcon(new ImageIcon("gui_imgs/icon_userInfoEdit_1.png"));
-
-		lblNewLabel_6.setBounds(25, 7, 46, 50);
-
-		panel.add(lblNewLabel_6);
-
+		
+		JLabel lbl_editInfo = new JLabel("개인정보수정");
+		lbl_editInfo.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+		lbl_editInfo.setBounds(86, 10, 228, 60);
+		panel.add(lbl_editInfo);
+		
+		JLabel lbl_img1 = new JLabel("");
+		lbl_img1.setIcon(new ImageIcon("gui_imgs/icon_userInfoEdit_1.png"));
+		lbl_img1.setBounds(25, 7, 46, 50);
+		panel.add(lbl_img1);
+		getContentPane().add(panel);
+		
 		JPanel panel_1 = new JPanel();
-
 		panel_1.setBackground(Color.WHITE);
-
-		panel_1.setBounds(0, 70, 800, 530);
-
-		add(panel_1);
-
+		panel_1.setBounds(0, 79, 794, 493);
+		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-
-		JLabel lblNewLabel_1 = new JLabel("이름");
-
-		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 14));
-
-		lblNewLabel_1.setBounds(81, 195, 81, 29);
-
-		panel_1.add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("전화번호");
-
-		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 14));
-
-		lblNewLabel_2.setBounds(81, 266, 81, 29);
-
-		panel_1.add(lblNewLabel_2);
-
-		textField = new JTextField();
-
-		textField.setFont(new Font("굴림", Font.PLAIN, 14));
-
-		textField.setBounds(193, 400, 116, 26);
-
-		panel_1.add(textField);
-
-		textField.setColumns(10);
-
-		textField_1 = new JTextField();
-
-		textField_1.setFont(new Font("굴림", Font.PLAIN, 14));
-
-		textField_1.setBounds(193, 197, 116, 25);
-
-		panel_1.add(textField_1);
-
-		textField_1.setColumns(10);
-
-		JButton btnNewButton_1 = new JButton("");
-
-		btnNewButton_1.setIcon(new ImageIcon("gui_imgs/btn_storeInfoEdit_1.png"));
-
-		btnNewButton_1.setBounds(633, 431, 107, 51);
-
-		panel_1.add(btnNewButton_1);
-
-		JLabel lblNewLabel_3 = new JLabel("수정할 비밀번호");
-
-		lblNewLabel_3.setFont(new Font("굴림", Font.PLAIN, 14));
-
-		lblNewLabel_3.setBounds(81, 340, 80, 29);
-
-		panel_1.add(lblNewLabel_3);
-
-		textField_3 = new JTextField();
-
-		textField_3.setBounds(193, 269, 116, 26);
-
-		panel_1.add(textField_3);
-
-		textField_3.setColumns(10);
-
-		JLabel lblNewLabel_4 = new JLabel("수정할 정보를 입력해주세요.");
-
-		lblNewLabel_4.setFont(new Font("굴림", Font.PLAIN, 16));
-
-		lblNewLabel_4.setBounds(145, 51, 278, 63);
-
-		panel_1.add(lblNewLabel_4);
-
-		JLabel lblNewLabel_5 = new JLabel("비밀번호 확인");
-
-		lblNewLabel_5.setFont(new Font("굴림", Font.PLAIN, 14));
-
-		lblNewLabel_5.setBounds(81, 391, 81, 42);
-
-		panel_1.add(lblNewLabel_5);
-
-		textField_4 = new JTextField();
-
-		textField_4.setBounds(193, 344, 116, 24);
-
-		panel_1.add(textField_4);
-
-		textField_4.setColumns(10);
-
-		JButton btnNewButton = new JButton("뒤로가기");
-		btnNewButton.addActionListener(this);
-		btnNewButton.setBounds(677, 10, 97, 23);
-		panel_1.add(btnNewButton);
-
-		btnNewButton.setBackground(Color.WHITE);
-
-		btnNewButton.setBounds(681, 10, 107, 29);
-
-		panel_1.add(btnNewButton);
-
-		JLabel lblNewLabel_7 = new JLabel("New label");
-
-		lblNewLabel_7.setBounds(65, 60, 49, 47);
-
-		panel_1.add(lblNewLabel_7);
-
-		lblNewLabel_7.setIcon(new ImageIcon("Desktop/gui_imgs/icon_storeInfoEdit_2.png"));
-
+		
+		JLabel lbl_Img1 = new JLabel("");
+		lbl_Img1.setBounds(65, 60, 49, 47);
+		panel_1.add(lbl_Img1);
+		lbl_Img1.setIcon(new ImageIcon("gui_imgs/icon_userInfoEdit_2.png"));
+		
+		JLabel lbl_info = new JLabel("수정할 정보를 입력해주세요.");
+		lbl_info.setBounds(141, 51, 278, 63);
+		lbl_info.setForeground(new Color(42, 66, 80));
+		lbl_info.setFont(new Font("굴림", Font.BOLD, 16));
+		panel_1.add(lbl_info);
+		
+		JLabel lbl_name = new JLabel("이름");
+		lbl_name.setBounds(85, 172, 81, 29);
+		lbl_name.setFont(new Font("굴림", Font.BOLD, 14));
+		panel_1.add(lbl_name);
+		
+		JLabel lbl_tel = new JLabel("전화번호");
+		lbl_tel.setBounds(85, 243, 81, 29);
+		lbl_tel.setFont(new Font("돋움", Font.BOLD, 14));
+		panel_1.add(lbl_tel);
+		
+		JLabel lbl_EditPwd = new JLabel("수정할 비밀번호");
+		lbl_EditPwd.setBounds(85, 317, 128, 29);
+		lbl_EditPwd.setFont(new Font("굴림", Font.BOLD, 14));
+		panel_1.add(lbl_EditPwd);
+		
+		JLabel lbl_confirmId = new JLabel("비밀번호 확인");
+		lbl_confirmId.setBounds(85, 368, 128, 42);
+		lbl_confirmId.setFont(new Font("굴림", Font.BOLD, 14));
+		panel_1.add(lbl_confirmId);
+		
+		tf_name = new JTextField();
+		tf_name.setBounds(240, 172, 195, 25);
+		tf_name.setFont(new Font("굴림", Font.PLAIN, 14));
+		panel_1.add(tf_name);
+		
+		tf_name.setColumns(10);
+		tf_tel = new JTextField();
+		tf_tel.setBounds(240, 244, 195, 26);
+		panel_1.add(tf_tel);
+		
+		tf_tel.setColumns(10);
+		tf_modifyPwd = new JPasswordField();
+		tf_modifyPwd.setBounds(240, 319, 195, 24);
+		panel_1.add(tf_modifyPwd);
+		
+		tf_modifyPwd.setColumns(10);
+		btn_back = new JButton("뒤로가기");
+		btn_back.setBounds(682, 10, 100, 30);
+		btn_back.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new UserMainView();
+				dispose();
+			}
+		});
+		btn_back.setFont(new Font("굴림", Font.BOLD, 12));
+		tf_confirmPwd = new JPasswordField();
+		tf_confirmPwd.setBounds(240, 375, 195, 26);
+		tf_confirmPwd.setFont(new Font("굴림", Font.PLAIN, 14));
+		panel_1.add(tf_confirmPwd);
+		
+		tf_confirmPwd.setColumns(10);
+		btn_modify = new JButton("");
+		btn_modify.setBounds(643, 404, 107, 51);
+		btn_modify.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(tf_modifyPwd.getText().equals(tf_confirmPwd.getText())){
+					new UserInfoEditController().submitInfo(tf_name.getText(), tf_tel.getText(),tf_modifyPwd.getText(), session);
+					}else{
+						System.out.println("error");
+					}
+			}
+		});
+		btn_modify.setFont(new Font("굴림", Font.BOLD, 14));
+		btn_modify.setIcon(new ImageIcon("gui_imgs/btn_userInfoEdit_1.png"));
+		panel_1.add(btn_modify);
+		panel_1.add(btn_back);
+		btn_back.setBackground(Color.WHITE);
+		panel_1.add(btn_back);
 		this.setVisible(true);
-
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (e.getActionCommand().equals("뒤로가기")) {
-			new UserMainView();
-			dispose();
-		}
-
 	}
 }
