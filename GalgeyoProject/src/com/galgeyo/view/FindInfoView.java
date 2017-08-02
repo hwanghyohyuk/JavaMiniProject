@@ -2,108 +2,169 @@ package com.galgeyo.view;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 //아이디, 패스워드 찾기
-public class FindInfoView extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+public class FindInfoView extends JFrame {
+	private JTextField tf_IdName;
+	private JTextField tf_IdTel;
+	private JTextField tf_PwId;
+	private JTextField tf_PwTel;
+	
+	
 	public FindInfoView() {
+		getContentPane().setBackground(Color.WHITE);
+		setSize(500, 600);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		setBackground(Color.WHITE);
-		setLayout(null);
+		getContentPane().setLayout(null);
+		
+		JLabel lbl_FindInfoImg = new JLabel("");
+		lbl_FindInfoImg.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_login_2.png"));
+		lbl_FindInfoImg.setBounds(72, 69, 41, 44);
+		getContentPane().add(lbl_FindInfoImg);
+		
+		JLabel lbl_FindInfo = new JLabel("ID/PW 찾기");
+		lbl_FindInfo.setBounds(125, 85, 80, 23);
+		getContentPane().add(lbl_FindInfo);
+		
+		JLabel lbl_FindInfoDec = new JLabel("회원가입 시 입력한 정보로 아이디와 비밀번호를 검색합니다.");
+		lbl_FindInfoDec.setBounds(82, 123, 354, 15);
+		getContentPane().add(lbl_FindInfoDec);
+		
+		JLabel lbl_FindIdImg = new JLabel("");
+		lbl_FindIdImg.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_findInfo_2.png"));
+		lbl_FindIdImg.setBounds(72, 218, 34, 34);
+		getContentPane().add(lbl_FindIdImg);
+		
+		JLabel lbl_ = new JLabel("아이디 찾기");
+		lbl_.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		lbl_.setBounds(118, 218, 89, 34);
+		getContentPane().add(lbl_);
 		
 		JLabel lblNewLabel = new JLabel("이름");
 		lblNewLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		lblNewLabel.setBounds(41, 229, 57, 15);
-		add(lblNewLabel);
+		lblNewLabel.setBounds(72, 276, 57, 15);
+		getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("전화번호");
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		lblNewLabel_1.setBounds(41, 260, 57, 15);
-		add(lblNewLabel_1);
-		
-		textField = new JTextField();
-		textField.setBounds(110, 223, 116, 29);
-		add(textField);
-		textField.setColumns(10);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(110, 265, 116, 29);
-		add(textField_1);
-		textField_1.setColumns(10);
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setBackground(Color.WHITE);
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_findInfo_1.png"));
-		btnNewButton.setBounds(238, 215, 116, 79);
-		add(btnNewButton);
-		
-		JLabel lblNewLabel_2 = new JLabel("아이디");
-		lblNewLabel_2.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		lblNewLabel_2.setBounds(41, 375, 57, 15);
-		add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("전화번호");
-		lblNewLabel_3.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(41, 406, 57, 15);
-		add(lblNewLabel_3);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(110, 373, 116, 21);
-		add(textField_2);
-		textField_2.setColumns(10);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(110, 404, 116, 21);
-		add(textField_3);
-		textField_3.setColumns(10);
-		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_findInfo_1.png"));
-		btnNewButton_1.setBounds(238, 361, 116, 79);
-		add(btnNewButton_1);
-		
-		JLabel lblNewLabel_4 = new JLabel("회원가입 시 입력한 정보로 아이디와 비밀번호를 검색합니다.");
-		lblNewLabel_4.setBounds(51, 76, 338, 15);
-		add(lblNewLabel_4);
-		
-		JLabel lblNewLabel_5 = new JLabel("비밀번호 찾기");
-		lblNewLabel_5.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		lblNewLabel_5.setBounds(87, 317, 89, 34);
-		add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("아이디 찾기");
-		lblNewLabel_6.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
-		lblNewLabel_6.setBounds(87, 171, 89, 34);
-		add(lblNewLabel_6);
+		lblNewLabel_1.setBounds(72, 307, 57, 15);
+		getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_7 = new JLabel("");
 		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_findInfo_2.png"));
-		lblNewLabel_7.setBounds(41, 317, 34, 34);
-		add(lblNewLabel_7);
+		lblNewLabel_7.setBounds(72, 364, 34, 34);
+		getContentPane().add(lblNewLabel_7);
 		
-		JLabel lblNewLabel_8 = new JLabel("");
-		lblNewLabel_8.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\icon_findInfo_2.png"));
-		lblNewLabel_8.setBounds(41, 171, 34, 34);
-		add(lblNewLabel_8);
+		JLabel lblNewLabel_5 = new JLabel("비밀번호 찾기");
+		lblNewLabel_5.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		lblNewLabel_5.setBounds(118, 364, 89, 34);
+		getContentPane().add(lblNewLabel_5);
 		
-		JLabel lblIdpw = new JLabel("ID/PW 찾기");
-		lblIdpw.setBounds(94, 38, 80, 23);
-		add(lblIdpw);
+		JLabel lblNewLabel_2 = new JLabel("아이디");
+		lblNewLabel_2.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(72, 422, 57, 15);
+		getContentPane().add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_9 = new JLabel("");
-		lblNewLabel_9.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_login_2.png"));
-		lblNewLabel_9.setBounds(41, 22, 41, 44);
-		add(lblNewLabel_9);
+		JLabel lblNewLabel_3 = new JLabel("전화번호");
+		lblNewLabel_3.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		lblNewLabel_3.setBounds(72, 453, 57, 15);
+		getContentPane().add(lblNewLabel_3);
 		
-		JButton btnNewButton_2 = new JButton("뒤로가기");
-		btnNewButton_2.setBounds(394, 0, 80, 23);
-		add(btnNewButton_2);
+		tf_IdName = new JTextField();
+		tf_IdName.setBounds(141, 270, 116, 29);
+		getContentPane().add(tf_IdName);
+		tf_IdName.setColumns(10);
+		
+		tf_IdTel = new JTextField();
+		tf_IdTel.setBounds(141, 301, 116, 29);
+		getContentPane().add(tf_IdTel);
+		tf_IdTel.setColumns(10);
+		
+		tf_PwId = new JTextField();
+		tf_PwId.setBounds(141, 420, 116, 21);
+		getContentPane().add(tf_PwId);
+		tf_PwId.setColumns(10);
+		
+		tf_PwTel = new JTextField();
+		tf_PwTel.setBounds(141, 451, 116, 21);
+		getContentPane().add(tf_PwTel);
+		tf_PwTel.setColumns(10);
+		
+		JButton btn_IdSerch = new JButton("");
+		btn_IdSerch.addMouseListener(new MouseAdapter() {
+			//아이디 찾기
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!(tf_IdName.getText().equals("")) && !(tf_IdTel.getText().equals(""))){
+					JOptionPane.showMessageDialog(null, "아이디를 확인하였습니다", "아이디 검색", JOptionPane.WARNING_MESSAGE);
+					new LoginView();
+					dispose();
+			}else if(tf_IdName.getText().equals("")){
+				 JOptionPane.showMessageDialog(null, "이름을 입력해주세요", "이름 입력", JOptionPane.WARNING_MESSAGE);
+			}else if(tf_IdTel.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력", JOptionPane.WARNING_MESSAGE);
+				
+			}
+	
+				
+			
+			}
+		});
+		btn_IdSerch.setBackground(Color.WHITE);
+		btn_IdSerch.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_findInfo_1.png"));
+		btn_IdSerch.setBounds(269, 259, 116, 79);
+		getContentPane().add(btn_IdSerch);
+		
+		JButton btn_PwSerch = new JButton("");
+		btn_PwSerch.addMouseListener(new MouseAdapter() {
+			//비밀번호 찾기
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!(tf_PwId.getText().equals("")) && !(tf_PwTel.getText().equals(""))){
+					JOptionPane.showMessageDialog(null,"비밀번호를 확인하였습니다", "비밀번호 검색", JOptionPane.WARNING_MESSAGE);
+					new LoginView();
+					dispose();
+					
+			}else if(tf_PwId.getText().equals("")){
+				 JOptionPane.showMessageDialog(null, "아이디를 입력해주세요", "이름 입력", JOptionPane.WARNING_MESSAGE);
+			}else if(tf_PwTel.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력", JOptionPane.WARNING_MESSAGE);
+				
+			}
+				
+			}
+		});
+		btn_PwSerch.setIcon(new ImageIcon("C:\\Users\\user1\\Documents\\GitHub\\JavaMiniProject\\GalgeyoProject\\gui_imgs\\btn_findInfo_1.png"));
+		btn_PwSerch.setBounds(269, 407, 116, 79);
+		getContentPane().add(btn_PwSerch);
+		
+		JButton btn_back = new JButton("뒤로가기");
+		btn_back.addMouseListener(new MouseAdapter() {
+			//로그인 메인메뉴로 이동
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				new LoginView();
+				dispose();
+			}
+		});
+		btn_back.setBounds(387, 10, 95, 23);
+		getContentPane().add(btn_back);
+	
+		setVisible(true);
 	}
+	public static void main(String[] args) {
+		new FindInfoView();
+	}
+	
 }

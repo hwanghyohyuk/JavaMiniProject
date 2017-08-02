@@ -14,11 +14,19 @@ public class Manager extends User implements Serializable{
 	public Manager(){}
 
 	public Manager(boolean isUser, String id, String pwd, String name, String tel, String ownNo, String addr, String type) {
-		super(isUser, id, pwd, name, tel);
+		
 		this.ownNo = ownNo;
 		this.addr = addr;
 		this.type = type;
 		this.isOpen = false;
+	}
+
+	public Manager(boolean isUser, String id, String pwd, String name, String tel, String ownNo, String addr, String type, boolean isOpen) {
+		super(isUser, id, pwd, name, tel);
+		this.ownNo = ownNo;
+		this.addr = addr;
+		this.type = type;
+		this.isOpen = isOpen;
 	}
 
 	public String getOwnNo() {

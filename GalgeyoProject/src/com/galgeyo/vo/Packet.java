@@ -11,7 +11,7 @@ public class Packet implements Serializable {
 	private boolean header; // POST = true , GET = false
 	private byte protocol;
 	private String time;
-	private Object massage;
+	private Object message;
 
 	public Packet() {
 		super();
@@ -22,7 +22,7 @@ public class Packet implements Serializable {
 		this.header = header;
 		this.protocol = protocol;
 		this.time = time;
-		this.massage = massage;
+		this.message = massage;
 	}
 
 	public boolean isHeader() {
@@ -49,20 +49,20 @@ public class Packet implements Serializable {
 		this.time = time;
 	}
 
-	public Object getMassage() {
-		return massage;
+	public Object getMessage() {
+		return message;
 	}
 
-	public void setMassage(Object massage) {
-		this.massage = massage;
+	public void setMessage(Object massage) {
+		this.message = massage;
 	}
 
 	@Override
 	public String toString() {
-		if (this.massage instanceof String) {
-			return this.header + "," + this.protocol + "," + this.time + "," + (String) this.massage;
+		if (this.message instanceof String) {
+			return this.header + "," + this.protocol + "," + this.time + "," + (String) this.message;
 		} else {
-			return this.header + "," + this.protocol + "," + this.time + "," + this.massage;
+			return this.header + "," + this.protocol + "," + this.time + "," + this.message;
 		}
 	}
 }
