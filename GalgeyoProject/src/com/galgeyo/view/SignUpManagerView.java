@@ -17,7 +17,7 @@ import java.awt.event.KeyEvent;
 public class SignUpManagerView extends JFrame implements Protocol {
 
 	private JTextField tf_id;
-	private JTextField tf_pwd;
+	private JPasswordField tf_pwd;
 	private JTextField tf_storeName;
 	private JTextField tf_ownNo;
 	private JTextField tf_addr;
@@ -95,7 +95,7 @@ public class SignUpManagerView extends JFrame implements Protocol {
 		getContentPane().add(tf_id);
 		tf_id.setColumns(10);
 
-		tf_pwd = new JTextField();
+		tf_pwd = new JPasswordField();
 		tf_pwd.setBounds(160, 219, 206, 28);
 		getContentPane().add(tf_pwd);
 		tf_pwd.setColumns(10);

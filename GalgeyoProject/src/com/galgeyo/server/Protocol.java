@@ -13,8 +13,7 @@ public interface Protocol {
 	public static final byte CHANGE_RESER_STATUS = 9;  //매장관리자 메인 ::: 예약상태변경을 위해 [버튼] 눌렀을 때
 	public static final byte ACCEPT_ORDER = 10;  //매장관리자 메인 ::: 응답대기자 리스트에서 주문자 체크 후 [주문승낙] 눌렀을 때
 	public static final byte ACCEPT_CANCEL = 11;  //매장관리자 메인 ::: 예약주문자 리스트에서 주문자 체크 후 [승낙취소] 눌렀을 때
-	public static final byte CHECK_PWD_USER = 12;  //매장/개인정보수정 ::: 사용자(혹은 매장) 정보 입력 후 [SUBMIT] 눌렀을 때 본인이 맞는지 패스워드를 입력받아 확인
-	public static final byte EDIT_USER_INFO = 13;  //매장/개인정보수정 ::: 사용자(혹은 매장) 정보 입력 후 [SUBMIT] 눌렀을 때
+	public static final byte EDIT_USER_INFO = 12;  //개인정보수정 ::: 사용자(혹은 매장) 정보 입력 후 [SUBMIT] 눌렀을 때
 	public static final byte ADD_MENU = 14;  //메뉴관리 ::: 메뉴 정보 입력 후 [SUBMIT] 눌렀을 때
 	public static final byte DEL_MENU = 15;  //메뉴관리 ::: 삭제할 메뉴 체크 후 [DELETE] 눌렀을 때
 	public static final byte DEL_THIS_FAVORITE = 16;  //회원(소비자) 메인 ::: 즐겨찾기리스트에서 [삭제] 눌렀을 때

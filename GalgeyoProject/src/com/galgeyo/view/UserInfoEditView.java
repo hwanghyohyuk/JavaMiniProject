@@ -6,16 +6,19 @@ import javax.swing.*;
 
 import com.galgeyo.controller.SessionController;
 import com.galgeyo.controller.UserInfoEditController;
+import com.galgeyo.server.ClientController;
+import com.galgeyo.server.Protocol;
+import com.galgeyo.vo.User;
 import com.galgeyo.vo.Session;
 import com.galgeyo.vo.User;
 
 //개인정보수정
-public class UserInfoEditView extends JFrame {
+public class UserInfoEditView extends JFrame implements Protocol{
 
-	private JPasswordField tf_confirmPwd;
+	private JPasswordField tf_confirmPw;
 	private JTextField tf_name;
 	private JTextField tf_tel;
-	private JPasswordField tf_modifyPwd;
+	private JPasswordField tf_modifyPw;
 	private JButton btn_back, btn_modify;
 	private Session session = new Session();
 
@@ -103,12 +106,12 @@ public class UserInfoEditView extends JFrame {
 		panel_1.add(tf_tel);
 		
 		tf_tel.setColumns(10);
-		tf_modifyPwd = new JPasswordField();
-		tf_modifyPwd.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		tf_modifyPwd.setBounds(235, 303, 195, 24);
-		panel_1.add(tf_modifyPwd);
+		tf_modifyPw = new JPasswordField();
+		tf_modifyPw.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		tf_modifyPw.setBounds(235, 303, 195, 24);
+		panel_1.add(tf_modifyPw);
 		
-		tf_modifyPwd.setColumns(10);
+		tf_modifyPw.setColumns(10);
 		btn_back = new JButton("뒤로가기");
 		btn_back.setBounds(682, 0, 100, 28);
 		btn_back.addMouseListener(new MouseAdapter() {
@@ -125,22 +128,47 @@ public class UserInfoEditView extends JFrame {
 		panel.add(lbl_logo);
 		
 		btn_back.setFont(new Font("맑은 고딕", Font.BOLD, 12));
-		tf_confirmPwd = new JPasswordField();
-		tf_confirmPwd.setBounds(235, 359, 195, 26);
-		tf_confirmPwd.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		panel_1.add(tf_confirmPwd);
+		tf_confirmPw = new JPasswordField();
+		tf_confirmPw.setBounds(235, 359, 195, 26);
+		tf_confirmPw.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		panel_1.add(tf_confirmPw);
 		
-		tf_confirmPwd.setColumns(10);
+		tf_confirmPw.setColumns(10);
 		btn_modify = new JButton("");
 		btn_modify.setBounds(650, 400, 107, 51);
 		btn_modify.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(tf_modifyPwd.getText().equals(tf_confirmPwd.getText())){
-					new UserInfoEditController().submitInfo(tf_name.getText(), tf_tel.getText(),tf_modifyPwd.getText(), session);
-					}else{
-						System.out.println("error");
+				Session clone = new Session();
+				User manager = (User) session.getSession();
+				clone.setSession(manager);
+				User cloneUser =  (User) clone.getSession();
+				if(tf_name.getText().equals("")){
+					JOptionPane.showMessageDialog(null,"이름를 입력해주세요.","개인정보 수정 오류",JOptionPane.WARNING_MESSAGE);
+				}else if(tf_tel.getText().equals("")){
+					JOptionPane.showMessageDialog(null,"전화번호를 입력해주세요.","개인정보 수정 오류",JOptionPane.WARNING_MESSAGE);
+				}else{
+					if(!tf_name.getText().equals(manager.getName())){//변경사항확인
+						cloneUser.setName(tf_name.getText());
 					}
+					if(!tf_tel.getText().equals(manager.getTel())){
+						cloneUser.setTel(tf_tel.getText());
+					}					
+					if(!tf_modifyPw.getText().equals("")){//비밀번호 수정하면
+						if(tf_confirmPw.getText().equals("")){//비밀번호 확인이 빈칸이면
+							JOptionPane.showMessageDialog(null,"수정할 비밀번호와 같은 비밀번호를 입력해주세요","개인정보 수정 오류",JOptionPane.WARNING_MESSAGE);
+						}else{//비밀번호 확인이 빈칸이 아니면
+							if(tf_modifyPw.getText().equals(tf_confirmPw.getText())){//수정과 확인이 같다면
+								cloneUser.setPwd(tf_modifyPw.getText());
+								submit(cloneUser);
+							}else{//수정과 확인이 다르다면
+								JOptionPane.showMessageDialog(null,"수정할 비밀번호와 같은 비밀번호를 입력해주세요","개인정보 수정 오류",JOptionPane.WARNING_MESSAGE);
+							}
+						}
+					}else{
+						submit(cloneUser);
+					}					
+				}
 			}
 		});
 		btn_modify.setFont(new Font("굴림", Font.BOLD, 14));
@@ -150,5 +178,23 @@ public class UserInfoEditView extends JFrame {
 		btn_back.setBackground(Color.WHITE);
 		panel_1.add(btn_back);
 		this.setVisible(true);
+	}
+	
+	private void submit(User cloneUser){
+		User message = cloneUser;
+		Object result = new ClientController().send(POST, EDIT_USER_INFO, message);
+		if(result instanceof Boolean){
+			boolean check = (boolean)result;
+			if(check){
+				JOptionPane.showMessageDialog(null,"개인정보가 성공적으로 수정되었습니다.","개인정보 수정 성공",JOptionPane.INFORMATION_MESSAGE);
+				new SessionController().sessionSave(cloneUser);
+				new UserMainView();
+				dispose();
+			}else{
+				JOptionPane.showMessageDialog(null,"개인정보를 업로드하는데 실패하였습니다.","개인정보 수정 실패",JOptionPane.ERROR_MESSAGE);
+				new UserMainView();
+				dispose();
+			}
+		}
 	}
 }

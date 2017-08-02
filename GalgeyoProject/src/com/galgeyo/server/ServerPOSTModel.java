@@ -64,6 +64,7 @@ public class ServerPOSTModel {
 					}
 				} else {
 					sendMessage = true;
+					break;
 				}
 			} else {
 				sendMessage = false;
@@ -277,14 +278,14 @@ public class ServerPOSTModel {
 				UserTable.remove(key);
 				if (isUser) {// 사용자
 					temp = new User(isUser, id, receivePw, name, tel);
-					UserTable.setProperty(key, ((User)temp).toString());
+					UserTable.setProperty(key, ((User) temp).toString());
 				} else {// 매장관리자
 					ownNo = values[5];
 					addr = values[6];
 					type = values[7];
 					isOpen = Boolean.getBoolean(values[8]);
 					temp = new Manager(isUser, id, receivePw, name, tel, ownNo, addr, type, isOpen);
-					UserTable.setProperty(key, ((Manager)temp).toString());
+					UserTable.setProperty(key, ((Manager) temp).toString());
 				}
 				try {
 					UserTable.store(new FileWriter("serverDB/usertable.properties"), "modify password");
@@ -297,8 +298,56 @@ public class ServerPOSTModel {
 				sendMessage = false;
 			}
 		}
-		
+
 		System.out.println("비밀번호 변경 처리 결과 : " + sendMessage);
+		return sendMessage;
+	}
+
+	public Object editUserInfo(Object message) {
+		Object sendMessage = null;
+		System.out.println("받은 메시지 내용 : " + message.toString());
+		Properties UserTable = new Properties();
+		try {
+			UserTable.load(new FileReader("serverDB/usertable.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Properties UserTableClone = (Properties) UserTable.clone();
+		Iterator<Entry<Object, Object>> iter = UserTableClone.entrySet().iterator();
+		while (iter.hasNext()) {
+			// value는 객체
+			Entry<Object, Object> entry = iter.next();
+			String key = (String) entry.getKey();
+			if (message instanceof Manager) {// 객체에따라
+				if (key.equals(((Manager) message).getId())) {
+					UserTable.remove(key);
+					UserTable.setProperty(key, ((Manager) message).toString());
+					sendMessage = true;
+					break;
+				} else {
+					sendMessage = false;
+				}
+			} else if (message instanceof User) {
+				if (key.equals(((User) message).getId())) {
+					UserTable.remove(key);
+					UserTable.setProperty(key, ((User) message).toString());
+					sendMessage = true;
+					break;
+				} else {
+					sendMessage = false;
+				}
+			} else {
+				System.out.println("받은 메시지 내용 : " + message);
+			}
+		}
+		try {
+			UserTable.store(new FileWriter("serverDB/usertable.properties"), "modify user info");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (sendMessage==null) {
+			sendMessage = false;
+		}
 		return sendMessage;
 	}
 

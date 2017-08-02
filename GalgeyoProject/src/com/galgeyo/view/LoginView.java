@@ -16,7 +16,7 @@ import java.awt.event.*;
 //로그인화면
 public class LoginView extends JFrame implements Protocol{
 	private JTextField tf_id;
-	private JTextField tf_pwd;
+	private JPasswordField tf_pwd;
 	private JLabel lbl_reg;
 	private JLabel lbl_findInfo;	
 
@@ -42,7 +42,7 @@ public class LoginView extends JFrame implements Protocol{
 		getContentPane().add(tf_id);
 		tf_id.setColumns(10);
 
-		tf_pwd = new JTextField();
+		tf_pwd = new JPasswordField();
 		tf_pwd.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 		tf_pwd.setBounds(121, 418, 163, 35);
 		getContentPane().add(tf_pwd);

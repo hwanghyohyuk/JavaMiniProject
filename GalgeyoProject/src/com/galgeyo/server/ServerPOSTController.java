@@ -36,7 +36,7 @@ public class ServerPOSTController implements Protocol {
 		case FIND_ID:
 			System.out.println("아이디 찾기 처리");
 			sendMessage = sm.findId(message);
-			tempPacket = new Packet(POST, FIND_PW, new TimeHandler().getTime(), sendMessage);
+			tempPacket = new Packet(POST, FIND_ID, new TimeHandler().getTime(), sendMessage);
 			break;
 		case FIND_PW:
 			System.out.println("패스워드 찾기 처리");
@@ -46,7 +46,11 @@ public class ServerPOSTController implements Protocol {
 		case MODIFY_PASSWORD:
 			System.out.println("비밀번호 변경 처리");
 			sendMessage = sm.modifyPw(message);
-			tempPacket = new Packet(POST, FIND_PW, new TimeHandler().getTime(), sendMessage);
+			tempPacket = new Packet(POST, MODIFY_PASSWORD, new TimeHandler().getTime(), sendMessage);
+			break;
+		case EDIT_USER_INFO:
+			sendMessage = sm.editUserInfo(message);
+			tempPacket = new Packet(POST, EDIT_USER_INFO, new TimeHandler().getTime(), sendMessage);
 			break;
 		}
 
