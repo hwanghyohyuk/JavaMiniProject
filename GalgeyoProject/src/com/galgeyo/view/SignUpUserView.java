@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import com.galgeyo.server.ClientController;
 import com.galgeyo.server.Protocol;
+import com.galgeyo.vo.User;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -139,6 +140,8 @@ public class SignUpUserView extends JFrame implements Protocol {
 					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력 오류", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					// 입력한 데이터를 서버로 전송
+					User message = new User(true, tf_id.getText(), tf_pwd.getText(), tf_name.getText(), tf_tel.getText());
+					Object result = new ClientController().send(POST, REG_USER, message);
 				}
 			}
 		});
