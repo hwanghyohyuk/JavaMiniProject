@@ -32,15 +32,15 @@ public class ManagerMainView extends JFrame implements ActionListener{
 	private JButton btn_accept;
 	private JButton btn_acceptCancel;
 	
-	private Session manager=new Session();
+	private Session user=new Session();
 	
 	public ManagerMainView() {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				manager.setSession(new SessionController().sessionLoad());
-				lbl_storeName.setText(((Manager)manager.getSession()).getName());
-				lbl_managerId.setText(((Manager)manager.getSession()).getId());
+				user.setSession(new SessionController().sessionLoad());
+				lbl_storeName.setText(((Manager)user.getSession()).getName());
+				lbl_managerId.setText(((Manager)user.getSession()).getId());
 				//new ManagerMainController().waitsave();
 			}
 		});
@@ -206,6 +206,7 @@ public class ManagerMainView extends JFrame implements ActionListener{
 		//로그아웃 버튼 이벤트
 		if(e.getSource()==btn_logout){
 			new LoginView();
+			user=null;	//세션의 내용 지우기
 			dispose();
 		}
 		//매장정보수정 버튼 이벤트

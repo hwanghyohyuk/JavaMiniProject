@@ -1,9 +1,6 @@
 package com.galgeyo.controller;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -83,8 +80,6 @@ public class ManagerMainController {
 	}
 	
 	//응답 대기자 리스트
-	public void waitUserList(HashMap<String, Order> waitUsers, DefaultTableModel dtm){
-
 	public DefaultTableModel waitUserList(/*HashMap<String, Order> waitUsers, */DefaultTableModel dtm){
 		Properties prop = new Properties();
 		try {
