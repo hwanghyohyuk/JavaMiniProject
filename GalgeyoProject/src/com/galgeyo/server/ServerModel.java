@@ -46,11 +46,11 @@ public class ServerModel {
 			String id = values[1];
 			String pwd = values[2];
 			String name = values[3];
-			String tel = values[4];			
-			
+			String tel = values[4];
+
 			if (receiveId.equals(id)) {// 아이디 매치
 				if (receivePwd.equals(pwd)) {// 아이디, 패스워드 매치
-					if (isUser==true) {// 사용자
+					if (isUser == true) {// 사용자
 						sendMessage = new User(isUser, id, pwd, name, tel);
 						break;
 					} else {// 매장관리자
@@ -117,7 +117,7 @@ public class ServerModel {
 		Manager manager = null;
 		Object sendMessage = null;
 		// message : 로그인 시 필요한 아이디/비밀번호
-		
+
 		Properties UserTable = new Properties();
 		try {
 			UserTable.load(new FileReader("usertable.properties"));
@@ -125,24 +125,24 @@ public class ServerModel {
 			e.printStackTrace();
 		}
 		if (message instanceof User) {
-			System.out.println("받은 메시지 내용 : " + ((User)message).toString());
-			user = (User)message;
+			System.out.println("받은 메시지 내용 : " + ((User) message).toString());
+			user = (User) message;
 			UserTable.setProperty(user.getId(), user.toString());
-		}else if(message instanceof Manager){
-			System.out.println("받은 메시지 내용 : " + ((Manager)message).toString());
-			manager = (Manager)message;
+		} else if (message instanceof Manager) {
+			System.out.println("받은 메시지 내용 : " + ((Manager) message).toString());
+			manager = (Manager) message;
 			UserTable.setProperty(manager.getId(), manager.toString());
-		}	
+		}
 		try {
 			UserTable.store(new FileWriter("usertable.properties"), "user add");
-			sendMessage=true;
+			sendMessage = true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if (sendMessage == null) {
 			sendMessage = false;
-		}	
+		}
 		System.out.println("회원가입 처리 결과 : " + sendMessage);
 
 		return sendMessage;
