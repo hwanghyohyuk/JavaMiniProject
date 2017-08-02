@@ -11,7 +11,6 @@ import com.galgeyo.vo.User;
 public class SessionController {
 	
 	public Object sessionLoad(){//세션.프로퍼티스 파일에서 불러오는 메소드
-		System.out.println("exe");
 		Properties prop = new Properties();
 		try {
 			prop.load(new FileInputStream("session.properties"));
@@ -20,18 +19,12 @@ public class SessionController {
 			e.printStackTrace();
 		}
 		String session = prop.getProperty("session");
-		System.out.println(session);
 		String[] split = session.split(",");
-		for(String s : split){
-			System.out.println(s);
-		}
 		if(split[0].equals("true")){//true면 사용자
-			System.out.println("true");
 			User user = new User(true, split[1], split[2], split[3], split[4]);
 			Object temp=user;			
 			return temp;
 		}else{//false면 관리자
-			System.out.println("false");
 			Manager manager= new Manager(false, split[1], split[2], split[3], split[4], split[5], split[6], split[7],Boolean.getBoolean(split[8]));
 			Object temp=manager;
 			return temp;

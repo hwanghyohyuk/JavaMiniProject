@@ -1,12 +1,5 @@
 package com.galgeyo.view;
 
-import javax.swing.JPanel;
-
-
-//메뉴주문
-
-
-import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 import com.galgeyo.controller.OrderMenuController;
@@ -14,6 +7,7 @@ import com.galgeyo.controller.SessionController;
 import com.galgeyo.vo.Session;
 import com.galgeyo.vo.User;
 
+//메뉴주문
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.*;
@@ -69,30 +63,30 @@ public class OrderMenuView extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(192,57,43));
-		panel.setBounds(0, 0, 790, 75);
+		panel.setBounds(0, 0, 794, 80);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		lbl_order = new JLabel("메뉴 주문");
 		lbl_order.setFont(new Font("맑은 고딕", Font.BOLD, 24));
-		lbl_order.setIcon(new ImageIcon("/gui_imgs/ㅁㄴㅁㄴㅇㅁㄴㅇ.PNG"));
-		lbl_order.setBounds(86, 10, 224, 55);
+		lbl_order.setIcon(new ImageIcon("gui_imgs/ㅁㄴㅁㄴㅇㅁㄴㅇ.PNG"));
+		lbl_order.setBounds(86, 10, 302, 60);
 		panel.add(lbl_order);
 		
-		JLabel lbl_img2 = new JLabel("");
-		lbl_img2.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
-		lbl_img2.setBounds(672, 10, 100, 55);
-		panel.add(lbl_img2);
+		JLabel title_icon = new JLabel("");
+		title_icon.setIcon(new ImageIcon("gui_imgs/icon_selectCategory_1.png"));
+		title_icon.setBounds(12, 10, 62, 60);
+		panel.add(title_icon);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("gui_imgs/icon_selectCategory_1.png"));
-		lblNewLabel.setBounds(26, 7, 48, 65);
-		panel.add(lblNewLabel);
+		JLabel lbl_logo = new JLabel("");
+		lbl_logo.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
+		lbl_logo.setBounds(666, 3, 99, 73);
+		panel.add(lbl_logo);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setForeground(Color.WHITE);
 		panel_1.setBackground(new Color(44,62,80));
-		panel_1.setBounds(406, 118, 376, 428);
+		panel_1.setBounds(403, 127, 379, 435);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -101,7 +95,7 @@ public class OrderMenuView extends JFrame {
 		
 		lbl_img.setForeground(Color.WHITE);
 		lbl_img.setBackground(new Color(255, 255, 240));
-		lbl_img.setBounds(12, 22, 121, 25);
+		lbl_img.setBounds(12, 10, 121, 28);
 		panel_1.add(lbl_img);
 		
 		btn_order = new JButton("");
@@ -113,11 +107,11 @@ public class OrderMenuView extends JFrame {
 		});
 		btn_order.setFont(new Font("굴림", Font.BOLD, 14));
 		btn_order.setIcon(new ImageIcon("gui_imgs/btn_orderMenu_1.png"));
-		btn_order.setBounds(214, 384, 150, 34);
+		btn_order.setBounds(217, 391, 150, 34);
 		panel_1.add(btn_order);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(12, 57, 342, 317);
+		scrollPane_1.setBounds(12, 48, 355, 333);
 		panel_1.add(scrollPane_1);
 		
 		menuList = new JTable();
@@ -130,9 +124,13 @@ public class OrderMenuView extends JFrame {
 		));
 		scrollPane_1.setViewportView(menuList);
 		
+		JLabel lbl_orderTotal = new JLabel("");
+		lbl_orderTotal.setBounds(12, 391, 190, 34);
+		panel_1.add(lbl_orderTotal);
+		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(44,62,80));
-		panel_2.setBounds(12, 118, 372, 428);
+		panel_2.setBounds(12, 127, 379, 435);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -145,7 +143,7 @@ public class OrderMenuView extends JFrame {
 		panel_2.add(lbl_img3);
 		
 		tf_serch = new JTextField();
-		tf_serch.setBounds(22, 52, 264, 38);
+		tf_serch.setBounds(12, 52, 303, 38);
 		panel_2.add(tf_serch);
 		tf_serch.setColumns(10);
 		
@@ -158,11 +156,11 @@ public class OrderMenuView extends JFrame {
 		});
 			
 		btn_serch.setIcon(new ImageIcon("gui_imgs/btn_menuEdit_1.png"));
-		btn_serch.setBounds(298, 52, 40, 38);
+		btn_serch.setBounds(327, 52, 40, 38);
 		panel_2.add(btn_serch);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(22, 114, 322, 280);
+		scrollPane.setBounds(12, 100, 355, 325);
 		panel_2.add(scrollPane);
 		
 		storeList = new JTable();
@@ -177,8 +175,8 @@ public class OrderMenuView extends JFrame {
 				dispose();
 			}
 		});
-		btn_back.setFont(new Font("굴림", Font.BOLD, 12));
-		btn_back.setBounds(685, 85, 97, 25);
+		btn_back.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		btn_back.setBounds(682, 90, 100, 28);
 		getContentPane().add(btn_back);
 		
 		setVisible(true);

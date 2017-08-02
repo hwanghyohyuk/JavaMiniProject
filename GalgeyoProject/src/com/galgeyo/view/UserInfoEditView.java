@@ -41,72 +41,76 @@ public class UserInfoEditView extends JFrame {
 		panel.setBounds(0, 0, 794, 80);
 		panel.setLayout(null);
 		
-		JLabel lbl_editInfo = new JLabel("개인정보수정");
-		lbl_editInfo.setFont(new Font("맑은 고딕", Font.BOLD, 24));
-		lbl_editInfo.setBounds(86, 10, 228, 60);
-		panel.add(lbl_editInfo);
+		JLabel title_text = new JLabel("개인 정보 수정");
+		title_text.setIcon(null);
+		title_text.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+		title_text.setBounds(86, 10, 302, 60);
+		panel.add(title_text);
 		
-		JLabel lbl_img1 = new JLabel("");
-		lbl_img1.setIcon(new ImageIcon("gui_imgs/icon_userInfoEdit_1.png"));
-		lbl_img1.setBounds(25, 7, 46, 50);
-		panel.add(lbl_img1);
+		JLabel title_icon = new JLabel("");
+		title_icon.setIcon(new ImageIcon("gui_imgs/icon_userInfoEdit_1.png"));
+		title_icon.setBounds(12, 10, 62, 60);
+		panel.add(title_icon);
+
 		getContentPane().add(panel);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 79, 794, 493);
+		panel_1.setBounds(0, 90, 794, 482);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lbl_Img1 = new JLabel("");
-		lbl_Img1.setBounds(65, 60, 49, 47);
+		lbl_Img1.setBounds(60, 44, 49, 47);
 		panel_1.add(lbl_Img1);
 		lbl_Img1.setIcon(new ImageIcon("gui_imgs/icon_userInfoEdit_2.png"));
 		
 		JLabel lbl_info = new JLabel("수정할 정보를 입력해주세요.");
-		lbl_info.setBounds(141, 51, 278, 63);
+		lbl_info.setBounds(136, 35, 278, 63);
 		lbl_info.setForeground(new Color(42, 66, 80));
-		lbl_info.setFont(new Font("굴림", Font.BOLD, 16));
+		lbl_info.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		panel_1.add(lbl_info);
 		
 		JLabel lbl_name = new JLabel("이름");
-		lbl_name.setBounds(85, 172, 81, 29);
-		lbl_name.setFont(new Font("굴림", Font.BOLD, 14));
+		lbl_name.setBounds(80, 156, 81, 29);
+		lbl_name.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		panel_1.add(lbl_name);
 		
 		JLabel lbl_tel = new JLabel("전화번호");
-		lbl_tel.setBounds(85, 243, 81, 29);
-		lbl_tel.setFont(new Font("돋움", Font.BOLD, 14));
+		lbl_tel.setBounds(80, 227, 81, 29);
+		lbl_tel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		panel_1.add(lbl_tel);
 		
 		JLabel lbl_EditPwd = new JLabel("수정할 비밀번호");
-		lbl_EditPwd.setBounds(85, 317, 128, 29);
-		lbl_EditPwd.setFont(new Font("굴림", Font.BOLD, 14));
+		lbl_EditPwd.setBounds(80, 301, 128, 29);
+		lbl_EditPwd.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		panel_1.add(lbl_EditPwd);
 		
 		JLabel lbl_confirmId = new JLabel("비밀번호 확인");
-		lbl_confirmId.setBounds(85, 368, 128, 42);
-		lbl_confirmId.setFont(new Font("굴림", Font.BOLD, 14));
+		lbl_confirmId.setBounds(80, 352, 128, 42);
+		lbl_confirmId.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		panel_1.add(lbl_confirmId);
 		
 		tf_name = new JTextField();
-		tf_name.setBounds(240, 172, 195, 25);
-		tf_name.setFont(new Font("굴림", Font.PLAIN, 14));
+		tf_name.setBounds(235, 156, 195, 25);
+		tf_name.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		panel_1.add(tf_name);
 		
 		tf_name.setColumns(10);
 		tf_tel = new JTextField();
-		tf_tel.setBounds(240, 244, 195, 26);
+		tf_tel.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		tf_tel.setBounds(235, 228, 195, 26);
 		panel_1.add(tf_tel);
 		
 		tf_tel.setColumns(10);
 		tf_modifyPwd = new JPasswordField();
-		tf_modifyPwd.setBounds(240, 319, 195, 24);
+		tf_modifyPwd.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		tf_modifyPwd.setBounds(235, 303, 195, 24);
 		panel_1.add(tf_modifyPwd);
 		
 		tf_modifyPwd.setColumns(10);
 		btn_back = new JButton("뒤로가기");
-		btn_back.setBounds(682, 10, 100, 30);
+		btn_back.setBounds(682, 0, 100, 28);
 		btn_back.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -114,15 +118,21 @@ public class UserInfoEditView extends JFrame {
 				dispose();
 			}
 		});
-		btn_back.setFont(new Font("굴림", Font.BOLD, 12));
+		
+		JLabel lbl_logo = new JLabel("");
+		lbl_logo.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
+		lbl_logo.setBounds(666, 3, 99, 73);
+		panel.add(lbl_logo);
+		
+		btn_back.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 		tf_confirmPwd = new JPasswordField();
-		tf_confirmPwd.setBounds(240, 375, 195, 26);
-		tf_confirmPwd.setFont(new Font("굴림", Font.PLAIN, 14));
+		tf_confirmPwd.setBounds(235, 359, 195, 26);
+		tf_confirmPwd.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		panel_1.add(tf_confirmPwd);
 		
 		tf_confirmPwd.setColumns(10);
 		btn_modify = new JButton("");
-		btn_modify.setBounds(643, 404, 107, 51);
+		btn_modify.setBounds(650, 400, 107, 51);
 		btn_modify.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -42,29 +42,29 @@ public class SelectMenuView extends JFrame {
 		getContentPane().setBackground(new Color(255, 255, 255));
 
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(192, 57, 43));
-		panel.setBounds(0, 0, 794, 70);
+		panel.setBackground(new Color(192,57,43));
+		panel.setBounds(0, 0, 794, 80);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lbl_menuSelect = new JLabel("메뉴 선택");
 		lbl_menuSelect.setFont(new Font("맑은 고딕", Font.BOLD, 24));
-		lbl_menuSelect.setBounds(86, 10, 149, 52);
+		lbl_menuSelect.setBounds(86, 10, 302, 60);
 		panel.add(lbl_menuSelect);
-
-		JLabel lbl_Img1 = new JLabel("");
-		lbl_Img1.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
-		lbl_Img1.setBounds(695, 10, 93, 52);
-		panel.add(lbl_Img1);
+		
+		JLabel lbl_logo = new JLabel("");
+		lbl_logo.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
+		lbl_logo.setBounds(666, 3, 99, 73);
+		panel.add(lbl_logo);
 
 		JLabel lbl_Img2 = new JLabel("");
 		lbl_Img2.setIcon(new ImageIcon("gui_imgs/icon_selectCategory_1.png"));
-		lbl_Img2.setBounds(37, 14, 52, 49);
+		lbl_Img2.setBounds(12, 10, 62, 60);
 		panel.add(lbl_Img2);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(0, 71, 794, 501);
+		panel_1.setBounds(0, 90, 794, 482);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 
@@ -78,7 +78,7 @@ public class SelectMenuView extends JFrame {
 			}
 		});
 		btn_hansic.setIcon(new ImageIcon("gui_imgs/btn_selectCategory_1.png"));
-		btn_hansic.setBounds(55, 10, 273, 226);
+		btn_hansic.setBounds(46, 10, 273, 226);
 		panel_1.add(btn_hansic);
 
 		btn_joongsic = new JButton("");
@@ -91,7 +91,7 @@ public class SelectMenuView extends JFrame {
 			}
 		});
 		btn_joongsic.setIcon(new ImageIcon("gui_imgs/btn_selectCategory_2.png"));
-		btn_joongsic.setBounds(356, 10, 273, 226);
+		btn_joongsic.setBounds(363, 10, 273, 226);
 		panel_1.add(btn_joongsic);
 
 		btn_illsic = new JButton("");
@@ -104,7 +104,7 @@ public class SelectMenuView extends JFrame {
 			}
 		});
 		btn_illsic.setIcon(new ImageIcon("gui_imgs/btn_selectCategory_3.png"));
-		btn_illsic.setBounds(55, 259, 273, 226);
+		btn_illsic.setBounds(46, 246, 273, 226);
 		panel_1.add(btn_illsic);
 
 		btn_boonsic = new JButton("");
@@ -117,7 +117,7 @@ public class SelectMenuView extends JFrame {
 			}
 		});
 		btn_boonsic.setIcon(new ImageIcon("gui_imgs/btn_selectCategory_5.png"));
-		btn_boonsic.setBounds(356, 259, 273, 226);
+		btn_boonsic.setBounds(363, 246, 273, 226);
 		panel_1.add(btn_boonsic);
 
 		btn_back = new JButton("뒤로가기");
@@ -129,8 +129,8 @@ public class SelectMenuView extends JFrame {
 			}
 		});
 		btn_back.setBackground(Color.WHITE);
-		btn_back.setFont(new Font("굴림", Font.BOLD, 12));
-		btn_back.setBounds(685, 10, 97, 23);
+		btn_back.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		btn_back.setBounds(682, 0, 100, 28);
 		panel_1.add(btn_back);
 		setVisible(true);
 

@@ -1,7 +1,5 @@
 package com.galgeyo.view;
 
-import javax.swing.JFrame;
-
 import com.galgeyo.controller.SessionController;
 import com.galgeyo.vo.Session;
 import com.galgeyo.vo.User;
@@ -46,16 +44,16 @@ public class UserMainView extends JFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
-		JLabel lbl_myPage = new JLabel("마이페이지");
-		lbl_myPage.setIcon(null);
-		lbl_myPage.setFont(new Font("맑은 고딕", Font.BOLD, 24));
-		lbl_myPage.setBounds(86, 10, 302, 60);
-		panel.add(lbl_myPage);
-
-		JLabel lbl_titleicon = new JLabel("");
-		lbl_titleicon.setIcon(new ImageIcon("gui_imgs/icon_user_1.png"));
-		lbl_titleicon.setBounds(12, 10, 62, 60);
-		panel.add(lbl_titleicon);
+		JLabel title_text = new JLabel("마이페이지");
+		title_text.setIcon(null);
+		title_text.setFont(new Font("맑은 고딕", Font.BOLD, 24));
+		title_text.setBounds(86, 10, 302, 60);
+		panel.add(title_text);
+		
+		JLabel title_icon = new JLabel("");
+		title_icon.setIcon(new ImageIcon("gui_imgs/icon_user_1.png"));
+		title_icon.setBounds(12, 10, 62, 60);
+		panel.add(title_icon);
 
 		JLabel lbl_logo = new JLabel("");
 		lbl_logo.setIcon(new ImageIcon("gui_imgs/logo_galgeyo_2.png"));
