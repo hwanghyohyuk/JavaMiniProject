@@ -2,7 +2,7 @@ package com.galgeyo.server;
 
 import com.galgeyo.vo.Packet;
 
-public class ServerGETController {
+public class ServerGETController implements Protocol{
 	
 	private ServerPOSTModel sm = new ServerPOSTModel();
 	/*
@@ -17,7 +17,22 @@ public class ServerGETController {
 		Object message = receivePacket.getMessage();
 
 		switch (protocol) {
-
+		case ANSWER_WAIT_LIST:
+			break;
+		case PRE_ODER_LIST:
+			break;
+		case MENU_MANAGEMENT_LIST:
+			break;
+		case ORDER_HISTORY_STATISTICS:
+			break;
+		case FAVORITES_LIST :
+			break;
+		case ORDER_HISTORY_LIST :
+			break;
+		case STORE_LIST :
+			break;
+		case STORE_MENU_LIST :
+			break;		
 		}
 
 		Packet sendPacket = null;
