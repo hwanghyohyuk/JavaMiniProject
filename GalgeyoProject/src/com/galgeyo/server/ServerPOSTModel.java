@@ -1,5 +1,7 @@
 package com.galgeyo.server;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -30,7 +32,7 @@ public class ServerPOSTModel implements DBsetting {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader(USER_TABLE));
+			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +92,7 @@ public class ServerPOSTModel implements DBsetting {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader(USER_TABLE));
+			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -123,7 +125,7 @@ public class ServerPOSTModel implements DBsetting {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader(USER_TABLE));
+			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -136,12 +138,10 @@ public class ServerPOSTModel implements DBsetting {
 			Properties waitinList = new Properties();
 			Properties bookingList = new Properties();
 			try {
-				menulist.store(new FileWriter(MENU_LIST + manager.getId() + "_menulist.properties"), "new file");
-				orderList.store(new FileWriter(ORDER_LIST + manager.getId() + "_orderlist.properties"), "new file");
-				waitinList.store(new FileWriter(WAITING_LIST + manager.getId() + "_waitinglist.properties"),
-						"new file");
-				bookingList.store(new FileWriter(BOOKING_LIST + manager.getId() + "_bookinglist.properties"),
-						"new file");
+				menulist.storeToXML(new FileOutputStream(MENU_LIST + manager.getId() + "_menulist.data"), "new file", "UTF-8");
+				orderList.storeToXML(new FileOutputStream(ORDER_LIST + manager.getId() + "_orderlist.data"), "new file", "UTF-8");
+				waitinList.storeToXML(new FileOutputStream(WAITING_LIST + manager.getId() + "_waitinglist.data"), "new file", "UTF-8");
+				bookingList.storeToXML(new FileOutputStream(BOOKING_LIST + manager.getId() + "_bookinglist.data"), "new file", "UTF-8");
 				System.out.println("Manager용 파일 추가");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -155,8 +155,8 @@ public class ServerPOSTModel implements DBsetting {
 			Properties orderList = new Properties();
 
 			try {
-				favoriteList.store(new FileWriter(FAVORITE_LIST + user.getId() + "_favorite.properties"), "new file");
-				orderList.store(new FileWriter(ORDER_LIST + user.getId() + "_orderlist.properties"), "new file");
+				favoriteList.storeToXML(new FileOutputStream(FAVORITE_LIST + user.getId() + "_favorite.data"), "new file", "UTF-8");
+				orderList.storeToXML(new FileOutputStream(ORDER_LIST + user.getId() + "_orderlist.data"), "new file", "UTF-8");
 				System.out.println("User용 파일 추가");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -165,7 +165,7 @@ public class ServerPOSTModel implements DBsetting {
 
 		}
 		try {
-			UserTable.store(new FileWriter(USER_TABLE), "user add");
+			UserTable.storeToXML(new FileOutputStream(USER_TABLE), "add user", "UTF-8");
 			sendMessage = true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -185,7 +185,7 @@ public class ServerPOSTModel implements DBsetting {
 		Object sendMessage = null;
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader(USER_TABLE));
+			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -199,7 +199,7 @@ public class ServerPOSTModel implements DBsetting {
 			sendMessage = manager.isOpen();
 		}
 		try {
-			UserTable.store(new FileWriter(USER_TABLE), "changeReserStatus");
+			UserTable.storeToXML(new FileOutputStream(USER_TABLE), "changeReserStatus", "UTF-8");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -222,7 +222,7 @@ public class ServerPOSTModel implements DBsetting {
 
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader(USER_TABLE));
+			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -267,8 +267,8 @@ public class ServerPOSTModel implements DBsetting {
 		System.out.println("받은 메시지 내용 : " + message);
 
 		Properties UserTable = new Properties();
-		try {
-			UserTable.load(new FileReader(USER_TABLE));
+		try {	
+			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -308,7 +308,7 @@ public class ServerPOSTModel implements DBsetting {
 		String receivePw = data[1];
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader(USER_TABLE));
+			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -343,7 +343,7 @@ public class ServerPOSTModel implements DBsetting {
 					UserTable.setProperty(key, ((Manager) temp).toString());
 				}
 				try {
-					UserTable.store(new FileWriter(USER_TABLE), "modify password");
+					UserTable.storeToXML(new FileOutputStream(USER_TABLE), "modify password", "UTF-8");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -363,7 +363,7 @@ public class ServerPOSTModel implements DBsetting {
 		System.out.println("받은 메시지 내용 : " + message.toString());
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader(USER_TABLE));
+			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -396,7 +396,7 @@ public class ServerPOSTModel implements DBsetting {
 			}
 		}
 		try {
-			UserTable.store(new FileWriter(USER_TABLE), "modify user info");
+			UserTable.storeToXML(new FileOutputStream(USER_TABLE), "modify user info", "UTF-8");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -419,7 +419,7 @@ public class ServerPOSTModel implements DBsetting {
 		Properties menuList = new Properties();
 
 		try {
-			menuList.load(new FileReader(MENU_LIST + receiveId + "_menulist.properties"));
+			menuList.loadFromXML(new FileInputStream(MENU_LIST + receiveId + "_menulist.data"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -441,7 +441,7 @@ public class ServerPOSTModel implements DBsetting {
 			menuList.setProperty(menu[0], receiveMenu);
 		}
 		try {
-			menuList.store(new FileWriter(MENU_LIST + receiveId + "_menulist.properties"), "menu add");
+			menuList.storeToXML(new FileOutputStream(MENU_LIST + receiveId + "_menulist.data"), "menu add","UTF-8");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -463,16 +463,17 @@ public class ServerPOSTModel implements DBsetting {
 		String[] data=((String) message).split(",");
 		String receiveMenuNo = data[0];
 		String receiveId = data[1];
-		Properties MenuList = new Properties();
+		Properties menuList = new Properties();
 		try {
-			MenuList.load(new FileReader(MENU_LIST+receiveId+"_menulist.properties"));
+			menuList.loadFromXML(new FileInputStream(MENU_LIST + receiveId + "_menulist.data"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		MenuList.remove(receiveMenuNo);
+		menuList.remove(receiveMenuNo);
 		try {
-			MenuList.store(new FileWriter(MENU_LIST+receiveId+"_menulist.properties"), "delete menu");
+
+			menuList.storeToXML(new FileOutputStream(MENU_LIST + receiveId + "_menulist.data"), "delete menu","UTF-8");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -2,6 +2,7 @@ package com.galgeyo.server;
 
 import java.io.*;
 import java.net.*;
+import java.util.Properties;
 
 import com.galgeyo.vo.Packet;
 
@@ -25,6 +26,7 @@ public class ServerReceiver implements Runnable, Protocol {
 		ObjectInputStream ois = null;
 		ObjectOutputStream oos = null;
 		Packet receivePacket = null;
+	
 		try {
 			ois = new ObjectInputStream(socket.getInputStream());
 			receivePacket = (Packet) ois.readObject();

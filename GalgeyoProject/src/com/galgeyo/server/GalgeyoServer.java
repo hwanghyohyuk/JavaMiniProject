@@ -1,5 +1,6 @@
 package com.galgeyo.server;
 
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -16,7 +17,16 @@ public class GalgeyoServer {
 		try {
 			serverSocket = new ServerSocket(6000);
 			System.out.println("서버 정상 구동");
-			
+			/*최초실행시*/
+			/*
+			Properties n = new Properties();
+			try {
+				n.storeToXML(new FileOutputStream("serverDB/usertable/usertable.data"), "","UTF-8");
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
+			*/
 			while (true) {
 				Socket socket = serverSocket.accept();
 				if (socket != null) {

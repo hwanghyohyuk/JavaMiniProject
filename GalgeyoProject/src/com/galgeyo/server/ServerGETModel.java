@@ -1,5 +1,6 @@
 package com.galgeyo.server;
 
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.security.KeyStore.Entry;
@@ -32,7 +33,7 @@ public class ServerGETModel implements DBsetting {
 
 		Properties menuList = new Properties();
 		try {
-			menuList.load(new FileReader(MENU_LIST + id + "_menulist.properties"));
+			menuList.loadFromXML(new FileInputStream(MENU_LIST + id + "_menulist.data"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +71,7 @@ public class ServerGETModel implements DBsetting {
 		String data = (String) message;
 		Properties storeList = new Properties();
 		try {
-			storeList.load(new FileReader(USER_TABLE));
+			storeList.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,7 +101,7 @@ public class ServerGETModel implements DBsetting {
 		Properties menuList = new Properties();
 		ArrayList<Menu> menulist = new ArrayList<Menu>();
 		try {
-			storeList.load(new FileReader(USER_TABLE));
+			storeList.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
