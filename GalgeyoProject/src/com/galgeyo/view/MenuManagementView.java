@@ -29,7 +29,7 @@ public class MenuManagementView extends JFrame implements Protocol{
 	private ButtonGroup group = new ButtonGroup();
 	private JRadioButton rdbtn_possible, rdbtn_impossible;
 	private DefaultTableModel dtm = new DefaultTableModel(new Object[][] {},
-			new String[] { "No", "\uBA54\uB274\uC774\uB984", "\uBD84\uB958", "\uAC00\uACA9", "y/n" });
+			new String[] { "No", "메뉴이름", "가격", "주문가능", "삭제" });
 
 	public MenuManagementView() {
 
@@ -171,14 +171,14 @@ public class MenuManagementView extends JFrame implements Protocol{
 						if (check) {
 							JOptionPane.showMessageDialog(null, "메뉴정보가 성공적으로 추가되었습니다.", "메뉴정보 추가 성공",
 									JOptionPane.INFORMATION_MESSAGE);
+							Object[] row = {new String(tf_menuNo.getText()),new String(tf_menuName.getText()),new String(tf_price.getText()),new Boolean(yn),""};
+							dtm.addRow(row);
 							tf_menuNo.setText("");
 							tf_menuName.setText("");
 							tf_category.setText("");
 							tf_price.setText("");
 							tf_discountRate.setText("");
 							rdbtn_possible.setSelected(true);
-							Object[] row = {tf_menuNo.getText(),tf_menuName.getText(),tf_category.getText(),tf_price.getText(),yn};
-							dtm.addRow(row);
 						} else {
 							JOptionPane.showMessageDialog(null, "동일한 메뉴번호가 존재합니다.", "메뉴정보 추가 실패",
 									JOptionPane.ERROR_MESSAGE);
@@ -265,6 +265,7 @@ public class MenuManagementView extends JFrame implements Protocol{
 		panel_2.add(scrollPane);
 
 		menuList = new JTable();
+		menuList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		menuList.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		menuList.setModel(dtm);
 		scrollPane.setViewportView(menuList);
