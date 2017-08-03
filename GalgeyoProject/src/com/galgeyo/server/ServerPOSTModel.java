@@ -12,7 +12,7 @@ import java.util.Set;
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.User;
 
-public class ServerPOSTModel implements DBsetting{
+public class ServerPOSTModel implements DBsetting {
 
 	// 로그인
 	public Object loginCheck(Object message) {
@@ -129,23 +129,7 @@ public class ServerPOSTModel implements DBsetting{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (message instanceof User) {
-			System.out.println("받은 메시지 내용 : " + ((User) message).toString());
-			user = (User) message;
-			UserTable.setProperty(user.getId(), user.toString());
-			Properties favoriteList = new Properties();
-			Properties orderList = new Properties();
-			
-			try {
-				favoriteList.store(new FileWriter(FAVORITE_LIST+user.getId()+"_favorite.properties"), "new file");
-				orderList.store(new FileWriter(ORDER_LIST+user.getId()+"_orderlist.properties"),  "new file");
-				System.out.println("User용 파일 추가");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
-		} else if (message instanceof Manager) {
+		if (message instanceof Manager) {
 			System.out.println("받은 메시지 내용 : " + ((Manager) message).toString());
 			manager = (Manager) message;
 			UserTable.setProperty(manager.getId(), manager.toString());
@@ -154,15 +138,33 @@ public class ServerPOSTModel implements DBsetting{
 			Properties waitinList = new Properties();
 			Properties bookingList = new Properties();
 			try {
-				menulist.store(new FileWriter(MENU_LIST+manager.getId()+"_menulist.properties"), "new file");
-				orderList.store(new FileWriter(ORDER_LIST+manager.getId()+"_orderlist.properties"),  "new file");
-				waitinList.store(new FileWriter(WAITING_LIST+manager.getId()+"_waitinglist.properties"), "new file");
-				bookingList.store(new FileWriter(BOOKING_LIST+manager.getId()+"_bookinglist.properties"),  "new file");
+				menulist.store(new FileWriter(MENU_LIST + manager.getId() + "_menulist.properties"), "new file");
+				orderList.store(new FileWriter(ORDER_LIST + manager.getId() + "_orderlist.properties"), "new file");
+				waitinList.store(new FileWriter(WAITING_LIST + manager.getId() + "_waitinglist.properties"),
+						"new file");
+				bookingList.store(new FileWriter(BOOKING_LIST + manager.getId() + "_bookinglist.properties"),
+						"new file");
 				System.out.println("Manager용 파일 추가");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (message instanceof User) {
+			System.out.println("받은 메시지 내용 : " + ((User) message).toString());
+			user = (User) message;
+			UserTable.setProperty(user.getId(), user.toString());
+			Properties favoriteList = new Properties();
+			Properties orderList = new Properties();
+
+			try {
+				favoriteList.store(new FileWriter(FAVORITE_LIST + user.getId() + "_favorite.properties"), "new file");
+				orderList.store(new FileWriter(ORDER_LIST + user.getId() + "_orderlist.properties"), "new file");
+				System.out.println("User용 파일 추가");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 		try {
 			UserTable.store(new FileWriter(USER_TABLE), "user add");
@@ -178,6 +180,7 @@ public class ServerPOSTModel implements DBsetting{
 
 		return sendMessage;
 	}
+
 	//
 	public Object changeReserStatus(Object message) {
 
@@ -188,15 +191,15 @@ public class ServerPOSTModel implements DBsetting{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		if(message instanceof Manager){
-			Manager manager = (Manager)message;
+
+		if (message instanceof Manager) {
+			Manager manager = (Manager) message;
 			boolean Switch = manager.isOpen();
 			manager.setOpen(!Switch);
 			UserTable.remove(manager.getId());
-			UserTable.setProperty(manager.getId(), manager.toString());		
-			sendMessage= manager.isOpen();
-		}		
+			UserTable.setProperty(manager.getId(), manager.toString());
+			sendMessage = manager.isOpen();
+		}
 		try {
 			UserTable.store(new FileWriter(USER_TABLE), "changeReserStatus");
 		} catch (IOException e) {
@@ -399,7 +402,7 @@ public class ServerPOSTModel implements DBsetting{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		if (sendMessage==null) {
+		if (sendMessage == null) {
 			sendMessage = false;
 		}
 		return sendMessage;
@@ -416,43 +419,43 @@ public class ServerPOSTModel implements DBsetting{
 		String receiveMenu = data[1];
 		String[] menu = receiveMenu.split(",");
 		Properties menuList = new Properties();
-			
+
 		try {
-			menuList.load(new FileReader(MENU_LIST+receiveId+"_menulist.properties"));
-		}catch(FileNotFoundException e){
+			menuList.load(new FileReader(MENU_LIST + receiveId + "_menulist.properties"));
+		} catch (FileNotFoundException e) {
 			try {
-				menuList.store(new FileWriter(MENU_LIST+receiveId+"_menulist.properties"), "file create");
+				menuList.store(new FileWriter(MENU_LIST + receiveId + "_menulist.properties"), "file create");
 				menuList.setProperty(menu[0], receiveMenu);
-				menuList.store(new FileWriter(MENU_LIST+receiveId+"_menulist.properties"), "file create");
+				menuList.store(new FileWriter(MENU_LIST + receiveId + "_menulist.properties"), "file create");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Iterator<Entry<Object, Object>> iter = menuList.entrySet().iterator();
 		while (iter.hasNext()) {
 			// value는 객체
 			Entry<Object, Object> entry = iter.next();
 			String key = (String) entry.getKey();
-			if(key.equals(menu[0])){
+			if (key.equals(menu[0])) {
 				check = true;
 				break;
-			}		
+			}
 		}
-		if(check){
+		if (check) {
 			sendMessage = false;
-		}else{
-			sendMessage=true;
+		} else {
+			sendMessage = true;
 			menuList.setProperty(menu[0], receiveMenu);
 		}
 		try {
-			menuList.store(new FileWriter(MENU_LIST+receiveId+"_menulist.properties"), "menu add");
+			menuList.store(new FileWriter(MENU_LIST + receiveId + "_menulist.properties"), "menu add");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		}
 		return sendMessage;
 	}
 
