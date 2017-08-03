@@ -10,6 +10,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.galgeyo.vo.Menu;
+import com.galgeyo.vo.Arraylist;
 
 public class ServerGETModel implements DBsetting {
 
@@ -42,16 +43,8 @@ public class ServerGETModel implements DBsetting {
 			Menu menu = new Menu(values[0], values[1], values[2], Integer.parseInt(values[3]), Double.parseDouble(values[4]), Boolean.parseBoolean(values[5]));
 			menulist.add(menu);
 		}		
-		Object[][] resultList = new Object[menulist.size()][6];
-		for(int i=0;i<resultList.length;i++){
-			resultList[i][0]=(menulist.get(i)).getMenuNo();
-			resultList[i][1]=(menulist.get(i)).getMenuNo();
-			resultList[i][2]=(menulist.get(i)).getMenuNo();
-			resultList[i][3]=(menulist.get(i)).getMenuNo();
-			resultList[i][4]=(menulist.get(i)).getMenuNo();
-			resultList[i][5]=(menulist.get(i)).getMenuNo();
-		}
-		return resultList;
+		Arraylist array = new Arraylist(menulist);
+		return array;
 	}
 
 	public Object orderHistoryStatistics(Object message) {

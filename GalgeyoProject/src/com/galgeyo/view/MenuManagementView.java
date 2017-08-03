@@ -43,12 +43,25 @@ public class MenuManagementView extends JFrame implements Protocol{
 				//메뉴 불러오기
 				String message = manager.getId();
 				Object result = new ClientController().send(GET, MENU_MANAGEMENT_LIST, message);
-				if(result instanceof Object[][]){
-					Object[][] menulist = (Object[][])result;
-					for(int i=0;i<menulist.length;i++){
-						dtm.addRow(menulist[i]);
+				if(result instanceof Arraylist){
+					Arraylist menulist = (Arraylist)result;
+					ArrayList<Menu> menu = menulist.getArrayList();
+					Object[][] resultList = new Object[menu.size()][6];
+					for(int i=0;i<resultList.length;i++){
+						resultList[i][0]=((Menu)(menu.get(i))).getMenuNo();
+						resultList[i][1]=((Menu)(menu.get(i))).getMenuNo();
+						resultList[i][2]=((Menu)(menu.get(i))).getMenuNo();
+						resultList[i][3]=((Menu)(menu.get(i))).getMenuNo();
+						resultList[i][4]=((Menu)(menu.get(i))).getMenuNo();
+						resultList[i][5]=((Menu)(menu.get(i))).getMenuNo();
+					}
+					for(int i=0;i<resultList.length;i++){
+						dtm.addRow(resultList[i]);
 					}
 				}
+				
+				
+				
 			}
 		});
 
