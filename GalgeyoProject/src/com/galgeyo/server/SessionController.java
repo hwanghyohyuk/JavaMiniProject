@@ -13,7 +13,7 @@ public class SessionController {
 	public Object sessionLoad(){//세션.프로퍼티스 파일에서 불러오는 메소드
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("session.properties"));
+			prop.loadFromXML(new FileInputStream("session.data"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class SessionController {
 			prop.setProperty("session", ((User)obj).toString());
 		}
 		try {
-			prop.store(new FileOutputStream("session.properties"), null);
+			prop.storeToXML(new FileOutputStream("session.data"), "", "UTF-8");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class SessionController {
 		Properties prop = new Properties();
 		String menu=null;
 		try {
-			prop.load(new FileInputStream("session.properties"));
+			prop.loadFromXML(new FileInputStream("session.data"));
 			menu = prop.getProperty("selectedMenu");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -62,9 +62,9 @@ public class SessionController {
 	public void menuSelectSave(int menuNo){
 		Properties prop = new Properties();
 		try {
-			prop.load(new FileInputStream("session.properties"));
+			prop.loadFromXML(new FileInputStream("session.data"));
 			prop.setProperty("selectedMenu", String.valueOf(menuNo));
-			prop.store(new FileOutputStream("session.properties"), null);
+			prop.storeToXML(new FileOutputStream("session.data"), "", "UTF-8");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,7 +75,7 @@ public class SessionController {
 		session.setSession(null);
 		Properties prop = new Properties();
 		try {
-			prop.store(new FileOutputStream("session.properties"), null);
+			prop.storeToXML(new FileOutputStream("session.data"), "", "UTF-8");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
