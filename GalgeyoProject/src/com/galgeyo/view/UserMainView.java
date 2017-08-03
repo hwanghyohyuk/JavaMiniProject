@@ -11,7 +11,6 @@ import java.awt.event.*;
 // 사용자 메인화면
 
 public class UserMainView extends JFrame {
-	private JTable table;
 	private JTable table_1;
 	private JButton btn_editInfo;
 	private JButton btn_startOrder;
@@ -139,26 +138,10 @@ public class UserMainView extends JFrame {
 		btn_startOrder.setBounds(642, 12, 140, 40);
 		panel_2.add(btn_startOrder);
 
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBackground(Color.DARK_GRAY);
-		panel_3.setBounds(10, 313, 380, 249);
-		getContentPane().add(panel_3);
-
-		JLabel lbl_favorite = new JLabel("즐겨찾기");
-		lbl_favorite.setForeground(new Color(245, 245, 245));
-		lbl_favorite.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lbl_favorite.setBounds(12, 8, 144, 27);
-		panel_3.add(lbl_favorite);
-
-		table = new JTable();
-		table.setBounds(12, 41, 353, 198);
-		panel_3.add(table);
-
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		panel_4.setBackground(Color.DARK_GRAY);
-		panel_4.setBounds(402, 313, 380, 249);
+		panel_4.setBounds(10, 313, 772, 249);
 		getContentPane().add(panel_4);
 
 		JLabel lbl_recentlyOrder = new JLabel("최근 주문 내역");
@@ -168,7 +151,7 @@ public class UserMainView extends JFrame {
 		panel_4.add(lbl_recentlyOrder);
 
 		table_1 = new JTable();
-		table_1.setBounds(12, 41, 359, 198);
+		table_1.setBounds(12, 41, 748, 198);
 		panel_4.add(table_1);
 
 		setVisible(true);

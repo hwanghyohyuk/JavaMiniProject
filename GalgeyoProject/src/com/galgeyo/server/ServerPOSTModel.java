@@ -155,7 +155,6 @@ public class ServerPOSTModel implements DBsetting {
 			Properties orderList = new Properties();
 
 			try {
-				favoriteList.storeToXML(new FileOutputStream(FAVORITE_LIST + user.getId() + "_favorite.data"), "new file", "UTF-8");
 				orderList.storeToXML(new FileOutputStream(ORDER_LIST + user.getId() + "_orderlist.data"), "new file", "UTF-8");
 				System.out.println("User용 파일 추가");
 			} catch (IOException e) {

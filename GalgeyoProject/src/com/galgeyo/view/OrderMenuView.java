@@ -24,7 +24,7 @@ import java.awt.Font;
 
 public class OrderMenuView extends JFrame implements Protocol{
 	
-	private JLabel lbl_order;
+	private JLabel lbl_order, lbl_orderTotal;
 	private JTextField tf_serch;
 	private JTable storeList;
 	private JTable menuList;
@@ -32,6 +32,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 	private JButton btn_order,btn_serch,btn_back;
 	private Session session = new Session();
 	private int menuType=0;
+	private int totalPrice = 0;
 	
 	private DefaultTableModel dtmStore = new DefaultTableModel(new Object[][] {}, new String[] {
 				"\uB9E4\uC7A5\uC774\uB984", "\uC804\uD654\uBC88\uD638", "\uC990\uACA8\uCC3E\uAE30"
@@ -62,6 +63,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 					break;
 				}
 				lbl_order.setText(menuTypeTemp+ " 메뉴 주문");
+				
 				Object result= new ClientController().send(GET, STORE_LIST, menuTypeTemp);
 				if (result instanceof StoreList) {
 					StoreList storelist = (StoreList) result;
@@ -82,6 +84,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 						dtmStore.addRow(resultList[i]);
 					}
 				}
+				
 			}
 		});
 		this.setSize(800, 600);
@@ -154,7 +157,6 @@ public class OrderMenuView extends JFrame implements Protocol{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int row = storeList.getSelectedRow();
-				System.out.println(row);
 				String storeName = (String) storeList.getValueAt(row, 0);
 				Object result = new ClientController().send(GET, STORE_MENU_LIST, storeName);
 				if (result instanceof MenuList) {
@@ -168,6 +170,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 						resultList[i][2] = ((Menu) (menu.get(i))).getPrice();
 						//resultList[i][4]=((Menu)(menu.get(i))).getDiscount();
 						//resultList[i][3] = ((Menu) (menu.get(i))).isOrderYN();
+						resultList[i][3]=new Integer(0);
 					}
 					for (int i = 0; i < resultList.length; i++) {
 						dtmMenu.addRow(resultList[i]);
@@ -209,11 +212,33 @@ public class OrderMenuView extends JFrame implements Protocol{
 		panel_1.add(scrollPane_1);
 		
 		menuList = new JTable();
+		menuList.addMouseWheelListener(new MouseWheelListener() {
+			public void mouseWheelMoved(MouseWheelEvent e) {
+				int row = menuList.getSelectedRow();
+				if(row!=-1){
+					int menuPrice = (Integer) menuList.getValueAt(row, 2);
+					int menuQuantity = (Integer) menuList.getValueAt(row, 3);
+					int step = -e.getWheelRotation();
+					int quantity = menuQuantity+step;
+					if(quantity>=0&&quantity<20){
+						menuList.setValueAt(quantity, row, 3);
+						if(menuQuantity<quantity){//수량증가
+							totalPrice += menuPrice;
+						}else{//수량감소
+							totalPrice -= menuPrice;
+						}
+						lbl_orderTotal.setText("최종가격 : "+totalPrice);
+					}
+				}else{
+					JOptionPane.showMessageDialog(null, "메뉴를 선택하세요", "메뉴선택 오류", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+		});
 		menuList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		menuList.setModel(dtmMenu);
 		scrollPane_1.setViewportView(menuList);
 		
-		JLabel lbl_orderTotal = new JLabel("");
+		lbl_orderTotal = new JLabel("");
 		lbl_orderTotal.setBounds(12, 391, 190, 34);
 		panel_1.add(lbl_orderTotal);
 		
