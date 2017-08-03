@@ -1,8 +1,9 @@
 package com.galgeyo.vo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Arraylist {
+public class Arraylist implements Serializable {
 private ArrayList<Menu> arrayList;
 
 public Arraylist(ArrayList<Menu> menulist) {
