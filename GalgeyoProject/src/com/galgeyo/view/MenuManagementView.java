@@ -312,7 +312,7 @@ public class MenuManagementView extends JFrame implements Protocol {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Manager manager = (Manager) session.getSession();
-				int row = menuList.getRowCount() - 1;
+				int row = menuList.getSelectedRow();
 				System.out.println(row);
 				String menuNo = (String) menuList.getValueAt(row, 0);
 				String message = menuNo + "," + manager.getId();

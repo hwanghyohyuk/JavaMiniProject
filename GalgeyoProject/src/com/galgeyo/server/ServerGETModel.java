@@ -95,7 +95,29 @@ public class ServerGETModel implements DBsetting {
 	}
 
 	public Object storeMenuList(Object message) {
-		// TODO Auto-generated method stub
+		String data = (String) message;
+		Properties storeList = new Properties();
+		Properties menuList = new Properties();
+		ArrayList<Menu> menulist = new ArrayList<Menu>();
+		try {
+			storeList.load(new FileReader(USER_TABLE));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Iterator<Object> iter = storeList.keySet().iterator();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			String value = storeList.getProperty(key);
+			String[] values = value.split(",");
+			if (!Boolean.parseBoolean(values[0])) {//매장관리자
+				Manager store = new Manager(Boolean.parseBoolean(values[0]), values[1], values[2], values[3], values[4],
+						values[5], values[6], values[7], Boolean.parseBoolean(values[8]));
+				if (store.getName().equals(data)) {
+					return menuManagementList(key);
+				}
+			}
+		}
 		return null;
 	}
 

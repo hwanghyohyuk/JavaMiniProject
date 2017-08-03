@@ -36,6 +36,8 @@ public class OrderMenuView extends JFrame implements Protocol{
 	private DefaultTableModel dtmStore = new DefaultTableModel(new Object[][] {}, new String[] {
 				"\uB9E4\uC7A5\uC774\uB984", "\uC804\uD654\uBC88\uD638", "\uC990\uACA8\uCC3E\uAE30"
 			});
+	private DefaultTableModel dtmMenu = new DefaultTableModel(new Object[][] {}, new String[] {
+			"분류", "메뉴이름", "가격", "수량"	});
 	
 	public OrderMenuView() {
 		addWindowListener(new WindowAdapter() {
@@ -110,6 +112,71 @@ public class OrderMenuView extends JFrame implements Protocol{
 		lbl_logo.setBounds(666, 3, 99, 73);
 		panel.add(lbl_logo);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(44,62,80));
+		panel_2.setBounds(12, 127, 379, 435);
+		getContentPane().add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel lbl_img3 = new JLabel("매장 검색");
+		lbl_img3.setFont(new Font("굴림", Font.BOLD, 15));
+		
+		lbl_img3.setForeground(Color.WHITE);
+		lbl_img3.setBackground(new Color(255, 255, 240));
+		lbl_img3.setBounds(12, 10, 147, 32);
+		panel_2.add(lbl_img3);
+		
+		tf_serch = new JTextField();
+		tf_serch.setBounds(12, 52, 303, 38);
+		panel_2.add(tf_serch);
+		tf_serch.setColumns(10);
+		
+		btn_serch = new JButton("");
+		btn_serch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				storeList.setModel(oc.searchStore(tf_serch.getText(), dtmStore));
+			}
+		});
+		
+		btn_serch.setIcon(new ImageIcon("gui_imgs/btn_menuEdit_1.png"));
+		btn_serch.setBounds(327, 52, 40, 38);
+		panel_2.add(btn_serch);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 100, 355, 325);
+		panel_2.add(scrollPane);
+		
+		storeList = new JTable();
+		storeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		storeList.setModel(dtmStore);
+		storeList.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = storeList.getSelectedRow();
+				System.out.println(row);
+				String storeName = (String) storeList.getValueAt(row, 0);
+				Object result = new ClientController().send(GET, STORE_MENU_LIST, storeName);
+				if (result instanceof MenuList) {
+					MenuList menulist = (MenuList) result;
+					ArrayList<Menu> menu = menulist.getMenuList();
+					Object[][] resultList = new Object[menu.size()][6];
+					for (int i = 0; i < resultList.length; i++) {
+						//resultList[i][0] = ((Menu) (menu.get(i))).getMenuNo();
+						resultList[i][1] = ((Menu) (menu.get(i))).getMenuName();
+						resultList[i][0]=((Menu)(menu.get(i))).getCategory();
+						resultList[i][2] = ((Menu) (menu.get(i))).getPrice();
+						//resultList[i][4]=((Menu)(menu.get(i))).getDiscount();
+						//resultList[i][3] = ((Menu) (menu.get(i))).isOrderYN();
+					}
+					for (int i = 0; i < resultList.length; i++) {
+						dtmMenu.addRow(resultList[i]);
+					}
+				}
+			}
+		});
+		scrollPane.setViewportView(storeList);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setForeground(Color.WHITE);
 		panel_1.setBackground(new Color(44,62,80));
@@ -142,57 +209,13 @@ public class OrderMenuView extends JFrame implements Protocol{
 		panel_1.add(scrollPane_1);
 		
 		menuList = new JTable();
-		menuList.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"\uBD84\uB958", "\uBA54\uB274\uC774\uB984"
-			}
-		));
+		menuList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		menuList.setModel(dtmMenu);
 		scrollPane_1.setViewportView(menuList);
 		
 		JLabel lbl_orderTotal = new JLabel("");
 		lbl_orderTotal.setBounds(12, 391, 190, 34);
 		panel_1.add(lbl_orderTotal);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(44,62,80));
-		panel_2.setBounds(12, 127, 379, 435);
-		getContentPane().add(panel_2);
-		panel_2.setLayout(null);
-		
-		JLabel lbl_img3 = new JLabel("매장 검색");
-		lbl_img3.setFont(new Font("굴림", Font.BOLD, 15));
-		
-		lbl_img3.setForeground(Color.WHITE);
-		lbl_img3.setBackground(new Color(255, 255, 240));
-		lbl_img3.setBounds(12, 10, 147, 32);
-		panel_2.add(lbl_img3);
-		
-		tf_serch = new JTextField();
-		tf_serch.setBounds(12, 52, 303, 38);
-		panel_2.add(tf_serch);
-		tf_serch.setColumns(10);
-		
-		btn_serch = new JButton("");
-		btn_serch.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				storeList.setModel(oc.searchStore(tf_serch.getText(), dtmStore));
-			}
-		});
-			
-		btn_serch.setIcon(new ImageIcon("gui_imgs/btn_menuEdit_1.png"));
-		btn_serch.setBounds(327, 52, 40, 38);
-		panel_2.add(btn_serch);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 100, 355, 325);
-		panel_2.add(scrollPane);
-		
-		storeList = new JTable();
-		storeList.setModel(dtmStore);
-		scrollPane.setViewportView(storeList);
 		
 		btn_back = new JButton("뒤로가기");
 		btn_back.addMouseListener(new MouseAdapter() {
