@@ -1,14 +1,10 @@
 package com.galgeyo.server;
 
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.security.KeyStore.Entry;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.Set;
 
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.Menu;
@@ -98,8 +94,6 @@ public class ServerGETModel implements DBsetting {
 	public Object storeMenuList(Object message) {
 		String data = (String) message;
 		Properties storeList = new Properties();
-		Properties menuList = new Properties();
-		ArrayList<Menu> menulist = new ArrayList<Menu>();
 		try {
 			storeList.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {

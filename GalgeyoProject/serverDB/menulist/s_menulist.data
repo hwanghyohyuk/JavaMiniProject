@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>menu add</comment>
+<entry key="메뉴번호2">메뉴번호2,메뉴이름2,분류2,5000,0.1,true</entry>
+<entry key="메뉴번호1">메뉴번호1,메뉴이름1,분류1,10000,0.1,true</entry>
+</properties>

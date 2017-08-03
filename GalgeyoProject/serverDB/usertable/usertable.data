@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment/>
+<comment>modify password</comment>
+<entry key="a">true,a,a,일반사용자1,전화번호1</entry>
+<entry key="s">false,s,s,매장명1,전화번호1,주소1,사업자번호1,한식,true</entry>
 </properties>
