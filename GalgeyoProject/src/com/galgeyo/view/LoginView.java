@@ -60,7 +60,6 @@ public class LoginView extends JFrame implements Protocol{
 					JOptionPane.showMessageDialog(null,"비밀번호를 입력해주세요.","로그인 오류",JOptionPane.WARNING_MESSAGE);
 				}else{
 				String message = tf_id.getText()+"/"+tf_pwd.getText();
-				System.out.println(message);
 				Object result = new ClientController().send(POST, LOGIN, message);
 				if(result instanceof Boolean){
 					boolean check = (boolean) result;

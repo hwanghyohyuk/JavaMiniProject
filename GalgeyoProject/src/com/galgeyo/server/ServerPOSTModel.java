@@ -59,7 +59,7 @@ public class ServerPOSTModel implements DBsetting{
 						String ownNo = values[5];
 						String addr = values[6];
 						String type = values[7];
-						boolean isOpen = Boolean.getBoolean(values[8]);
+						boolean isOpen = Boolean.parseBoolean(values[8]);
 						sendMessage = new Manager(isUser, id, pwd, name, tel, ownNo, addr, type, isOpen);
 						break;
 					}

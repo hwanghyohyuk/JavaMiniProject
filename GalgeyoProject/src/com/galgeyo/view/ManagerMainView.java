@@ -33,9 +33,9 @@ public class ManagerMainView extends JFrame implements Protocol {
 				lbl_managerId.setText(manager.getId());
 				boolean check = manager.isOpen();
 				if (check) {
-					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
-				}else{
 					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1-2.png"));
+				}else{
+					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
 				}
 			}
 		});
@@ -101,11 +101,11 @@ public class ManagerMainView extends JFrame implements Protocol {
 				Object result = new ClientController().send(POST, CHANGE_RESER_STATUS, manager);
 				boolean check = (boolean)result;
 				if (check) {
-					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
+					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1-2.png"));
 					manager.setOpen(check);
 					new SessionController().sessionSave(manager);
 				}else{
-					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1-2.png"));
+					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
 					manager.setOpen(check);
 					new SessionController().sessionSave(manager);
 				}
