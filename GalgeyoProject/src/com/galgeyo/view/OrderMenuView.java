@@ -6,9 +6,11 @@ import com.galgeyo.controller.OrderMenuController;
 import com.galgeyo.server.ClientController;
 import com.galgeyo.server.Protocol;
 import com.galgeyo.server.SessionController;
+import com.galgeyo.server.TimeHandler;
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.Menu;
 import com.galgeyo.vo.MenuList;
+import com.galgeyo.vo.Order;
 import com.galgeyo.vo.Session;
 import com.galgeyo.vo.StoreList;
 import com.galgeyo.vo.User;
@@ -36,9 +38,17 @@ public class OrderMenuView extends JFrame implements Protocol{
 	
 	private DefaultTableModel dtmStore = new DefaultTableModel(new Object[][] {}, new String[] {
 				"\uB9E4\uC7A5\uC774\uB984", "\uC804\uD654\uBC88\uD638", "\uC990\uACA8\uCC3E\uAE30"
-			});
+			}){  //셀 수정 못하게 하는 부분
+		 public boolean isCellEditable(int row, int column){
+			    return false;
+		 }};
 	private DefaultTableModel dtmMenu = new DefaultTableModel(new Object[][] {}, new String[] {
-			"분류", "메뉴이름", "가격", "수량"	});
+			"분류", "메뉴이름", "가격", "수량"	}){  //셀 수정 못하게 하는 부분
+		 public boolean isCellEditable(int row, int column){
+			    return false;
+		 }};
+	
+
 	
 	public OrderMenuView() {
 		addWindowListener(new WindowAdapter() {
@@ -84,7 +94,6 @@ public class OrderMenuView extends JFrame implements Protocol{
 						dtmStore.addRow(resultList[i]);
 					}
 				}
-				
 			}
 		});
 		this.setSize(800, 600);
@@ -122,7 +131,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 		panel_2.setLayout(null);
 		
 		JLabel lbl_img3 = new JLabel("매장 검색");
-		lbl_img3.setFont(new Font("굴림", Font.BOLD, 15));
+		lbl_img3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		
 		lbl_img3.setForeground(Color.WHITE);
 		lbl_img3.setBackground(new Color(255, 255, 240));
@@ -139,6 +148,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				storeList.setModel(oc.searchStore(tf_serch.getText(), dtmStore));
+				//검색안됨
 			}
 		});
 		
@@ -188,7 +198,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 		panel_1.setLayout(null);
 		
 		JLabel lbl_img = new JLabel("메뉴판");
-		lbl_img.setFont(new Font("굴림", Font.BOLD, 15));
+		lbl_img.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		
 		lbl_img.setForeground(Color.WHITE);
 		lbl_img.setBackground(new Color(255, 255, 240));
@@ -199,7 +209,75 @@ public class OrderMenuView extends JFrame implements Protocol{
 		btn_order.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null,"계산 완료"," 영수증 ",JOptionPane.WARNING_MESSAGE);
+				String sendMessage="";
+				int storeSelectedRow = storeList.getSelectedRow();
+				String orderTime = new TimeHandler().getOrderTime();
+				String bookingTime = (String) JOptionPane.showInputDialog(null,"몇 분 후에 오시나요?\n예약시간을 입력해주세요.\n현재 시간 : "+orderTime+"\n입력 예 : 10분 후", "예약시간 전송", JOptionPane.INFORMATION_MESSAGE);
+				int bookingTimeInt = Integer.parseInt(bookingTime);
+				if(bookingTime.equals("")){
+					JOptionPane.showMessageDialog(null,"예약이 취소되었습니다","예약 취소",JOptionPane.INFORMATION_MESSAGE);
+				}else if(Integer.parseInt(bookingTime)<60){
+					String receipt = "주문하신 메뉴 리스트입니다.\n메뉴                   가격        주문수량   계산된 가격\n";
+					for(int i=0;i<menuList.getRowCount();i++){
+						String menuName = (String) menuList.getValueAt(i, 1);
+						int menuPrice = (Integer) menuList.getValueAt(i,2);
+						int quant = (Integer) menuList.getValueAt(i, 3);
+						if(quant>0){
+							if(i!=0){
+								sendMessage+="/"+menuName+"_"+menuPrice+"_"+quant;						
+							}else{
+								sendMessage+=menuName+"_"+menuPrice+"_"+quant;	
+							}
+							receipt+=menuName+"      "+menuPrice+"                        "+quant+"            "+(menuPrice*quant)+"\n";
+						}
+					}
+					receipt+="\n주문하신 메누 리스트의 총 가격은 "+totalPrice+" 원 입니다.\n";
+					receipt+="예약시간 "+bookingTime+"분 후";
+					User user = (User) session.getSession();
+					
+					String[] hm = orderTime.split(":");
+					int hour = Integer.parseInt(hm[0]);
+					int min = Integer.parseInt(hm[1]);
+					if((min+=bookingTimeInt)>59){
+						hour = (++hour)%24;
+						min-=60;
+					}
+					String h="";
+					if(hour<10){
+						h="0"+(hour%10);
+					}else{
+						h=String.valueOf(hour);
+					}
+					String m="";
+					if(min<10){
+						m="0"+(min%10);
+					}else{
+						m=String.valueOf(min);
+					}
+					String reservation = h+":"+m;
+					
+					Order order = new Order((String)storeList.getValueAt(storeSelectedRow, 0),new TimeHandler().makeOrderNo(), user.getName(), user.getTel(), reservation, sendMessage);
+					Object result = new ClientController().send(POST, ORDER_MENU, order);				
+					if(result instanceof Boolean){
+						boolean check = (Boolean)result;
+						if(check){
+							JOptionPane.showMessageDialog(null,receipt,"예약 완료",JOptionPane.INFORMATION_MESSAGE);
+						}else{
+							JOptionPane.showMessageDialog(null,"예약이 완료되지 못했습니다.","예약 실패",JOptionPane.INFORMATION_MESSAGE);
+						}
+					}
+					
+					
+				}else{
+					JOptionPane.showMessageDialog(null,"예약시간은 60분을 초과할 수 없습니다","예약 취소",JOptionPane.WARNING_MESSAGE);
+				}
+				
+				
+				//수량이 0보다 큰 아이템의 이름과 가격을 가져온다
+				//매장이름도 가져온다
+				//영수증 제작
+				//위 작업은 다이얼로그로 한다
+				//위 작업이 끝나면 
 			}
 		});
 		btn_order.setFont(new Font("굴림", Font.BOLD, 14));
@@ -227,7 +305,11 @@ public class OrderMenuView extends JFrame implements Protocol{
 						}else{//수량감소
 							totalPrice -= menuPrice;
 						}
-						lbl_orderTotal.setText("최종가격 : "+totalPrice);
+						if(totalPrice!=0){
+							lbl_orderTotal.setText("최종가격 : "+totalPrice+" 원");
+						}else{
+							lbl_orderTotal.setText("");
+						}
 					}
 				}else{
 					JOptionPane.showMessageDialog(null, "메뉴를 선택하세요", "메뉴선택 오류", JOptionPane.WARNING_MESSAGE);
@@ -239,6 +321,8 @@ public class OrderMenuView extends JFrame implements Protocol{
 		scrollPane_1.setViewportView(menuList);
 		
 		lbl_orderTotal = new JLabel("");
+		lbl_orderTotal.setForeground(Color.WHITE);
+		lbl_orderTotal.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		lbl_orderTotal.setBounds(12, 391, 190, 34);
 		panel_1.add(lbl_orderTotal);
 		

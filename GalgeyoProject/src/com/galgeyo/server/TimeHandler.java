@@ -25,10 +25,14 @@ public class TimeHandler {
 	}
 	
 	public String getOrderTime() {
-		
-		
+		sdf = new SimpleDateFormat("HH:mm", Locale.US);
+		Time = sdf.format(inTime);		
 		return Time;
 	}
 	
-	
+	public String makeOrderNo(){
+		sdf = new SimpleDateFormat("yyMMddHHmmss", Locale.US);
+		Time = sdf.format(inTime);		
+		return Time;
+	}	
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>new file</comment>
+<comment>add order</comment>
+<entry key="170804071728">매장명1,170804071728,일반사용자1,전화번호1,07:29,메뉴이름2_5000_2/메뉴이름1_10000_1,true</entry>
 </properties>

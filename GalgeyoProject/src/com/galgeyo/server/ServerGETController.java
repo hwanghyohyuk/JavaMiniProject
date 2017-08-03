@@ -23,10 +23,10 @@ public class ServerGETController implements Protocol{
 			sendMessage = sm.answerWaitList(message);
 			tempPacket = new Packet(GET, ANSWER_WAIT_LIST, new TimeHandler().getTime(), sendMessage);
 			break;
-		case PRE_ORDER_LIST:
+		case ORDER_LIST:
 			System.out.println("예약주문자 리스트 반환 처리");
 			sendMessage = sm.preOrderList(message);
-			tempPacket = new Packet(GET, PRE_ORDER_LIST, new TimeHandler().getTime(), sendMessage);
+			tempPacket = new Packet(GET, ORDER_LIST, new TimeHandler().getTime(), sendMessage);
 			break;
 		case MENU_MANAGEMENT_LIST:
 			System.out.println("메뉴관리 리스트 반환 처리");
@@ -37,11 +37,6 @@ public class ServerGETController implements Protocol{
 			System.out.println("매장관리자 주문내역통계 리스트 반환 처리");
 			sendMessage = sm.orderHistoryStatistics(message);
 			tempPacket = new Packet(GET, ORDER_HISTORY_STATISTICS, new TimeHandler().getTime(), sendMessage);
-			break;
-		case FAVORITES_LIST:
-			System.out.println("즐겨찾기 리스트 반환 처리");
-			sendMessage = sm.favoritesList(message);
-			tempPacket = new Packet(GET, FAVORITES_LIST, new TimeHandler().getTime(), sendMessage);
 			break;
 		case ORDER_HISTORY_LIST:
 			System.out.println("사용자 최근주문내역 리스트 반환 처리");

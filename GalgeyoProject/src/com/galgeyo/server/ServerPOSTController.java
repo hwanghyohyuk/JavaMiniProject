@@ -78,11 +78,6 @@ public class ServerPOSTController implements Protocol {
 			sendMessage = sm.deleteMenu(message);
 			tempPacket = new Packet(POST, DEL_MENU, new TimeHandler().getTime(), sendMessage);
 			break;
-		case DEL_THIS_FAVORITE:
-			System.out.println("즐겨찾기 리스트 삭제 처리");
-			sendMessage = sm.delThisFavor(message);
-			tempPacket = new Packet(POST, DEL_THIS_FAVORITE, new TimeHandler().getTime(), sendMessage);
-			break;
 		case DEL_THIS_RECENTLY_ORDER:
 			System.out.println("최근주문내역 처리");
 			sendMessage = sm.delThisRecent(message);

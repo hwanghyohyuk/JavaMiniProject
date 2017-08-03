@@ -30,7 +30,10 @@ public class MenuManagementView extends JFrame implements Protocol {
 	private ButtonGroup group = new ButtonGroup();
 	private JRadioButton rdbtn_possible, rdbtn_impossible;
 	private DefaultTableModel dtm = new DefaultTableModel(new Object[][] {},
-			new String[] { "No", "메뉴이름", "가격", "주문가능" });
+			new String[] { "No", "메뉴이름", "가격", "주문가능" }){  //셀 수정 못하게 하는 부분
+		 public boolean isCellEditable(int row, int column){
+			    return false;
+		 }};;
 
 	public MenuManagementView() {
 

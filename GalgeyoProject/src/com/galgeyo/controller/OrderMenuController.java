@@ -47,17 +47,5 @@ public class OrderMenuController {
 		return resultDtm;		
 	}
 	
-	//메뉴판
-	public void menuList(Manager store, DefaultTableModel dtm){}
-	
-	//주문하기
-	public Order submitOrder(Session user, DefaultTableModel dtm){
-		return null;}
-	
-	//뒤로가기
-	public void moveToSelectMenu(Session user){}
-	
-	public static void main(String[] args) {
-		new OrderMenuController();
-	}
+
 }

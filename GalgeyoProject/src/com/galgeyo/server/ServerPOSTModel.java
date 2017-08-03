@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 
 import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.Order;
 import com.galgeyo.vo.User;
 
 public class ServerPOSTModel implements DBsetting {
@@ -138,10 +139,12 @@ public class ServerPOSTModel implements DBsetting {
 			Properties waitinList = new Properties();
 			Properties bookingList = new Properties();
 			try {
-				menulist.storeToXML(new FileOutputStream(MENU_LIST + manager.getId() + "_menulist.data"), "new file", "UTF-8");
-				orderList.storeToXML(new FileOutputStream(ORDER_LIST + manager.getId() + "_orderlist.data"), "new file", "UTF-8");
-				waitinList.storeToXML(new FileOutputStream(WAITING_LIST + manager.getId() + "_waitinglist.data"), "new file", "UTF-8");
-				bookingList.storeToXML(new FileOutputStream(BOOKING_LIST + manager.getId() + "_bookinglist.data"), "new file", "UTF-8");
+				menulist.storeToXML(new FileOutputStream(MENU_LIST + manager.getId() + "_menulist.data"), "new file",
+						"UTF-8");
+				orderList.storeToXML(new FileOutputStream(ORDER_LIST + manager.getId() + "_orderlist.data"), "new file",
+						"UTF-8");
+				waitinList.storeToXML(new FileOutputStream(WAITING_LIST + manager.getId() + "_waitinglist.data"),
+						"new file", "UTF-8");
 				System.out.println("Manager용 파일 추가");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -155,7 +158,8 @@ public class ServerPOSTModel implements DBsetting {
 			Properties orderList = new Properties();
 
 			try {
-				orderList.storeToXML(new FileOutputStream(ORDER_LIST + user.getId() + "_orderlist.data"), "new file", "UTF-8");
+				orderList.storeToXML(new FileOutputStream(ORDER_LIST + user.getId() + "_orderlist.data"), "new file",
+						"UTF-8");
 				System.out.println("User용 파일 추가");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -266,7 +270,7 @@ public class ServerPOSTModel implements DBsetting {
 		System.out.println("받은 메시지 내용 : " + message);
 
 		Properties UserTable = new Properties();
-		try {	
+		try {
 			UserTable.loadFromXML(new FileInputStream(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -440,7 +444,7 @@ public class ServerPOSTModel implements DBsetting {
 			menuList.setProperty(menu[0], receiveMenu);
 		}
 		try {
-			menuList.storeToXML(new FileOutputStream(MENU_LIST + receiveId + "_menulist.data"), "menu add","UTF-8");
+			menuList.storeToXML(new FileOutputStream(MENU_LIST + receiveId + "_menulist.data"), "menu add", "UTF-8");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -459,7 +463,7 @@ public class ServerPOSTModel implements DBsetting {
 
 	public Object deleteMenu(Object message) {
 		Object sendMessage = true;
-		String[] data=((String) message).split(",");
+		String[] data = ((String) message).split(",");
 		String receiveMenuNo = data[0];
 		String receiveId = data[1];
 		Properties menuList = new Properties();
@@ -472,7 +476,7 @@ public class ServerPOSTModel implements DBsetting {
 		menuList.remove(receiveMenuNo);
 		try {
 
-			menuList.storeToXML(new FileOutputStream(MENU_LIST + receiveId + "_menulist.data"), "delete menu","UTF-8");
+			menuList.storeToXML(new FileOutputStream(MENU_LIST + receiveId + "_menulist.data"), "delete menu", "UTF-8");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -491,8 +495,62 @@ public class ServerPOSTModel implements DBsetting {
 	}
 
 	public Object orderMenu(Object message) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Order order = (Order) message;
+		String[] data = order.toString().split(",");
+		String desStore = data[0];
+		String desStoreId = null;
+		String userName = data[2];
+		String userId = null;
+		// data[5]=주문한 메뉴리스트
+		Properties userTable = new Properties();
+		try {
+			userTable.loadFromXML(new FileInputStream(USER_TABLE));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Iterator<Object> iter = userTable.keySet().iterator();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			String value = userTable.getProperty(key);
+			String[] values = value.split(",");
+			if (!Boolean.parseBoolean(values[0])) {// 매장관리자
+				Manager store = new Manager(Boolean.parseBoolean(values[0]), values[1], values[2], values[3], values[4],
+						values[5], values[6], values[7], Boolean.parseBoolean(values[8]));
+				if (store.getName().equals(desStore)) {
+					desStoreId = key;
+				}
+			} else {// 일반 사용자
+				User user = new User(Boolean.parseBoolean(values[0]), values[1], values[2], values[3], values[4]);
+				if (user.getName().equals(userName)) {
+					userId = key;
+				}
+			}
+		}
+			if (desStoreId != null && userId != null) {
+				Properties storeOrder = new Properties();
+				Properties userOrder = new Properties();
+				try {
+					storeOrder.loadFromXML(new FileInputStream(WAITING_LIST + desStoreId + "_waitinglist.data"));
+					userOrder.loadFromXML(new FileInputStream(ORDER_LIST + userId + "_orderlist.data"));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				storeOrder.setProperty(order.getOrderNo(), order.toString());
+				userOrder.setProperty(order.getOrderNo(), order.toString());
 
+				try {
+					storeOrder.storeToXML(new FileOutputStream(WAITING_LIST + desStoreId + "_waitinglist.data"),
+							"add order", "UTF-8");
+					userOrder.storeToXML(new FileOutputStream(ORDER_LIST + userId + "_orderlist.data"), "add order",
+							"UTF-8");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return true;
+			}
+		return false;
+	}
 }

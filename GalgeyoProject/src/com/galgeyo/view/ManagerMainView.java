@@ -208,8 +208,23 @@ public class ManagerMainView extends JFrame implements Protocol {
 			}
 		});
 		btn_apply1.setIcon(new ImageIcon("gui_imgs/btn_manager_5.png"));
-		btn_apply1.setBounds(139, 210, 82, 30);
+		btn_apply1.setBounds(286, 210, 82, 30);
 		panel_3.add(btn_apply1);
+		
+		JButton btn_apply2 = new JButton("");
+		btn_apply2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btn_apply2.setBounds(12, 210, 82, 30);
+		panel_3.add(btn_apply2);
+		btn_apply2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//예약 주문자
+			}
+		});
+		btn_apply2.setIcon(new ImageIcon("gui_imgs/btn_manager_6.png"));
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.DARK_GRAY);
@@ -224,23 +239,10 @@ public class ManagerMainView extends JFrame implements Protocol {
 		panel_4.add(label);
 		
 		tb_reserv = new JTable();
-		tb_reserv.setBounds(12, 41, 356, 159);
+		tb_reserv.setBounds(12, 41, 356, 198);
 		panel_4.add(tb_reserv);
-		
-		JButton btn_apply2 = new JButton("");
-		btn_apply2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				//예약 주문자
-			}
-		});
-		btn_apply2.setIcon(new ImageIcon("gui_imgs/btn_manager_6.png"));
-		btn_apply2.setBounds(151, 210, 82, 30);
-		panel_4.add(btn_apply2);
 		
 		setVisible(true);
 	}
-	public static void main(String[] args) {
-		new ManagerMainView();
-	}
+
 }
