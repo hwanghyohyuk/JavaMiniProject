@@ -40,6 +40,8 @@ public class MenuManagementView extends JFrame implements Protocol{
 				session.setSession(new SessionController().sessionLoad());
 				Manager manager = (Manager) session.getSession();
 				//메뉴 불러오기
+				String message = manager.getId();
+				Object result = new ClientController().send(GET, MENU_MANAGEMENT_LIST, message);
 			}
 		});
 

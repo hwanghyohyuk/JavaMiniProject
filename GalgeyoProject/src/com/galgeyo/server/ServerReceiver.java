@@ -50,6 +50,7 @@ public class ServerReceiver implements Runnable, Protocol {
 				try {
 					oos = new ObjectOutputStream(socket.getOutputStream());
 					System.out.println("클라이언트로 보낼 패킷 : "+sendPacket.toString());
+					oos.flush();
 					oos.writeObject(sendPacket);
 					oos.flush();
 				} catch (IOException e1) {
