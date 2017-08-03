@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import com.galgeyo.controller.SessionController;
+import com.galgeyo.server.SessionController;
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.Session;
 

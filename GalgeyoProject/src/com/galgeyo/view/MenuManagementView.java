@@ -6,9 +6,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import javax.swing.table.DefaultTableModel;
 
-import com.galgeyo.controller.SessionController;
 import com.galgeyo.server.ClientController;
 import com.galgeyo.server.Protocol;
+import com.galgeyo.server.SessionController;
 import com.galgeyo.vo.*;
 import com.galgeyo.vo.Menu;
 
@@ -16,7 +16,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 //메뉴관리 화면
-public class MenuManagementView extends JFrame implements Protocol{
+public class MenuManagementView extends JFrame implements Protocol {
 
 	private JTextField tf_menuNo;
 	private JTextField tf_menuName;
@@ -30,7 +30,7 @@ public class MenuManagementView extends JFrame implements Protocol{
 	private ButtonGroup group = new ButtonGroup();
 	private JRadioButton rdbtn_possible, rdbtn_impossible;
 	private DefaultTableModel dtm = new DefaultTableModel(new Object[][] {},
-			new String[] { "No", "메뉴이름", "가격", "주문가능", "삭제" });
+			new String[] { "No", "메뉴이름", "가격", "주문가능" });
 
 	public MenuManagementView() {
 
@@ -40,28 +40,25 @@ public class MenuManagementView extends JFrame implements Protocol{
 				rdbtn_possible.setSelected(true);
 				session.setSession(new SessionController().sessionLoad());
 				Manager manager = (Manager) session.getSession();
-				//메뉴 불러오기
+				// 메뉴 불러오기
 				String message = manager.getId();
 				Object result = new ClientController().send(GET, MENU_MANAGEMENT_LIST, message);
-				if(result instanceof Arraylist){
-					Arraylist menulist = (Arraylist)result;
-					ArrayList<Menu> menu = menulist.getArrayList();
+				if (result instanceof MenuList) {
+					MenuList menulist = (MenuList) result;
+					ArrayList<Menu> menu = menulist.getMenuList();
 					Object[][] resultList = new Object[menu.size()][6];
-					for(int i=0;i<resultList.length;i++){
-						resultList[i][0]=((Menu)(menu.get(i))).getMenuNo();
-						resultList[i][1]=((Menu)(menu.get(i))).getMenuName();
-						//resultList[i][2]=((Menu)(menu.get(i))).getCategory();
-						resultList[i][2]=((Menu)(menu.get(i))).getPrice();
-						//resultList[i][4]=((Menu)(menu.get(i))).getDiscount();
-						resultList[i][3]=((Menu)(menu.get(i))).isOrderYN();
+					for (int i = 0; i < resultList.length; i++) {
+						resultList[i][0] = ((Menu) (menu.get(i))).getMenuNo();
+						resultList[i][1] = ((Menu) (menu.get(i))).getMenuName();
+						// resultList[i][2]=((Menu)(menu.get(i))).getCategory();
+						resultList[i][2] = ((Menu) (menu.get(i))).getPrice();
+						// resultList[i][4]=((Menu)(menu.get(i))).getDiscount();
+						resultList[i][3] = ((Menu) (menu.get(i))).isOrderYN();
 					}
-					for(int i=0;i<resultList.length;i++){
+					for (int i = 0; i < resultList.length; i++) {
 						dtm.addRow(resultList[i]);
 					}
 				}
-				
-				
-				
 			}
 		});
 
@@ -186,14 +183,16 @@ public class MenuManagementView extends JFrame implements Protocol{
 					Manager manager = (Manager) session.getSession();
 					String message = manager.getId() + "/"
 							+ new Menu(tf_menuNo.getText(), tf_menuName.getText(), tf_category.getText(),
-									Integer.parseInt(tf_price.getText()), Double.parseDouble(tf_discountRate.getText()), yn).toString();
+									Integer.parseInt(tf_price.getText()), Double.parseDouble(tf_discountRate.getText()),
+									yn).toString();
 					Object result = new ClientController().send(POST, ADD_MENU, message);
 					if (result instanceof Boolean) {
 						boolean check = (boolean) result;
 						if (check) {
 							JOptionPane.showMessageDialog(null, "메뉴정보가 성공적으로 추가되었습니다.", "메뉴정보 추가 성공",
 									JOptionPane.INFORMATION_MESSAGE);
-							Object[] row = {new String(tf_menuNo.getText()),new String(tf_menuName.getText()),new String(tf_price.getText()),new Boolean(yn),""};
+							Object[] row = { new String(tf_menuNo.getText()), new String(tf_menuName.getText()),
+									new String(tf_price.getText()), new Boolean(yn), "" };
 							dtm.addRow(row);
 							tf_menuNo.setText("");
 							tf_menuName.setText("");
@@ -201,7 +200,7 @@ public class MenuManagementView extends JFrame implements Protocol{
 							tf_price.setText("");
 							tf_discountRate.setText("");
 							rdbtn_possible.setSelected(true);
-						}else {
+						} else {
 							JOptionPane.showMessageDialog(null, "동일한 메뉴번호가 존재합니다.", "메뉴정보 추가 실패",
 									JOptionPane.ERROR_MESSAGE);
 							tf_menuNo.requestFocusInWindow();
@@ -274,6 +273,22 @@ public class MenuManagementView extends JFrame implements Protocol{
 		btn_menuSearch.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				DefaultTableModel resultDtm = new DefaultTableModel(new Object[][] {},
+						new String[] { "No", "메뉴이름", "가격", "주문가능" });
+				String searchStr = tf_searchBar.getText();
+				if (!searchStr.equals("")) {
+					for (int i = 0; i < dtm.getRowCount(); i++) {
+						if (searchStr.equals((String) dtm.getValueAt(i, 1))) {// 문자열을
+							resultDtm.addRow(new Object[] { dtm.getValueAt(i, 0), dtm.getValueAt(i, 1), dtm.getValueAt(i, 2), dtm.getValueAt(i, 3) });
+						}
+					}
+					if (resultDtm.getRowCount() == 0) {
+						resultDtm.addRow(new String[] { "검색", "결과가", "없습", "니다" });
+					}
+					menuList.setModel(resultDtm);
+				} else {
+					menuList.setModel(dtm);
+				}
 			}
 		});
 		btn_menuSearch.setFont(new Font("맑은 고딕", Font.BOLD, 12));
@@ -296,6 +311,22 @@ public class MenuManagementView extends JFrame implements Protocol{
 		btn_menuDelete.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Manager manager = (Manager) session.getSession();
+				int row = menuList.getRowCount() - 1;
+				System.out.println(row);
+				String menuNo = (String) menuList.getValueAt(row, 0);
+				String message = menuNo + "," + manager.getId();
+				Object result = new ClientController().send(POST, DEL_MENU, message);
+				if (result instanceof Boolean) {
+					boolean check = (boolean) result;
+					if (check) {// 삭제완료
+						JOptionPane.showMessageDialog(null, "성공적으로 삭제되었습니다.", "메뉴 삭제 성공",
+								JOptionPane.INFORMATION_MESSAGE);
+					} else {// 삭제 실패
+						JOptionPane.showMessageDialog(null, "삭제에 실패하였습니다.", "메뉴 삭제 실패", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				dtm.removeRow(row);
 			}
 		});
 
@@ -320,7 +351,4 @@ public class MenuManagementView extends JFrame implements Protocol{
 		setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		new MenuManagementView();
-	}
 }

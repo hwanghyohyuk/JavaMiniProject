@@ -1,13 +1,11 @@
 package com.galgeyo.server;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.Set;
 
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.User;
@@ -50,7 +48,7 @@ public class ServerPOSTModel implements DBsetting {
 			String name = values[3];
 			String tel = values[4];
 
-			if (receiveId.equals(id)) {// 아이디 매치
+			if (receiveId.equals(key)) {// 아이디 매치
 				if (receivePw.equals(pwd)) {// 아이디, 패스워드 매치
 					if (isUser) {// 사용자
 						sendMessage = new User(isUser, id, pwd, name, tel);
@@ -461,8 +459,25 @@ public class ServerPOSTModel implements DBsetting {
 	}
 
 	public Object deleteMenu(Object message) {
-		// TODO Auto-generated method stub
-		return null;
+		Object sendMessage = true;
+		String[] data=((String) message).split(",");
+		String receiveMenuNo = data[0];
+		String receiveId = data[1];
+		Properties MenuList = new Properties();
+		try {
+			MenuList.load(new FileReader(MENU_LIST+receiveId+"_menulist.properties"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		MenuList.remove(receiveMenuNo);
+		try {
+			MenuList.store(new FileWriter(MENU_LIST+receiveId+"_menulist.properties"), "delete menu");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return sendMessage;
 	}
 
 	public Object delThisFavor(Object message) {

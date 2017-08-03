@@ -1,4 +1,4 @@
-package com.galgeyo.controller;
+package com.galgeyo.server;
 
 import java.io.*;
 import java.util.*;
@@ -25,7 +25,7 @@ public class SessionController {
 			Object temp=user;			
 			return temp;
 		}else{//false면 관리자
-			Manager manager= new Manager(false, split[1], split[2], split[3], split[4], split[5], split[6], split[7],Boolean.getBoolean(split[8]));
+			Manager manager= new Manager(false, split[1], split[2], split[3], split[4], split[5], split[6], split[7],Boolean.parseBoolean(split[8]));
 			Object temp=manager;
 			return temp;
 		}		

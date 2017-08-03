@@ -4,10 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import com.galgeyo.controller.SessionController;
 import com.galgeyo.controller.UserInfoEditController;
 import com.galgeyo.server.ClientController;
 import com.galgeyo.server.Protocol;
+import com.galgeyo.server.SessionController;
 import com.galgeyo.vo.User;
 import com.galgeyo.vo.Session;
 import com.galgeyo.vo.User;

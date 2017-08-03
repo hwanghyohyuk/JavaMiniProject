@@ -3,19 +3,26 @@ package com.galgeyo.view;
 import javax.swing.table.DefaultTableModel;
 
 import com.galgeyo.controller.OrderMenuController;
-import com.galgeyo.controller.SessionController;
+import com.galgeyo.server.ClientController;
+import com.galgeyo.server.Protocol;
+import com.galgeyo.server.SessionController;
+import com.galgeyo.vo.Manager;
+import com.galgeyo.vo.Menu;
+import com.galgeyo.vo.MenuList;
 import com.galgeyo.vo.Session;
+import com.galgeyo.vo.StoreList;
 import com.galgeyo.vo.User;
 
 //메뉴주문
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.awt.Font;
 
 
 
-public class OrderMenuView extends JFrame {
+public class OrderMenuView extends JFrame implements Protocol{
 	
 	private JLabel lbl_order;
 	private JTextField tf_serch;
@@ -53,6 +60,26 @@ public class OrderMenuView extends JFrame {
 					break;
 				}
 				lbl_order.setText(menuTypeTemp+ " 메뉴 주문");
+				Object result= new ClientController().send(GET, STORE_LIST, menuTypeTemp);
+				if (result instanceof StoreList) {
+					StoreList storelist = (StoreList) result;
+					ArrayList<Manager> store = storelist.getStoreList();
+					Object[][] resultList = new Object[store.size()][9];
+					for (int i = 0; i < resultList.length; i++) {
+						//resultList[i][0] = ((Manager) (store.get(i))).isUser();
+						//resultList[i][1] = ((Manager) (store.get(i))).getId();
+						//resultList[i][2]=((Manager)(store.get(i))).getPwd();
+						resultList[i][0] = ((Manager) (store.get(i))).getName();
+						resultList[i][1]=((Manager)(store.get(i))).getTel();
+						//resultList[i][5] = ((Manager) (store.get(i))).getOwnNo();
+						//resultList[i][6]=((Manager)(store.get(i))).getAddr();
+						//resultList[i][7] = ((Manager) (store.get(i))).getType();
+						//resultList[i][8]=((Manager)(store.get(i))).isOpen();
+					}
+					for (int i = 0; i < resultList.length; i++) {
+						dtmStore.addRow(resultList[i]);
+					}
+				}
 			}
 		});
 		this.setSize(800, 600);

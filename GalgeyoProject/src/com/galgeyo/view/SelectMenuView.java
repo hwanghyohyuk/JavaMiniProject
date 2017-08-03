@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import com.galgeyo.controller.SessionController;
+import com.galgeyo.server.SessionController;
 import com.galgeyo.vo.Session;
 import com.galgeyo.vo.User;
 
