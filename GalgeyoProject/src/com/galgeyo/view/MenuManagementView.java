@@ -49,11 +49,11 @@ public class MenuManagementView extends JFrame implements Protocol{
 					Object[][] resultList = new Object[menu.size()][6];
 					for(int i=0;i<resultList.length;i++){
 						resultList[i][0]=((Menu)(menu.get(i))).getMenuNo();
-						resultList[i][1]=((Menu)(menu.get(i))).getMenuNo();
-						resultList[i][2]=((Menu)(menu.get(i))).getMenuNo();
-						resultList[i][3]=((Menu)(menu.get(i))).getMenuNo();
-						resultList[i][4]=((Menu)(menu.get(i))).getMenuNo();
-						resultList[i][5]=((Menu)(menu.get(i))).getMenuNo();
+						resultList[i][1]=((Menu)(menu.get(i))).getMenuName();
+						resultList[i][2]=((Menu)(menu.get(i))).getCategory();
+						resultList[i][3]=((Menu)(menu.get(i))).getPrice();
+						resultList[i][4]=((Menu)(menu.get(i))).getDiscount();
+						resultList[i][5]=((Menu)(menu.get(i))).isOrderYN();
 					}
 					for(int i=0;i<resultList.length;i++){
 						dtm.addRow(resultList[i]);
