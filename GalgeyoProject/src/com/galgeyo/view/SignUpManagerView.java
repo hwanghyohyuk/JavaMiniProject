@@ -146,7 +146,7 @@ public class SignUpManagerView extends JFrame implements Protocol {
 		});
 
 		JComboBox cb_type = new JComboBox();
-		cb_type.setModel(new DefaultComboBoxModel(new String[] { "한식", "중식", "양식", "일식" }));
+		cb_type.setModel(new DefaultComboBoxModel(new String[] { "한식", "중식", "분식", "일식" }));
 		cb_type.setBounds(160, 424, 206, 28);
 		getContentPane().add(cb_type);
 		btn_confirmId.setIcon(new ImageIcon("gui_imgs/btn_signUp_3.png"));
