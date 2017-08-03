@@ -33,16 +33,17 @@ public class SessionController {
 	
 	public void sessionSave(Object obj){
 		Properties prop = new Properties();
-		if(obj instanceof User){
+		if(obj instanceof Manager){
+			prop.setProperty("session", ((Manager)obj).toString());
+		}else if(obj instanceof User){
 			prop.setProperty("session", ((User)obj).toString());
-		}else if(obj instanceof Manager)
-		prop.setProperty("session", ((Manager)obj).toString());
+		}
 		try {
 			prop.store(new FileOutputStream("session.properties"), null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}		
 	}
 	
 	public int menuSelectOpen(){
