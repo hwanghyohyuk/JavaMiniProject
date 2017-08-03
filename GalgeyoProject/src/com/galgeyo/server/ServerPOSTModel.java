@@ -422,15 +422,6 @@ public class ServerPOSTModel implements DBsetting {
 
 		try {
 			menuList.load(new FileReader(MENU_LIST + receiveId + "_menulist.properties"));
-		} catch (FileNotFoundException e) {
-			try {
-				menuList.store(new FileWriter(MENU_LIST + receiveId + "_menulist.properties"), "file create");
-				menuList.setProperty(menu[0], receiveMenu);
-				menuList.store(new FileWriter(MENU_LIST + receiveId + "_menulist.properties"), "file create");
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
