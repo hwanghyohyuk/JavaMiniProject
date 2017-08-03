@@ -430,4 +430,34 @@ public class ServerPOSTModel implements DBsetting{
 		return sendMessage;
 	}
 
+	public Object acceptOrder(Object message) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object acceptCancel(Object message) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object deleteMenu(Object message) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object delThisFavor(Object message) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object delThisRecent(Object message) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Object orderMenu(Object message) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
