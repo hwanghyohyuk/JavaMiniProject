@@ -4,19 +4,21 @@ import java.awt.*;
 import javax.swing.*;
 
 import com.galgeyo.controller.SessionController;
+import com.galgeyo.server.ClientController;
+import com.galgeyo.server.Protocol;
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.Session;
-import com.galgeyo.vo.User;
 
 import java.awt.event.*;
 
 //관리자 메인화면
-public class ManagerMainView extends JFrame {
+public class ManagerMainView extends JFrame implements Protocol {
 	
 	private JTable tb_wait;
 	private JTable tb_reserv;
 	private JLabel lbl_storeName;
 	private JLabel lbl_managerId;
+	private JButton btn_booking; 
 	
 	private Session session = new Session();
 	
@@ -29,6 +31,12 @@ public class ManagerMainView extends JFrame {
 				Manager manager = (Manager)session.getSession();
 				lbl_storeName.setText(manager.getName());
 				lbl_managerId.setText(manager.getId());
+				boolean check = manager.isOpen();
+				if (check) {
+					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
+				}else{
+					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1-2.png"));
+				}
 			}
 		});
 		
@@ -84,15 +92,26 @@ public class ManagerMainView extends JFrame {
 		lbl_managerId.setBounds(176, 56, 260, 23);
 		panel_1.add(lbl_managerId);
 		
-		JButton btn_booking = new JButton("");
+		btn_booking = new JButton("");
 		btn_booking.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//예약 가능 / 불가능
+				Manager manager = (Manager)session.getSession();
+				Object result = new ClientController().send(POST, CHANGE_RESER_STATUS, manager);
+				boolean check = (boolean)result;
+				if (check) {
+					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
+					manager.setOpen(check);
+					new SessionController().sessionSave(manager);
+				}else{
+					btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1-2.png"));
+					manager.setOpen(check);
+					new SessionController().sessionSave(manager);
+				}
 			}
 		});
 		btn_booking.setBackground(Color.WHITE);
-		btn_booking.setIcon(new ImageIcon("gui_imgs/btn_manager_1.png"));
 		btn_booking.setBounds(166, 88, 250, 45);
 		panel_1.add(btn_booking);
 		

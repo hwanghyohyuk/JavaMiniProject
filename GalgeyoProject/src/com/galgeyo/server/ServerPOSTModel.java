@@ -152,46 +152,30 @@ public class ServerPOSTModel implements DBsetting{
 
 		return sendMessage;
 	}
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
 	//테스트
 	public Object changeReserStatus(Object message) {
 		
 		Properties UserTable = new Properties();
 		try {
-			UserTable.load(new FileReader("usertable.properties"));
+			UserTable.load(new FileReader(USER_TABLE));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		Manager manager = (Manager)message;
-		Manager manager2 = new Manager(false, manager.getId(), manager.getPwd(),
-									manager.getName(), manager.getTel(), manager.getOwnNo(),
-									manager.getAddr(), manager.getType(), !manager.isOpen());
+		boolean Switch = manager.isOpen();
+		manager.setOpen(!Switch);
 		
-		UserTable.setProperty(manager.getId(), manager2.toString());
-		
+		UserTable.remove(manager.getId());
+		UserTable.setProperty(manager.getId(), manager.toString());		
 		try {
-			UserTable.store(new FileWriter("usertable.properties"), "changeReserStatus");
+			UserTable.store(new FileWriter(USER_TABLE), "changeReserStatus");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return (Object)(!manager.isOpen());
+		return manager.isOpen();
 	}
 
 	// 아이디 찾기

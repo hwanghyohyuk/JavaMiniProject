@@ -33,7 +33,6 @@ public class ServerPOSTController implements Protocol {
 			sendMessage = sm.addUser(message);
 			tempPacket = new Packet(POST, REG_USER, new TimeHandler().getTime(), sendMessage);
 			break;
-<<<<<<< HEAD
 		case FIND_ID:
 			System.out.println("아이디 찾기 처리");
 			sendMessage = sm.findId(message);
@@ -58,18 +57,11 @@ public class ServerPOSTController implements Protocol {
 			System.out.println("메뉴추가 처리");
 			sendMessage = sm.addMenu(message);
 			tempPacket = new Packet(POST, ADD_MENU, new TimeHandler().getTime(), sendMessage);
-=======
-			
-			
-			
-			
-			
 		//테스트	
 		case CHANGE_RESER_STATUS:
 			System.out.println("예약상태 변경:매장관리자");
 			sendMessage = sm.changeReserStatus(message);
 			tempPacket = new Packet(POST, CHANGE_RESER_STATUS, new TimeHandler().getTime(), sendMessage);
->>>>>>> origin/JY
 			break;
 		}
 
