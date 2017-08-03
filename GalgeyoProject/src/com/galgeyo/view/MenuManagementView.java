@@ -179,8 +179,12 @@ public class MenuManagementView extends JFrame implements Protocol{
 							tf_price.setText("");
 							tf_discountRate.setText("");
 							rdbtn_possible.setSelected(true);
-						} else {
+						}else if(!check){
 							JOptionPane.showMessageDialog(null, "동일한 메뉴번호가 존재합니다.", "메뉴정보 추가 실패",
+									JOptionPane.ERROR_MESSAGE);
+							tf_menuNo.requestFocusInWindow();
+						}else {
+							JOptionPane.showMessageDialog(null, "[초기생성]메뉴가 추가되었습니다", "메뉴정보 추가 실패",
 									JOptionPane.ERROR_MESSAGE);
 							tf_menuNo.requestFocusInWindow();
 						}

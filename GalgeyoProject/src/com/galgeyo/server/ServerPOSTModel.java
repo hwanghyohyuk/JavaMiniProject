@@ -133,10 +133,36 @@ public class ServerPOSTModel implements DBsetting{
 			System.out.println("받은 메시지 내용 : " + ((User) message).toString());
 			user = (User) message;
 			UserTable.setProperty(user.getId(), user.toString());
+			Properties favoriteList = new Properties();
+			Properties orderList = new Properties();
+			
+			try {
+				favoriteList.store(new FileWriter(FAVORITE_LIST+user.getId()+"_favorite.properties"), "new file");
+				orderList.store(new FileWriter(ORDER_LIST+user.getId()+"_orderlist.properties"),  "new file");
+				System.out.println("User용 파일 추가");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
 		} else if (message instanceof Manager) {
 			System.out.println("받은 메시지 내용 : " + ((Manager) message).toString());
 			manager = (Manager) message;
 			UserTable.setProperty(manager.getId(), manager.toString());
+			Properties menulist = new Properties();
+			Properties orderList = new Properties();
+			Properties waitinList = new Properties();
+			Properties bookingList = new Properties();
+			try {
+				menulist.store(new FileWriter(MENU_LIST+manager.getId()+"_menulist.properties"), "new file");
+				orderList.store(new FileWriter(ORDER_LIST+manager.getId()+"_orderlist.properties"),  "new file");
+				waitinList.store(new FileWriter(WAITING_LIST+manager.getId()+"_waitinglist.properties"), "new file");
+				bookingList.store(new FileWriter(BOOKING_LIST+manager.getId()+"_bookinglist.properties"),  "new file");
+				System.out.println("Manager용 파일 추가");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		try {
 			UserTable.store(new FileWriter(USER_TABLE), "user add");
@@ -152,7 +178,7 @@ public class ServerPOSTModel implements DBsetting{
 
 		return sendMessage;
 	}
-	//테스트
+	//
 	public Object changeReserStatus(Object message) {
 
 		Object sendMessage = null;

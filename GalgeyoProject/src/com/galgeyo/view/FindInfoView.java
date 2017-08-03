@@ -132,6 +132,7 @@ public class FindInfoView extends JFrame implements Protocol {
 						String resultId = (String) result;
 						JOptionPane.showMessageDialog(null, "아이디는 " + resultId + " 입니다", "검색 결과",
 								JOptionPane.INFORMATION_MESSAGE);
+						
 					} else if (result == null) {
 						JOptionPane.showMessageDialog(null, "아이디가 존재하지 않습니다", "검색 결과", JOptionPane.ERROR_MESSAGE);
 					}
@@ -209,8 +210,5 @@ public class FindInfoView extends JFrame implements Protocol {
 		setVisible(true);
 	}
 
-	public static void main(String[] args) {
-		new FindInfoView();
-	}
 
 }
