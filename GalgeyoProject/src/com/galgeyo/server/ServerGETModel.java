@@ -26,6 +26,7 @@ public class ServerGETModel implements DBsetting {
 	public Object menuManagementList(Object message) {//파라미터 값 매장 관리자 아이디
 		String id = (String)message;
 		ArrayList<Menu> menulist = new ArrayList<Menu>();
+		
 		Properties menuList= new Properties();
 		try {
 			menuList.load(new FileReader(MENU_LIST+id+"_menulist.properties"));
@@ -33,11 +34,24 @@ public class ServerGETModel implements DBsetting {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Set set =  menuList.entrySet();
-		Iterator<> iter = set.iterator();
-		
-		
-		return null;
+		Iterator<Object> iter =  menuList.keySet().iterator();
+		while(iter.hasNext()){
+			String key = (String)iter.next();
+			String value = menuList.getProperty(key);
+			String[] values = value.split(",");
+			Menu menu = new Menu(values[0], values[1], values[2], Integer.parseInt(values[3]), Double.parseDouble(values[4]), Boolean.parseBoolean(values[5]));
+			menulist.add(menu);
+		}		
+		Object[][] resultList = new Object[menulist.size()][6];
+		for(int i=0;i<resultList.length;i++){
+			resultList[i][0]=(menulist.get(i)).getMenuNo();
+			resultList[i][1]=(menulist.get(i)).getMenuNo();
+			resultList[i][2]=(menulist.get(i)).getMenuNo();
+			resultList[i][3]=(menulist.get(i)).getMenuNo();
+			resultList[i][4]=(menulist.get(i)).getMenuNo();
+			resultList[i][5]=(menulist.get(i)).getMenuNo();
+		}
+		return resultList;
 	}
 
 	public Object orderHistoryStatistics(Object message) {

@@ -13,6 +13,7 @@ import com.galgeyo.vo.*;
 import com.galgeyo.vo.Menu;
 
 import java.awt.event.*;
+import java.util.ArrayList;
 
 //메뉴관리 화면
 public class MenuManagementView extends JFrame implements Protocol{
@@ -42,6 +43,12 @@ public class MenuManagementView extends JFrame implements Protocol{
 				//메뉴 불러오기
 				String message = manager.getId();
 				Object result = new ClientController().send(GET, MENU_MANAGEMENT_LIST, message);
+				if(result instanceof Object[][]){
+					Object[][] menulist = (Object[][])result;
+					for(int i=0;i<menulist.length;i++){
+						dtm.addRow(menulist[i]);
+					}
+				}
 			}
 		});
 
