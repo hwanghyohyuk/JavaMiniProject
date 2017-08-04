@@ -1,6 +1,6 @@
 package com.galgeyo.run;
 
-import com.galgeyo.view.LoginView;
+import com.galgeyo.client.view.LoginView;
 
 public class RunGalgyegoClient {
 

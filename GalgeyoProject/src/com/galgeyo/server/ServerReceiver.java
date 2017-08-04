@@ -4,6 +4,8 @@ import java.io.*;
 import java.net.*;
 import java.util.Properties;
 
+import com.galgeyo.server.controller.ServerGETController;
+import com.galgeyo.server.controller.ServerPOSTController;
 import com.galgeyo.vo.Packet;
 
 public class ServerReceiver implements Runnable, Protocol {
