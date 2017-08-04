@@ -176,7 +176,7 @@ public class SignUpManagerView extends JFrame implements Protocol {
 				} else if (tf_tel.getText().equals("")) {// 전화번호 빈칸확인
 					JOptionPane.showMessageDialog(null, "전화번호를 입력해주세요", "전화번호 입력 오류", JOptionPane.WARNING_MESSAGE);
 				}else{
-					Manager message = new Manager(false, tf_id.getText(), tf_pwd.getText(), tf_storeName.getText(),tf_tel.getText(),tf_addr.getText(), tf_ownNo.getText(),(String) cb_type.getSelectedItem());
+					Manager message = new Manager(false, tf_id.getText(), tf_pwd.getText(), tf_storeName.getText(),tf_tel.getText(),tf_ownNo.getText(), tf_addr.getText(),(String) cb_type.getSelectedItem());
 					Object result = new ClientController().send(POST, REG_USER, message);
 					if(result instanceof Boolean){
 						boolean check = (boolean)result;

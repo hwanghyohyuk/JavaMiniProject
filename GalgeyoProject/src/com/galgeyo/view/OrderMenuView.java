@@ -37,7 +37,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 	private int totalPrice = 0;
 	
 	private DefaultTableModel dtmStore = new DefaultTableModel(new Object[][] {}, new String[] {
-				"\uB9E4\uC7A5\uC774\uB984", "\uC804\uD654\uBC88\uD638", "\uC990\uACA8\uCC3E\uAE30"
+				"매장 이름","주소","전화번호"
 			}){  //셀 수정 못하게 하는 부분
 		 public boolean isCellEditable(int row, int column){
 			    return false;
@@ -84,9 +84,9 @@ public class OrderMenuView extends JFrame implements Protocol{
 						//resultList[i][1] = ((Manager) (store.get(i))).getId();
 						//resultList[i][2]=((Manager)(store.get(i))).getPwd();
 						resultList[i][0] = ((Manager) (store.get(i))).getName();
-						resultList[i][1]=((Manager)(store.get(i))).getTel();
+						resultList[i][2]=((Manager)(store.get(i))).getTel();
 						//resultList[i][5] = ((Manager) (store.get(i))).getOwnNo();
-						//resultList[i][6]=((Manager)(store.get(i))).getAddr();
+						resultList[i][1]=((Manager)(store.get(i))).getAddr();
 						//resultList[i][7] = ((Manager) (store.get(i))).getType();
 						//resultList[i][8]=((Manager)(store.get(i))).isOpen();
 					}
@@ -147,8 +147,25 @@ public class OrderMenuView extends JFrame implements Protocol{
 		btn_serch.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				storeList.setModel(oc.searchStore(tf_serch.getText(), dtmStore));
-				//검색안됨
+				DefaultTableModel resultDtm = new DefaultTableModel(new Object[][] {},
+						new String[] { "매장 이름","주소","전화번호" }){  //셀 수정 못하게 하는 부분
+					 public boolean isCellEditable(int row, int column){
+						    return false;
+					 }};
+				String searchStr = tf_serch.getText();
+				if (!searchStr.equals("")) {
+					for (int i = 0; i < dtmStore.getRowCount(); i++) {
+						if (searchStr.equals((String) dtmStore.getValueAt(i, 1))) {// 문자열을
+							resultDtm.addRow(new Object[] { dtmStore.getValueAt(i, 0), dtmStore.getValueAt(i, 1), dtmStore.getValueAt(i, 2), dtmStore.getValueAt(i, 3) });
+						}
+					}
+					if (resultDtm.getRowCount() == 0) {
+						resultDtm.addRow(new String[] { "검색", "결과가", "없습", "니다" });
+					}
+					menuList.setModel(resultDtm);
+				} else {
+					menuList.setModel(dtmStore);
+				}
 			}
 		});
 		
@@ -262,22 +279,15 @@ public class OrderMenuView extends JFrame implements Protocol{
 						boolean check = (Boolean)result;
 						if(check){
 							JOptionPane.showMessageDialog(null,receipt,"예약 완료",JOptionPane.INFORMATION_MESSAGE);
+							new UserMainView();
+							dispose();
 						}else{
 							JOptionPane.showMessageDialog(null,"예약이 완료되지 못했습니다.","예약 실패",JOptionPane.INFORMATION_MESSAGE);
 						}
-					}
-					
-					
+					}					
 				}else{
 					JOptionPane.showMessageDialog(null,"예약시간은 60분을 초과할 수 없습니다","예약 취소",JOptionPane.WARNING_MESSAGE);
-				}
-				
-				
-				//수량이 0보다 큰 아이템의 이름과 가격을 가져온다
-				//매장이름도 가져온다
-				//영수증 제작
-				//위 작업은 다이얼로그로 한다
-				//위 작업이 끝나면 
+				}				
 			}
 		});
 		btn_order.setFont(new Font("굴림", Font.BOLD, 14));

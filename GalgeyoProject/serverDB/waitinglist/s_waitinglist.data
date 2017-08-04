@@ -2,5 +2,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>add order</comment>
+<entry key="170804091132">매장명1,170804091132,일반사용자1,전화번호1,09:31,메뉴이름2_5000_7/메뉴이름1_10000_3,true</entry>
 <entry key="170804071728">매장명1,170804071728,일반사용자1,전화번호1,07:29,메뉴이름2_5000_2/메뉴이름1_10000_1,true</entry>
 </properties>
