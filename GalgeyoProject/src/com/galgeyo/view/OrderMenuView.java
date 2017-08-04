@@ -229,7 +229,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 				String sendMessage="";
 				int storeSelectedRow = storeList.getSelectedRow();
 				String orderTime = new TimeHandler().getOrderTime();
-				String bookingTime = (String) JOptionPane.showInputDialog(null,"몇 분 후에 오시나요?\n예약시간을 입력해주세요.\n현재 시간 : "+orderTime+"\n입력 예 : 10분 후", "예약시간 전송", JOptionPane.INFORMATION_MESSAGE);
+				String bookingTime = (String) JOptionPane.showInputDialog(null,"몇 분 후에 오시나요?\n예약시간을 입력해주세요.\n현재 시간 : "+orderTime+"\n입력 예 : 10 (10분 후로 예약)", "예약시간 전송", JOptionPane.INFORMATION_MESSAGE);
 				int bookingTimeInt = Integer.parseInt(bookingTime);
 				if(bookingTime.equals("")){
 					JOptionPane.showMessageDialog(null,"예약이 취소되었습니다","예약 취소",JOptionPane.INFORMATION_MESSAGE);

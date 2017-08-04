@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>menu add</comment>
+<entry key="D4">D4,숯불규동런치,밥류,10000,0.0,false</entry>
+<entry key="D3">D3,사케동,밥류,10000,0.0,true</entry>
+<entry key="D2">D2,연어뱃살스시,스시류,13000,0.0,false</entry>
+<entry key="D1">D1,연어초밥,초밥류,10000,0.0,true</entry>
+</properties>

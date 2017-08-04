@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>menu add</comment>
+<entry key="6">6,김밥,식사류,2000,0.0,true</entry>
+<entry key="5">5,철판볶음밥,식사류,5500,0.0,true</entry>
+<entry key="4">4,돈까스,식사류,5500,0.0,true</entry>
+<entry key="3">3,비빔밥,식사류,5000,0.0,true</entry>
+<entry key="2">2,치즈라면,면,4500,0.0,true</entry>
+<entry key="1">1,떡라면,면,4000,0.0,true</entry>
+<entry key="8">8,라면,면,3000,0.0,true</entry>
+<entry key="7">7,치즈김밥,김밥,3000,0.0,true</entry>
+</properties>

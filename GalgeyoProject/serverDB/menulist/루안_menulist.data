@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>menu add</comment>
+<entry key="L4">L4,잡채밥,밥류,10000,0.0,true</entry>
+<entry key="L3">L3,왕갈비짬뽕,면류,12000,0.0,true</entry>
+<entry key="L2">L2,찹쌀탕수육,고기류,23000,0.0,true</entry>
+<entry key="L1">L1,웰빙삼선콩짜장면,면류,8000,0.0,true</entry>
+<entry key="L6">L6,유린기,닭고기류,23000,0.0,true</entry>
+<entry key="L5">L5,게살볶음밥,밥류,11000,0.0,false</entry>
+</properties>

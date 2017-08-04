@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>menu add</comment>
+<entry key="G5">G5,곤색접시,초밥류,3800,0.0,true</entry>
+<entry key="G4">G4,붉은접시,초밥류,2500,0.0,true</entry>
+<entry key="G3">G3,은색접시,초밥류,4900,0.0,true</entry>
+<entry key="G2">G2,보라접시,초밥류,2900,0.0,true</entry>
+<entry key="G1">G1,초록접시,초밥류,1500,0.0,true</entry>
+</properties>

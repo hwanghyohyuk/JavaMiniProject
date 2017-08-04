@@ -26,7 +26,6 @@ public class UserMainView extends JFrame {
 				User user = (User)session.getSession();
 				lbl_userName.setText(user.getName());
 				lbl_userId.setText(user.getId());
-				//즐겨찾기리스트 초기화
 				//최근주문내역 초기화
 			}
 		});

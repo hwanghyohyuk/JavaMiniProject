@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>add order</comment>
+<entry key="170804094522">매장명1,170804094522,안쮸니,01091901099,10:44,메뉴이름2_5000_1,true</entry>
+<entry key="170804094426">매장명1,170804094426,안쮸니,01091901099,09:54,,true</entry>
+<entry key="170804094343">매장명1,170804094343,안쮸니,01091901099,09:53,,true</entry>
+<entry key="170804094447">매장명1,170804094447,안쮸니,01091901099,10:04,메뉴이름2_5000_4/메뉴이름1_10000_2,true</entry>
+</properties>
