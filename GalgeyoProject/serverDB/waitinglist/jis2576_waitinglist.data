@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>add order</comment>
+<comment>move order</comment>
 <entry key="170804110034">정식당,170804110034,안쮸니,01091901099,11:10,북어보푸라기_3500_1/육원전_13000_1/돼지갈비찜_13000_1/너비아니구이_9000_2,true</entry>
 <entry key="170804111150">정식당,170804111150,이시연,010-8906-0239,11:21,북어보푸라기_3500_2/돼지갈비찜_13000_1,true</entry>
 <entry key="170804113557">정식당,170804113557,이시연,010-8906-0239,12:05,북어보푸라기_3500_2/육원전_13000_1/돼지갈비찜_13000_2/너비아니구이_9000_2,true</entry>

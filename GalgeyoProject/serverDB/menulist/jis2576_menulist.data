@@ -2,6 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 <comment>menu add</comment>
+<entry key="5">5,칼국수,면,6000,0.2,true</entry>
 <entry key="4">4,북어보푸라기,보푸라기,3500,0.0,true</entry>
 <entry key="3">3,육원전,전,13000,0.0,false</entry>
 <entry key="2">2,돼지갈비찜,찜,13000,0.0,true</entry>
