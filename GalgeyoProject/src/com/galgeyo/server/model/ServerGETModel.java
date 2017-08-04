@@ -10,18 +10,54 @@ import com.galgeyo.server.DBsetting;
 import com.galgeyo.vo.Manager;
 import com.galgeyo.vo.Menu;
 import com.galgeyo.vo.MenuList;
+import com.galgeyo.vo.Order;
+import com.galgeyo.vo.OrderList;
 import com.galgeyo.vo.StoreList;
 
 public class ServerGETModel implements DBsetting {
 
 	public Object answerWaitList(Object message) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Order> waitinglist = new ArrayList<Order>();
+		String data = (String) message;// 아이디
+		Properties waitingList = new Properties();
+		try {
+			waitingList.loadFromXML(new FileInputStream(WAITING_LIST+data+"_waitinglist.data"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Iterator<Object> iter = waitingList.keySet().iterator();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			String value = waitingList.getProperty(key);
+			String[] values = value.split(",");
+			Order order = new Order(values[0], values[1], values[2], values[3], values[4], values[5]);
+			waitinglist.add(order);
+		}
+		OrderList array = new OrderList(waitinglist);
+		return array;
 	}
 
 	public Object preOrderList(Object message) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Order> orderlist = new ArrayList<Order>();
+		String data = (String) message;// 아이디
+		Properties orderList = new Properties();
+		try {
+			orderList.loadFromXML(new FileInputStream(ORDER_LIST+data+"_orderlist.data"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Iterator<Object> iter = orderList.keySet().iterator();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			String value = orderList.getProperty(key);
+			String[] values = value.split(",");
+			Order order = new Order(values[0], values[1], values[2], values[3], values[4], values[5]);
+			orderlist.add(order);
+		}
+		OrderList array = new OrderList(orderlist);
+		return array;
 	}
 
 	public Object menuManagementList(Object message) {// 파라미터 값 매장 관리자 아이디
@@ -48,19 +84,26 @@ public class ServerGETModel implements DBsetting {
 		return array;
 	}
 
-	public Object orderHistoryStatistics(Object message) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object favoritesList(Object message) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public Object orderHistoryList(Object message) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Order> orderlist = new ArrayList<Order>();
+		String data = (String) message;// 아이디
+		Properties orderList = new Properties();
+		try {
+			orderList.loadFromXML(new FileInputStream(ORDER_LIST+data+"_orderlist.data"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Iterator<Object> iter = orderList.keySet().iterator();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			String value = orderList.getProperty(key);
+			String[] values = value.split(",");
+			Order order = new Order(values[0], values[1], values[2], values[3], values[4], values[5]);
+			orderlist.add(order);
+		}
+		OrderList array = new OrderList(orderlist);
+		return array;
 	}
 
 	public Object storeList(Object message) {
@@ -106,7 +149,7 @@ public class ServerGETModel implements DBsetting {
 			String key = (String) iter.next();
 			String value = storeList.getProperty(key);
 			String[] values = value.split(",");
-			if (!Boolean.parseBoolean(values[0])) {//매장관리자
+			if (!Boolean.parseBoolean(values[0])) {// 매장관리자
 				Manager store = new Manager(Boolean.parseBoolean(values[0]), values[1], values[2], values[3], values[4],
 						values[5], values[6], values[7], Boolean.parseBoolean(values[8]));
 				if (store.getName().equals(data)) {

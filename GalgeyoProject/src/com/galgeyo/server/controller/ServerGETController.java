@@ -35,11 +35,6 @@ public class ServerGETController implements Protocol{
 			sendMessage = sm.menuManagementList(message);
 			tempPacket = new Packet(GET, MENU_MANAGEMENT_LIST, new TimeHandler().getTime(), sendMessage);
 			break;
-		case ORDER_HISTORY_STATISTICS:
-			System.out.println("매장관리자 주문내역통계 리스트 반환 처리");
-			sendMessage = sm.orderHistoryStatistics(message);
-			tempPacket = new Packet(GET, ORDER_HISTORY_STATISTICS, new TimeHandler().getTime(), sendMessage);
-			break;
 		case ORDER_HISTORY_LIST:
 			System.out.println("사용자 최근주문내역 리스트 반환 처리");
 			sendMessage = sm.orderHistoryList(message);

@@ -45,7 +45,6 @@ ex)
 매장관리자아이디_menulist.properties
 매장관리자아이디_orderlist.properties
 매장관리자아이디_waitinglist.properties
-매장관리자아이디_bookinglist.properties
 
 usertable >> isUser값이 false이고 업종을 가져옴
 
@@ -59,6 +58,8 @@ usertable >> isUser값이 false이고 업종을 가져옴
 
 
  
+ 
+웨이팅리스트
 
 
 

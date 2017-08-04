@@ -255,9 +255,11 @@ public class OrderMenuView extends JFrame implements Protocol{
 								sendMessage+=menuName+"_"+menuPrice+"_"+quant;	
 							}
 							receipt+=menuName+"      "+menuPrice+"                        "+quant+"            "+(menuPrice*quant)+"\n";
+						}else{
+							JOptionPane.showMessageDialog(null,"주문할 메뉴가 없습니다.","예약 실패",JOptionPane.ERROR_MESSAGE);
 						}
 					}
-					receipt+="\n주문하신 메누 리스트의 총 가격은 "+totalPrice+" 원 입니다.\n";
+					receipt+="\n주문하신 메뉴 리스트의 총 가격은 "+totalPrice+" 원 입니다.\n";
 					receipt+="예약시간 "+bookingTime+"분 후";
 					User user = (User) session.getSession();
 					

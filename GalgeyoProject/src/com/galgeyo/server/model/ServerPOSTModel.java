@@ -453,13 +453,103 @@ public class ServerPOSTModel implements DBsetting {
 	}
 
 	public Object acceptOrder(Object message) {
-		// TODO Auto-generated method stub
-		return null;
+		String[] data = ((String)message).split(",");
+		String orderNo = data[0];
+		String desStoreId = data[1];
+		String userName = null;
+		Properties storeWait = new Properties();
+		Properties storeOrder = new Properties();
+		String userId = null;
+		try {
+			storeWait.loadFromXML(new FileInputStream(WAITING_LIST + desStoreId + "_waitinglist.data"));
+			storeOrder.loadFromXML(new FileInputStream(ORDER_LIST + desStoreId + "_orderlist.data"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		storeOrder.setProperty(orderNo, storeWait.getProperty(orderNo));
+		storeWait.remove(orderNo);
+		try {
+			storeWait.storeToXML(new FileOutputStream(WAITING_LIST + desStoreId + "_waitinglist.data"),
+					"move order", "UTF-8");
+			storeOrder.storeToXML(new FileOutputStream(ORDER_LIST + desStoreId + "_orderlist.data"), "move order",
+					"UTF-8");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 	public Object acceptCancel(Object message) {
-		// TODO Auto-generated method stub
-		return null;
+		String[] data = ((String)message).split(",");
+		String orderNo = data[0];
+		String desStoreId = data[1];
+		String userName = null;
+		String userId = null;
+		Properties storeWait = new Properties();
+		try {
+			storeWait.loadFromXML(new FileInputStream(WAITING_LIST + desStoreId + "_waitinglist.data"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Iterator<Object> iter = storeWait.keySet().iterator();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			String value = storeWait.getProperty(key);
+			String[] values = value.split(",");	
+			if(desStoreId.equals(key)){
+				userName = values[2];
+				break;
+			}
+		}
+		Properties userTable = new Properties();
+		try {
+			userTable.loadFromXML(new FileInputStream(USER_TABLE));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Iterator<Object> iter2 = userTable.keySet().iterator();
+		while (iter2.hasNext()) {
+			String key = (String) iter2.next();
+			String value = userTable.getProperty(key);
+			String[] values = value.split(",");
+			if (Boolean.parseBoolean(values[0])) {
+				if (values[2].equals(userName)) {
+					userId = values[1];
+					break;
+				}
+			}
+		}
+		System.out.println(userId);
+		if(userId!=null){
+	
+			Properties userOrder = new Properties();
+			try {
+				userOrder.loadFromXML(new FileInputStream(ORDER_LIST + userId + "_orderlist.data"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String[] oderdata=(storeWait.getProperty(orderNo)).split(",");
+			Order order = new Order(oderdata[0], oderdata[1], oderdata[2], oderdata[3], oderdata[4], oderdata[5]);
+			order.setAcceptOrder(!Boolean.parseBoolean(oderdata[6]));
+			userOrder.setProperty(orderNo,order.toString());
+			storeWait.remove(orderNo);		
+			try {
+				storeWait.storeToXML(new FileOutputStream(WAITING_LIST + desStoreId + "_waitinglist.data"),
+						"move order", "UTF-8");
+				userOrder.storeToXML(new FileOutputStream(ORDER_LIST + userId + "_orderlist.data"), "move order",
+						"UTF-8");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
+		}
+		return true;//
 	}
 
 	public Object deleteMenu(Object message) {
@@ -483,16 +573,6 @@ public class ServerPOSTModel implements DBsetting {
 			e.printStackTrace();
 		}
 		return sendMessage;
-	}
-
-	public Object delThisFavor(Object message) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object delThisRecent(Object message) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public Object orderMenu(Object message) {

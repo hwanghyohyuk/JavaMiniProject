@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>modify user info</comment>
+<comment>changeReserStatus</comment>
 <entry key="미나리생채무침">true,미나리생채무침,1111,나나리,010-1872-7869</entry>
 <entry key="콩나물들깨무침">true,콩나물들깨무침,1111,콩나물,010-7865-1214</entry>
 <entry key="쥬니쥬니">false,쥬니쥬니,1111,육쌈냉면,031-631-5752,경기 이천시,855348-41241234,한식,false</entry>
@@ -20,20 +20,20 @@
 <entry key="방가방가햄토리">true,방가방가햄토리,1111,햄순이,010-8756-1543</entry>
 <entry key="어디든지달려가요">true,어디든지달려가요,1111,햄토리,010-4567-4872</entry>
 <entry key="jis6283">false,jis6283,0000,은밀한맛집,02-465-7845,13468,서울 중구 세종대로11길 26 ,한식,true</entry>
-<entry key="치킨먹고싶다">true,치킨먹고싶다,1111,후라이드,010-4837-4572</entry>
-<entry key="시연">true,시연,0000,이시연,010-8906-0239</entry>
 <entry key="audxor">true,audxor,asd,홍명택,01097677930</entry>
+<entry key="시연">true,시연,0000,이시연,010-8906-0239</entry>
+<entry key="치킨먹고싶다">true,치킨먹고싶다,1111,후라이드,010-4837-4572</entry>
 <entry key="무말랭이무침">true,무말랭이무침,1111,매콤해,010-4872-4873</entry>
 <entry key="갓덴스시">false,갓덴스시,0000,갓덴스시,02-2051-1477,322-4575-1288248,서울특별시 강남구 테헤란로 109,일식,true</entry>
 <entry key="찌유닝">true,찌유닝,1111,안쮜유뉜,01098753546</entry>
-<entry key="전인성">true,전인성,0000,전인성,010-6283-2576</entry>
 <entry key="루안">false,루안,0000,루안,02-562-5565,1554-862-115753,서울 강남구 논현로 430,중식,true</entry>
-<entry key="쮸니쮸니">true,쮸니쮸니,1111,안쮸니,01091901099</entry>
-<entry key="주상욱">true,주상욱,1111,주상욱,01024535483</entry>
-<entry key="audxor1">false,audxor1,asd,김밥천국,02-869-4518,112-2548-4547-11,서울시,분식,false</entry>
+<entry key="전인성">true,전인성,0000,전인성,010-6283-2576</entry>
+<entry key="audxor1">false,audxor1,asd,김밥천국,02-869-4518,112-2548-4547-11,서울시,분식,true</entry>
 <entry key="d">false,d,d,매장이름2,전화번호2,사업자번호2,주소2,한식,false</entry>
+<entry key="주상욱">true,주상욱,1111,주상욱,01024535483</entry>
+<entry key="쮸니쮸니">true,쮸니쮸니,1111,안쮸니,01091901099</entry>
 <entry key="boonsic">false,boonsic,0000,지윤이네,02-794-4561,461-45-7512,서울 용산구 보광로59길 5 ,분식,false</entry>
-<entry key="넨네34">false,넨네34,1111,네네치킨,031-632-7535,경기 이천시,5748635-48221562,한식,false</entry>
 <entry key="용궁매장담당자">false,용궁매장담당자,1111,용궁전,072-453-4532,깊은바다쏙,13251241-2315123,중식,false</entry>
+<entry key="넨네34">false,넨네34,1111,네네치킨,031-632-7535,경기 이천시,5748635-48221562,한식,false</entry>
 <entry key="김치전">true,김치전,1111,기무치,010-7852-1843</entry>
 </properties>

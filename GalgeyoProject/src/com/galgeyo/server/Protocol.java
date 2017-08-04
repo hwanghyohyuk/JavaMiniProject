@@ -22,7 +22,6 @@ public interface Protocol {
 	public static final byte ANSWER_WAIT_LIST = 30; 	//응답대기자 리스트
 	public static final byte ORDER_LIST = 31; 	//예약주문자 리스트
 	public static final byte MENU_MANAGEMENT_LIST = 32;	//메뉴관리 (메뉴리스트)
-	public static final byte ORDER_HISTORY_STATISTICS = 33;	//주문내역통계
 	public static final byte ORDER_HISTORY_LIST = 35;	//최근주문내역리스트
 	public static final byte STORE_LIST = 36;	//매장리스트
 	public static final byte STORE_MENU_LIST = 37;	//매장의 메뉴리스트
