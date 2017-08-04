@@ -33,6 +33,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 	private Session session = new Session();
 	private int menuType=0;
 	private int totalPrice = 0;
+	private int beforeSelected=-1;
 	
 	private DefaultTableModel dtmStore = new DefaultTableModel(new Object[][] {}, new String[] {
 				"매장 이름","주소","전화번호"
@@ -182,6 +183,7 @@ public class OrderMenuView extends JFrame implements Protocol{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int row = storeList.getSelectedRow();
+				if(beforeSelected!=row){
 				String storeName = (String) storeList.getValueAt(row, 0);
 				Object result = new ClientController().send(GET, STORE_MENU_LIST, storeName);
 				if (result instanceof MenuList) {
@@ -200,6 +202,8 @@ public class OrderMenuView extends JFrame implements Protocol{
 					for (int i = 0; i < resultList.length; i++) {
 						dtmMenu.addRow(resultList[i]);
 					}
+				}
+				beforeSelected = row;
 				}
 			}
 		});
