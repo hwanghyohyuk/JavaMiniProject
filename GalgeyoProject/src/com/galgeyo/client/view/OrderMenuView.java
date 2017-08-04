@@ -154,16 +154,16 @@ public class OrderMenuView extends JFrame implements Protocol{
 				String searchStr = tf_serch.getText();
 				if (!searchStr.equals("")) {
 					for (int i = 0; i < dtmStore.getRowCount(); i++) {
-						if (searchStr.equals((String) dtmStore.getValueAt(i, 1))) {// 문자열을
-							resultDtm.addRow(new Object[] { dtmStore.getValueAt(i, 0), dtmStore.getValueAt(i, 1), dtmStore.getValueAt(i, 2), dtmStore.getValueAt(i, 3) });
+						if (searchStr.equals((String) dtmStore.getValueAt(i, 0))) {// 문자열을
+							resultDtm.addRow(new Object[] { dtmStore.getValueAt(i, 0), dtmStore.getValueAt(i, 1), dtmStore.getValueAt(i, 2)});
 						}
 					}
 					if (resultDtm.getRowCount() == 0) {
-						resultDtm.addRow(new String[] { "검색", "결과가", "없습", "니다" });
+						resultDtm.addRow(new String[] { "검색결과","가없습", "니다" });
 					}
-					menuList.setModel(resultDtm);
+					storeList.setModel(resultDtm);
 				} else {
-					menuList.setModel(dtmStore);
+					storeList.setModel(dtmStore);
 				}
 			}
 		});
@@ -184,6 +184,11 @@ public class OrderMenuView extends JFrame implements Protocol{
 			public void mouseClicked(MouseEvent e) {
 				int row = storeList.getSelectedRow();
 				if(beforeSelected!=row){
+					DefaultTableModel dtmclone = new DefaultTableModel(new Object[][] {}, new String[] {
+							"분류", "메뉴이름", "가격", "수량"	}){  //셀 수정 못하게 하는 부분
+						 public boolean isCellEditable(int row, int column){
+							    return false;
+						 }};
 				String storeName = (String) storeList.getValueAt(row, 0);
 				Object result = new ClientController().send(GET, STORE_MENU_LIST, storeName);
 				if (result instanceof MenuList) {
@@ -200,10 +205,12 @@ public class OrderMenuView extends JFrame implements Protocol{
 						resultList[i][3]=new Integer(0);
 					}
 					for (int i = 0; i < resultList.length; i++) {
-						dtmMenu.addRow(resultList[i]);
+						dtmclone.addRow(resultList[i]);
 					}
+					 menuList.setModel(dtmclone);
 				}
 				beforeSelected = row;
+				}else{
 				}
 			}
 		});

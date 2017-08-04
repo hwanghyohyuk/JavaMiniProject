@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>new file</comment>
+<comment>add order</comment>
+<entry key="170804103204">대가방,170804103204,전인성,010,10:42,탕수육_20000_1,true</entry>
 </properties>
