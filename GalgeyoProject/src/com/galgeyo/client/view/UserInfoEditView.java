@@ -138,18 +138,18 @@ public class UserInfoEditView extends JFrame implements Protocol{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Session clone = new Session();
-				User manager = (User) session.getSession();
-				clone.setSession(manager);
+				User user = (User) session.getSession();
+				clone.setSession(user);
 				User cloneUser =  (User) clone.getSession();
 				if(tf_name.getText().equals("")){
 					JOptionPane.showMessageDialog(null,"이름를 입력해주세요.","개인정보 수정 오류",JOptionPane.WARNING_MESSAGE);
 				}else if(tf_tel.getText().equals("")){
 					JOptionPane.showMessageDialog(null,"전화번호를 입력해주세요.","개인정보 수정 오류",JOptionPane.WARNING_MESSAGE);
 				}else{
-					if(!tf_name.getText().equals(manager.getName())){//변경사항확인
+					if(!tf_name.getText().equals(user.getName())){//변경사항확인
 						cloneUser.setName(tf_name.getText());
 					}
-					if(!tf_tel.getText().equals(manager.getTel())){
+					if(!tf_tel.getText().equals(user.getTel())){
 						cloneUser.setTel(tf_tel.getText());
 					}					
 					if(!tf_modifyPw.getText().equals("")){//비밀번호 수정하면
