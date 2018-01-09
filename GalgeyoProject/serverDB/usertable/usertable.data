@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-<comment>changeReserStatus</comment>
-<entry key="미나리생채무침">true,미나리생채무침,1111,나나리,010-1872-7869</entry>
-<entry key="콩나물들깨무침">true,콩나물들깨무침,1111,콩나물,010-7865-1214</entry>
+<comment>add user</comment>
 <entry key="쥬니쥬니">false,쥬니쥬니,1111,육쌈냉면,031-631-5752,경기 이천시,855348-41241234,한식,false</entry>
-<entry key="날쌔게달려봐요">true,날쌔게달려봐요,1111,햄토리,010-7865-4535</entry>
-<entry key="대가방">false,대가방,0000,대가방,02-544-6336,6654-25483-488521,서울특별시 강남구 선릉로 145길 13,중식,true</entry>
+<entry key="치킨먹고싶다">true,치킨먹고싶다,1111,후라이드,010-4837-4572</entry>
+<entry key="hhh618">true,hhh618,1q2w3e4r5t,황효혁,01059136111</entry>
+<entry key="ruddydck">false,ruddydck,0000,청담골,02-846-7651,4654-85-4315,서울 강남구 영동대로 731,한식,false</entry>
+<entry key="넨네34">false,넨네34,1111,네네치킨,031-632-7535,경기 이천시,5748635-48221562,한식,false</entry>
 <entry key="다이칸야마치킨">false,다이칸야마치킨,0000,다이칸야마치킨,02-547-9776,556-4548-2881238,서울 강남구 압구정로10길 30-3,일식,true</entry>
-<entry key="jis2576">false,jis2576,1111,정식당,02-464-74651,2345-31-65461,서울 강남구 도산대로101길 6,한식,true</entry>
+<entry key="찌유닝">true,찌유닝,1111,안쮜유뉜,01098753546</entry>
+<entry key="아딸11">false,아딸11,1111,아딸 이천점,031-633-7854,경기 이천시,54865-4524578,분식,false</entry>
+<entry key="방가방가">true,방가방가,1111,우리친구햄토리,010-7856-4777</entry>
+<entry key="방가방가햄토리">true,방가방가햄토리,1111,햄순이,010-8756-1543</entry>
+<entry key="무말랭이무침">true,무말랭이무침,1111,매콤해,010-4872-4873</entry>
+<entry key="쮸니쮸니">true,쮸니쮸니,1111,안쮸니,01091901099</entry>
+<entry key="전인성">true,전인성,0000,전인성,010-6283-2576</entry>
+<entry key="jis6283">false,jis6283,0000,은밀한맛집,02-465-7845,13468,서울 중구 세종대로11길 26 ,한식,true</entry>
+<entry key="김치전">true,김치전,1111,기무치,010-7852-1843</entry>
 <entry key="숙주나물무침">true,숙주나물무침,1111,숙주나,010-4876-4876</entry>
 <entry key="내가쩨일좋아하는건">true,내가쩨일좋아하는건,1111,까만해바라기씨,010-4872-8636</entry>
-<entry key="2013dlstjd">false,2013dlstjd,0000,솜씨,02-784-3471,465-44-8764,서울 중구 남산공원길 125-72 ,한식,true</entry>
-<entry key="파전도좋아">true,파전도좋아,1111,파전부추전,010-4872-4871</entry>
-<entry key="방가방가">true,방가방가,1111,우리친구햄토리,010-7856-4777</entry>
-<entry key="ruddydck">false,ruddydck,0000,청담골,02-846-7651,4654-85-4315,서울 강남구 영동대로 731,한식,false</entry>
-<entry key="아딸11">false,아딸11,1111,아딸 이천점,031-633-7854,경기 이천시,54865-4524578,분식,false</entry>
 <entry key="나눈안띠유니">false,나눈안띠유니,1111,애슐리,02-134-1241,서울 강남구,1234514-524123,한식,false</entry>
-<entry key="방가방가햄토리">true,방가방가햄토리,1111,햄순이,010-8756-1543</entry>
-<entry key="어디든지달려가요">true,어디든지달려가요,1111,햄토리,010-4567-4872</entry>
-<entry key="jis6283">false,jis6283,0000,은밀한맛집,02-465-7845,13468,서울 중구 세종대로11길 26 ,한식,true</entry>
-<entry key="치킨먹고싶다">true,치킨먹고싶다,1111,후라이드,010-4837-4572</entry>
+<entry key="콩나물들깨무침">true,콩나물들깨무침,1111,콩나물,010-7865-1214</entry>
 <entry key="시연">true,시연,0000,이시연,010-8906-0239</entry>
+<entry key="대가방">false,대가방,0000,대가방,02-544-6336,6654-25483-488521,서울특별시 강남구 선릉로 145길 13,중식,true</entry>
+<entry key="미나리생채무침">true,미나리생채무침,1111,나나리,010-1872-7869</entry>
+<entry key="boonsic">false,boonsic,0000,지윤이네,02-794-4561,461-45-7512,서울 용산구 보광로59길 5 ,분식,false</entry>
+<entry key="파전도좋아">true,파전도좋아,1111,파전부추전,010-4872-4871</entry>
+<entry key="날쌔게달려봐요">true,날쌔게달려봐요,1111,햄토리,010-7865-4535</entry>
 <entry key="audxor">true,audxor,asd,홍명택,01097677930</entry>
-<entry key="무말랭이무침">true,무말랭이무침,1111,매콤해,010-4872-4873</entry>
-<entry key="갓덴스시">false,갓덴스시,0000,갓덴스시,02-2051-1477,322-4575-1288248,서울특별시 강남구 테헤란로 109,일식,true</entry>
-<entry key="찌유닝">true,찌유닝,1111,안쮜유뉜,01098753546</entry>
-<entry key="전인성">true,전인성,0000,전인성,010-6283-2576</entry>
+<entry key="asdf">true,asdf,0000,전인성,010-5646-4444</entry>
+<entry key="jis2576">false,jis2576,1111,정식당,02-464-74651,2345-31-65461,서울 강남구 도산대로101길 6,한식,true</entry>
 <entry key="루안">false,루안,0000,루안,02-562-5565,1554-862-115753,서울 강남구 논현로 430,중식,true</entry>
-<entry key="쮸니쮸니">true,쮸니쮸니,1111,안쮸니,01091901099</entry>
 <entry key="주상욱">true,주상욱,1111,주상욱,01024535483</entry>
+<entry key="용궁매장담당자">false,용궁매장담당자,1111,용궁전,072-453-4532,깊은바다쏙,13251241-2315123,중식,false</entry>
 <entry key="d">false,d,d,매장이름2,전화번호2,사업자번호2,주소2,한식,false</entry>
 <entry key="audxor1">false,audxor1,asd,김밥천국,02-869-4518,112-2548-4547-11,서울시,분식,true</entry>
-<entry key="boonsic">false,boonsic,0000,지윤이네,02-794-4561,461-45-7512,서울 용산구 보광로59길 5 ,분식,false</entry>
-<entry key="asdf">true,asdf,0000,전인성,010-5646-4444</entry>
-<entry key="넨네34">false,넨네34,1111,네네치킨,031-632-7535,경기 이천시,5748635-48221562,한식,false</entry>
-<entry key="용궁매장담당자">false,용궁매장담당자,1111,용궁전,072-453-4532,깊은바다쏙,13251241-2315123,중식,false</entry>
-<entry key="김치전">true,김치전,1111,기무치,010-7852-1843</entry>
+<entry key="어디든지달려가요">true,어디든지달려가요,1111,햄토리,010-4567-4872</entry>
+<entry key="갓덴스시">false,갓덴스시,0000,갓덴스시,02-2051-1477,322-4575-1288248,서울특별시 강남구 테헤란로 109,일식,true</entry>
+<entry key="2013dlstjd">false,2013dlstjd,0000,솜씨,02-784-3471,465-44-8764,서울 중구 남산공원길 125-72 ,한식,true</entry>
 </properties>

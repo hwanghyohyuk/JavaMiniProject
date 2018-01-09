@@ -1,6 +1,7 @@
 package com.galgeyo.server;
 
 public interface Protocol {
+	
 	public static final boolean POST = true;
 	public static final boolean GET = false;
 	

@@ -8,9 +8,10 @@ import java.net.UnknownHostException;
 
 import com.galgeyo.server.DBsetting;
 import com.galgeyo.server.Protocol;
+import com.galgeyo.server.ServerIP;
 import com.galgeyo.vo.Packet;
 
-public class ClientSender implements Protocol, DBsetting {
+public class ClientSender implements Protocol, ServerIP {
 
 	public Packet send(Packet sendPacket) {
 		Socket socket = null;
